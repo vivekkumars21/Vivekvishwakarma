@@ -719,11 +719,14 @@ const GhostCompanion: FC = () => {
   const [quoteIndex, setQuoteIndex] = useState(0)
 
   const quotes = [
-    "Boo! 👻 I'm Vivek's AI helper. Welcome to my clean-code space!",
-    "\"Engineering intelligent software with clean architectures!\" 🚀",
-    "Did you know? I'm vector-traced from Vivek's hand-drawn ghost sketch!",
-    "Check out the Deepfake Detector — it combines Spatial & Frequency AI!",
-    "Click me to spin! I guard this premium frosted glass portfolio! 🛡️"
+    "Boo! 👻 I'm Vivek's late-night coding ghost. I literally compile his React bugs into features!",
+    "\"Engineering intelligent software...\" or just drinking 3 AM Chai trying to center a Tailwind div! ☕",
+    "Fun fact: Vivek sketched me on paper during an IT lecture at GTU. Don't tell the professor! 🤫",
+    "I guard the Deepfake Detection model. If any suspicious face vectors show up, I scare them away! 👁️",
+    "Vivek wanted a 'glassmorphic frosted nav' so much, I had to freeze my ectoplasm for it! 🥶",
+    "Click me! I spin faster than Vivek's CPU running deep learning epochs! 🌀",
+    "PlexusNet attendance punches in 2 seconds, but it takes me 2 minutes to float to the header! 🏃💨",
+    "Yes, I am a ghost. No, I am not a bug. Okay, maybe I'm a feature. 🐛✨"
   ]
 
   const handleClick = () => {
@@ -747,7 +750,6 @@ const GhostCompanion: FC = () => {
       >
         <div className="relative font-medium leading-relaxed">
           {quotes[quoteIndex]}
-          <div className="absolute right-4 -bottom-[17px] w-3 h-3 bg-[#131317] border-r border-b border-white/10 rotate-45" />
         </div>
       </div>
 
