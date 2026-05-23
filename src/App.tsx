@@ -44,7 +44,7 @@ const NAV_LINKS = [
 const Logo: FC = () => (
   <a
     href="#home"
-    className="text-3xl tracking-tight text-foreground select-none hover:opacity-90 transition-opacity no-underline"
+    className="text-2xl sm:text-3xl tracking-tight text-foreground select-none hover:opacity-90 transition-opacity no-underline"
     style={{ fontFamily: "'Instrument Serif', serif" }}
   >
     Vivek Vishwakarma
@@ -78,7 +78,7 @@ const Navbar: FC = () => {
         ${isScrolled ? 'glass-frosted-nav py-4' : 'bg-transparent border-none py-6'}
       `}
     >
-      <div className="flex flex-row items-center justify-between px-8 max-w-7xl mx-auto">
+      <div className="flex flex-row items-center justify-between px-4 sm:px-8 max-w-7xl mx-auto">
         {/* Logo */}
         <Logo />
 
@@ -274,7 +274,7 @@ const Projects: FC = () => {
   ]
 
   return (
-    <section id="projects" className="relative z-10 max-w-7xl mx-auto px-8 py-28 border-t border-white/[0.03]">
+    <section id="projects" className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 py-20 sm:py-28 border-t border-white/[0.03]">
       <div className="flex flex-col items-center text-center mb-16">
         <h2
           className="text-4xl sm:text-6xl text-foreground"
@@ -295,7 +295,7 @@ const Projects: FC = () => {
               key={idx}
               className={`
                 liquid-glass
-                rounded-2xl p-8 sm:p-10 flex flex-col justify-between
+                rounded-2xl p-6 sm:p-10 flex flex-col justify-between
                 transition-all duration-300 hover:scale-[1.01] group
                 ${project.highlight ? 'border border-white/15 shadow-2xl shadow-white/[0.01]' : 'border border-white/[0.05]'}
               `}
@@ -367,7 +367,7 @@ const Experience: FC = () => {
   ]
 
   return (
-    <section id="experience" className="relative z-10 max-w-7xl mx-auto px-8 py-28 border-t border-white/[0.03]">
+    <section id="experience" className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 py-20 sm:py-28 border-t border-white/[0.03]">
       <div className="flex flex-col items-center text-center mb-16">
         <h2
           className="text-4xl sm:text-6xl text-foreground"
@@ -382,7 +382,7 @@ const Experience: FC = () => {
 
       <div className="max-w-3xl mx-auto">
         {experiences.map((exp, idx) => (
-          <div key={idx} className="liquid-glass rounded-2xl p-8 sm:p-10 border border-white/[0.05]">
+          <div key={idx} className="liquid-glass rounded-2xl p-6 sm:p-10 border border-white/[0.05]">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-foreground">
@@ -452,7 +452,7 @@ const Skills: FC = () => {
   ]
 
   return (
-    <section id="skills" className="relative z-10 max-w-7xl mx-auto px-8 py-28 border-t border-white/[0.03]">
+    <section id="skills" className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 py-20 sm:py-28 border-t border-white/[0.03]">
       <div className="flex flex-col items-center text-center mb-16">
         <h2
           className="text-4xl sm:text-6xl text-foreground"
@@ -511,7 +511,7 @@ const Education: FC = () => {
   ]
 
   return (
-    <section id="education" className="relative z-10 max-w-7xl mx-auto px-8 py-28 border-t border-white/[0.03]">
+    <section id="education" className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 py-20 sm:py-28 border-t border-white/[0.03]">
       <div className="flex flex-col items-center text-center mb-16">
         <h2
           className="text-4xl sm:text-6xl text-foreground"
@@ -526,7 +526,7 @@ const Education: FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
         {/* University Info */}
-        <div className="liquid-glass rounded-2xl p-8 border border-white/[0.05] flex flex-col lg:col-span-1">
+        <div className="liquid-glass rounded-2xl p-6 sm:p-8 border border-white/[0.05] flex flex-col lg:col-span-1">
           <div className="flex items-center gap-4 mb-6">
             <div className="w-12 h-12 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-foreground shrink-0">
               <GraduationCap className="w-5 h-5 stroke-[1.5]" />
@@ -549,7 +549,7 @@ const Education: FC = () => {
         </div>
 
         {/* Certifications */}
-        <div className="liquid-glass rounded-2xl p-8 border border-white/[0.05] lg:col-span-1">
+        <div className="liquid-glass rounded-2xl p-6 sm:p-8 border border-white/[0.05] lg:col-span-1">
           <div className="flex items-center gap-4 mb-6">
             <div className="w-12 h-12 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-foreground">
               <Award className="w-5 h-5 stroke-[1.5]" />
@@ -573,7 +573,7 @@ const Education: FC = () => {
         </div>
 
         {/* Strengths */}
-        <div className="liquid-glass rounded-2xl p-8 border border-white/[0.05] lg:col-span-1">
+        <div className="liquid-glass rounded-2xl p-6 sm:p-8 border border-white/[0.05] lg:col-span-1">
           <div className="flex items-center gap-4 mb-6">
             <div className="w-12 h-12 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-foreground">
               <Zap className="w-5 h-5 stroke-[1.5]" />
@@ -602,7 +602,7 @@ const Education: FC = () => {
 
 /* ─── Contact Section ───────────────────────────────────────────────────────── */
 const Contact: FC = () => (
-  <section id="contact" className="relative z-10 max-w-7xl mx-auto px-8 py-28 border-t border-white/[0.03]">
+  <section id="contact" className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 py-20 sm:py-28 border-t border-white/[0.03]">
     <div className="flex flex-col items-center text-center mb-16">
       <h2
         className="text-4xl sm:text-6xl text-foreground"
