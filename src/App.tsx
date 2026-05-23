@@ -1,4 +1,5 @@
 import { type FC, useState, useEffect } from 'react'
+import { Ghost } from './components/ui/ghost'
 import {
   Github,
   Linkedin,
@@ -267,7 +268,7 @@ const Projects: FC = () => {
       subtitle: 'Under Development',
       desc: 'An exciting new intelligent engineering system currently under architectural layout planning. I will add the implementation details here later.',
       tech: ['AI / ML', 'Full-Stack', 'Next.js'],
-      icon: Code2,
+      icon: (props: any) => <Ghost variant="glass" className={props.className} />,
       highlight: false
     }
   ]
@@ -711,6 +712,65 @@ const BackgroundVideo: FC = () => (
   />
 )
 
+/* ─── Ghost Companion ──────────────────────────────────────────────────────── */
+const GhostCompanion: FC = () => {
+  const [hovered, setHovered] = useState(false)
+  const [rotation, setRotation] = useState(0)
+  const [quoteIndex, setQuoteIndex] = useState(0)
+
+  const quotes = [
+    "Boo! 👻 I'm Vivek's AI helper. Welcome to my clean-code space!",
+    "\"Engineering intelligent software with clean architectures!\" 🚀",
+    "Did you know? I'm vector-traced from Vivek's hand-drawn ghost sketch!",
+    "Check out the Deepfake Detector — it combines Spatial & Frequency AI!",
+    "Click me to spin! I guard this premium frosted glass portfolio! 🛡️"
+  ]
+
+  const handleClick = () => {
+    setRotation(r => r + 360)
+    setQuoteIndex(prev => (prev + 1) % quotes.length)
+  }
+
+  return (
+    <div
+      className="fixed bottom-6 right-6 z-40 flex flex-col items-end group"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Speech bubble */}
+      <div
+        className={`
+          mb-3 mr-1 p-4 rounded-2xl liquid-glass border border-white/10
+          max-w-[220px] text-xs text-foreground transition-all duration-300 origin-bottom-right
+          ${hovered ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-90 translate-y-2 pointer-events-none'}
+        `}
+      >
+        <div className="relative font-medium leading-relaxed">
+          {quotes[quoteIndex]}
+          <div className="absolute right-4 -bottom-[17px] w-3 h-3 bg-[#131317] border-r border-b border-white/10 rotate-45" />
+        </div>
+      </div>
+
+      {/* Floating Ghost Element */}
+      <button
+        onClick={handleClick}
+        className="
+          w-14 h-14 rounded-full
+          glass-button
+          flex items-center justify-center
+          no-underline relative transition-transform duration-500
+          animate-float-ghost
+          cursor-pointer outline-none border-none
+        "
+        style={{ transform: `rotate(${rotation}deg)` }}
+        aria-label="AI Ghost Companion"
+      >
+        <Ghost variant="glass" className="w-9 h-9" />
+      </button>
+    </div>
+  )
+}
+
 /* ─── Page ──────────────────────────────────────────────────────────────────── */
 const App: FC = () => (
   <div className="relative min-h-screen w-full overflow-x-hidden bg-background selection:bg-white/10">
@@ -726,6 +786,9 @@ const App: FC = () => (
       <Skills />
       <Education />
       <Contact />
+      
+      {/* Interactive Ghost Companion */}
+      <GhostCompanion />
       
       {/* Footer */}
       <footer className="relative z-10 w-full py-8 border-t border-white/[0.03] text-center">
