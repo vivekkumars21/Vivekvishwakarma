@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <!-- Glowing definitions -->
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="30%" stop-color="#ffffff" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Ambient celestial glow -->
+  <circle cx="60" cy="60" r="24" fill="url(#glow)" opacity="0.35"/>
+
+  <!-- Concentric orbits -->
+  <circle cx="60" cy="60" r="6" fill="#ffffff" />
+  <circle cx="60" cy="60" r="16" stroke="#ffffff" stroke-width="0.75" stroke-opacity="0.15" />
+  <circle cx="60" cy="60" r="28" stroke="#ffffff" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="3 3" />
+  <circle cx="60" cy="60" r="42" stroke="#ffffff" stroke-width="0.75" stroke-opacity="0.1" />
+  <circle cx="60" cy="60" r="54" stroke="#ffffff" stroke-width="1.25" stroke-opacity="0.25" stroke-dasharray="6 4" />
+
+  <!-- Orbiting celestial nodes -->
+  <circle cx="60" cy="32" r="2" fill="#ffffff" />
+  <circle cx="60" cy="88" r="2" fill="#ffffff" />
+  <circle cx="32" cy="60" r="2" fill="#ffffff" />
+  <circle cx="88" cy="60" r="2" fill="#ffffff" />
+
+  <!-- Rays and coordinate lines -->
+  <line x1="60" y1="18" x2="60" y2="102" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.15" />
+  <line x1="18" y1="60" x2="102" y2="60" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.15" />
+  <line x1="30" y1="30" x2="90" y2="90" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.1" stroke-dasharray="2 2" />
+  <line x1="30" y1="90" x2="90" y2="30" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.1" stroke-dasharray="2 2" />
+
+  <!-- Outermost star points -->
+  <path d="M60 4a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0V5a1 1 0 0 1 1-1z" fill="#ffffff" opacity="0.6"/>
+  <path d="M60 114a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0v-1a1 1 0 0 1 1-1z" fill="#ffffff" opacity="0.6"/>
+  <path d="M4 60a1 1 0 0 1 1-1h1a1 1 0 0 1 0 2H5a1 1 0 0 1-1-1z" fill="#ffffff" opacity="0.6"/>
+  <path d="M114 60a1 1 0 0 1 1-1h1a1 1 0 0 1 0 2h-1a1 1 0 0 1-1-1z" fill="#ffffff" opacity="0.6"/>
+
+  <!-- Centered geometric star diamond -->
+  <polygon points="60,48 63,57 72,60 63,63 60,72 57,63 48,60 57,57" fill="#ffffff" fill-opacity="0.95" />
+</svg>
