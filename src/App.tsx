@@ -1,4 +1,5 @@
 import { type FC, useState, useEffect } from 'react'
+import { useActiveSection } from './hooks/useActiveSection'
 import { Ghost } from './components/ui/ghost'
 import {
   Github,
@@ -41,9 +42,15 @@ const NAV_LINKS = [
 ]
 
 /* ─── Logo ──────────────────────────────────────────────────────────────────── */
-const Logo: FC = () => (
+const Logo: FC<{ onNavClick: (id: string) => void }> = ({ onNavClick }) => (
   <a
     href="#home"
+    onClick={(e) => {
+      e.preventDefault()
+      onNavClick('home')
+      const el = document.getElementById('home')
+      if (el) el.scrollIntoView({ behavior: 'smooth' })
+    }}
     className="text-2xl sm:text-3xl tracking-tight text-foreground select-none hover:opacity-90 transition-opacity no-underline"
     style={{ fontFamily: "'Instrument Serif', serif" }}
   >
@@ -51,8 +58,13 @@ const Logo: FC = () => (
   </a>
 )
 
+interface NavbarProps {
+  activeSection: string
+  onNavClick: (id: string) => void
+}
+
 /* ─── Nav ───────────────────────────────────────────────────────────────────── */
-const Navbar: FC = () => {
+const Navbar: FC<NavbarProps> = ({ activeSection, onNavClick }) => {
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
@@ -80,26 +92,49 @@ const Navbar: FC = () => {
     >
       <div className="flex flex-row items-center justify-between px-4 sm:px-8 max-w-7xl mx-auto">
         {/* Logo */}
-        <Logo />
+        <Logo onNavClick={onNavClick} />
 
         {/* Desktop nav links */}
-        <ul className="hidden lg:flex items-center gap-8 m-0 p-0 list-none">
-          {NAV_LINKS.map(({ label, href }) => (
-            <li key={label}>
-              <a
-                href={href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 no-underline"
-              >
-                {label}
-              </a>
-            </li>
-          ))}
+        <ul className="hidden lg:flex items-center gap-6 m-0 p-0 list-none">
+          {NAV_LINKS.map(({ label, href }) => {
+            const id = href.replace('#', '')
+            const isActive = activeSection === id
+            return (
+              <li key={label}>
+                <a
+                  href={href}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    onNavClick(id)
+                    const el = document.getElementById(id)
+                    if (el) el.scrollIntoView({ behavior: 'smooth' })
+                  }}
+                  className={`
+                    px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 no-underline border
+                    ${
+                      isActive
+                        ? 'text-foreground bg-white/[0.06] border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.03)] scale-[1.02]'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-white/[0.02] border-transparent'
+                    }
+                  `}
+                >
+                  {label}
+                </a>
+              </li>
+            )
+          })}
         </ul>
 
         {/* Action buttons */}
         <div className="flex items-center gap-4">
           <a
             href="#contact"
+            onClick={(e) => {
+              e.preventDefault()
+              onNavClick('contact')
+              const el = document.getElementById('contact')
+              if (el) el.scrollIntoView({ behavior: 'smooth' })
+            }}
             className="
               glass-button
               rounded-full px-6 py-2
@@ -774,32 +809,37 @@ const GhostCompanion: FC = () => {
 }
 
 /* ─── Page ──────────────────────────────────────────────────────────────────── */
-const App: FC = () => (
-  <div className="relative min-h-screen w-full overflow-x-hidden bg-background selection:bg-white/10">
-    {/* Fullscreen fixed looping video */}
-    <BackgroundVideo />
+const App: FC = () => {
+  const sectionIds = ['home', 'projects', 'experience', 'skills', 'education', 'contact']
+  const [activeSection, handleNavClick] = useActiveSection(sectionIds)
 
-    {/* Content stack (above video) */}
-    <div className="relative z-10 flex flex-col min-h-screen">
-      <Navbar />
-      <Hero />
-      <Projects />
-      <Experience />
-      <Skills />
-      <Education />
-      <Contact />
-      
-      {/* Interactive Ghost Companion */}
-      <GhostCompanion />
-      
-      {/* Footer */}
-      <footer className="relative z-10 w-full py-8 border-t border-white/[0.03] text-center">
-        <p className="text-[11px] text-muted-foreground uppercase tracking-widest m-0">
-          © {new Date().getFullYear()} Vivek Vishwakarma. All rights reserved.
-        </p>
-      </footer>
+  return (
+    <div className="relative min-h-screen w-full overflow-x-hidden bg-background selection:bg-white/10">
+      {/* Fullscreen fixed looping video */}
+      <BackgroundVideo />
+
+      {/* Content stack (above video) */}
+      <div className="relative z-10 flex flex-col min-h-screen">
+        <Navbar activeSection={activeSection} onNavClick={handleNavClick} />
+        <Hero />
+        <Projects />
+        <Experience />
+        <Skills />
+        <Education />
+        <Contact />
+        
+        {/* Interactive Ghost Companion */}
+        <GhostCompanion />
+        
+        {/* Footer */}
+        <footer className="relative z-10 w-full py-8 border-t border-white/[0.03] text-center">
+          <p className="text-[11px] text-muted-foreground uppercase tracking-widest m-0">
+            © {new Date().getFullYear()} Vivek Vishwakarma. All rights reserved.
+          </p>
+        </footer>
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
 export default App
