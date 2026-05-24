@@ -42,6 +42,15 @@ const NAV_LINKS = [
   { label: 'Contact',    href: '#contact' },
 ]
 
+/* ─── Hover Effect Utility ─────────────────────────────────────────────────── */
+const handleCardMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+  const rect = e.currentTarget.getBoundingClientRect()
+  const x = e.clientX - rect.left
+  const y = e.clientY - rect.top
+  e.currentTarget.style.setProperty('--mouse-x', `${x}px`)
+  e.currentTarget.style.setProperty('--mouse-y', `${y}px`)
+}
+
 /* ─── Logo ──────────────────────────────────────────────────────────────────── */
 const Logo: FC<{ onNavClick: (id: string) => void }> = ({ onNavClick }) => (
   <a
@@ -332,6 +341,7 @@ const Projects: FC = () => {
           return (
             <div
               key={idx}
+              onMouseMove={handleCardMouseMove}
               className={`
                 liquid-glass
                 rounded-2xl p-6 sm:p-10 flex flex-col justify-between
@@ -339,6 +349,13 @@ const Projects: FC = () => {
                 ${project.highlight ? 'border border-white/15 shadow-2xl shadow-white/[0.01]' : 'border border-white/[0.05]'}
               `}
             >
+              {/* Radial Shimmer Effect Overlay */}
+              <div 
+                className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{
+                  background: 'radial-gradient(400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
+                }}
+              />
               <div>
                 <div className="flex justify-between items-start mb-6">
                   <div className="w-12 h-12 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-foreground group-hover:scale-110 transition-transform">
@@ -388,12 +405,22 @@ const Projects: FC = () => {
 
       {/* Cool Coming Soon Banner */}
       <div className="mt-16 flex justify-center">
-        <div className="
-          liquid-glass 
-          rounded-2xl p-6 sm:p-8 max-w-3xl text-center border border-white/10
-          flex flex-col sm:flex-row items-center gap-6
-          transition-all duration-300 hover:scale-[1.01] hover:border-white/15
-        ">
+        <div 
+          onMouseMove={handleCardMouseMove}
+          className="
+            liquid-glass group
+            rounded-2xl p-6 sm:p-8 max-w-3xl text-center border border-white/10
+            flex flex-col sm:flex-row items-center gap-6
+            transition-all duration-300 hover:scale-[1.01] hover:border-white/15
+          "
+        >
+          {/* Radial Shimmer Effect Overlay */}
+          <div 
+            className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={{
+              background: 'radial-gradient(400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
+            }}
+          />
           <div className="w-12 h-12 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center text-foreground shrink-0 animate-pulse">
             <Code2 className="w-5 h-5 stroke-[1.5] text-white/80" />
           </div>
@@ -443,7 +470,18 @@ const Experience: FC = () => {
 
       <div className="max-w-3xl mx-auto">
         {experiences.map((exp, idx) => (
-          <div key={idx} className="liquid-glass rounded-2xl p-6 sm:p-10 border border-white/[0.05]">
+          <div 
+            key={idx} 
+            onMouseMove={handleCardMouseMove}
+            className="liquid-glass group rounded-2xl p-6 sm:p-10 border border-white/[0.05] relative overflow-hidden"
+          >
+            {/* Radial Shimmer Effect Overlay */}
+            <div 
+              className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              style={{
+                background: 'radial-gradient(450px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
+              }}
+            />
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-foreground">
@@ -530,7 +568,18 @@ const Skills: FC = () => {
         {skillCategories.map((cat, idx) => {
           const Icon = cat.icon
           return (
-            <div key={idx} className="liquid-glass rounded-2xl p-6 border border-white/[0.05] hover:scale-[1.02] transition-all duration-300">
+            <div 
+              key={idx} 
+              onMouseMove={handleCardMouseMove}
+              className="liquid-glass group rounded-2xl p-6 border border-white/[0.05] hover:scale-[1.02] transition-all duration-300 relative overflow-hidden"
+            >
+              {/* Radial Shimmer Effect Overlay */}
+              <div 
+                className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{
+                  background: 'radial-gradient(200px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
+                }}
+              />
               <div className="flex items-center gap-3 mb-5">
                 <div className="w-8 h-8 rounded-lg bg-white/[0.02] border border-white/5 flex items-center justify-center text-foreground shrink-0">
                   <Icon className="w-4 h-4 stroke-[1.5]" />
@@ -587,7 +636,17 @@ const Education: FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
         {/* University Info */}
-        <div className="liquid-glass rounded-2xl p-6 sm:p-8 border border-white/[0.05] flex flex-col lg:col-span-1">
+        <div 
+          onMouseMove={handleCardMouseMove}
+          className="liquid-glass group rounded-2xl p-6 sm:p-8 border border-white/[0.05] flex flex-col lg:col-span-1 relative overflow-hidden"
+        >
+          {/* Radial Shimmer Effect Overlay */}
+          <div 
+            className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={{
+              background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
+            }}
+          />
           <div className="flex items-center gap-4 mb-6">
             <div className="w-12 h-12 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-foreground shrink-0">
               <GraduationCap className="w-5 h-5 stroke-[1.5]" />
@@ -610,7 +669,17 @@ const Education: FC = () => {
         </div>
 
         {/* Certifications */}
-        <div className="liquid-glass rounded-2xl p-6 sm:p-8 border border-white/[0.05] lg:col-span-1">
+        <div 
+          onMouseMove={handleCardMouseMove}
+          className="liquid-glass group rounded-2xl p-6 sm:p-8 border border-white/[0.05] lg:col-span-1 relative overflow-hidden"
+        >
+          {/* Radial Shimmer Effect Overlay */}
+          <div 
+            className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={{
+              background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
+            }}
+          />
           <div className="flex items-center gap-4 mb-6">
             <div className="w-12 h-12 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-foreground">
               <Award className="w-5 h-5 stroke-[1.5]" />
@@ -634,7 +703,17 @@ const Education: FC = () => {
         </div>
 
         {/* Strengths */}
-        <div className="liquid-glass rounded-2xl p-6 sm:p-8 border border-white/[0.05] lg:col-span-1">
+        <div 
+          onMouseMove={handleCardMouseMove}
+          className="liquid-glass group rounded-2xl p-6 sm:p-8 border border-white/[0.05] lg:col-span-1 relative overflow-hidden"
+        >
+          {/* Radial Shimmer Effect Overlay */}
+          <div 
+            className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={{
+              background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
+            }}
+          />
           <div className="flex items-center gap-4 mb-6">
             <div className="w-12 h-12 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-foreground">
               <Zap className="w-5 h-5 stroke-[1.5]" />
@@ -681,8 +760,16 @@ const Contact: FC = () => (
       <div className="flex flex-col gap-4">
         <a
           href="mailto:vivekvishwakarma21@outlook.com"
-          className="liquid-glass rounded-2xl p-6 border border-white/[0.05] hover:scale-[1.01] transition-transform flex items-center gap-6 no-underline group"
+          onMouseMove={handleCardMouseMove}
+          className="liquid-glass rounded-2xl p-6 border border-white/[0.05] hover:scale-[1.01] transition-transform flex items-center gap-6 no-underline group relative overflow-hidden"
         >
+          {/* Radial Shimmer Effect Overlay */}
+          <div 
+            className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={{
+              background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
+            }}
+          />
           <div className="w-12 h-12 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-foreground group-hover:scale-110 transition-transform shrink-0">
             <Mail className="w-5 h-5 stroke-[1.5]" />
           </div>
@@ -696,8 +783,16 @@ const Contact: FC = () => (
 
         <a
           href="tel:+919328797168"
-          className="liquid-glass rounded-2xl p-6 border border-white/[0.05] hover:scale-[1.01] transition-transform flex items-center gap-6 no-underline group"
+          onMouseMove={handleCardMouseMove}
+          className="liquid-glass rounded-2xl p-6 border border-white/[0.05] hover:scale-[1.01] transition-transform flex items-center gap-6 no-underline group relative overflow-hidden"
         >
+          {/* Radial Shimmer Effect Overlay */}
+          <div 
+            className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={{
+              background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
+            }}
+          />
           <div className="w-12 h-12 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-foreground group-hover:scale-110 transition-transform shrink-0">
             <Phone className="w-5 h-5 stroke-[1.5]" />
           </div>
@@ -711,7 +806,17 @@ const Contact: FC = () => (
       </div>
 
       {/* Social Links Panel */}
-      <div className="liquid-glass rounded-2xl p-8 border border-white/[0.05] flex flex-col justify-between">
+      <div 
+        onMouseMove={handleCardMouseMove}
+        className="liquid-glass rounded-2xl p-8 border border-white/[0.05] flex flex-col justify-between group relative overflow-hidden"
+      >
+        {/* Radial Shimmer Effect Overlay */}
+        <div 
+          className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          style={{
+            background: 'radial-gradient(400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
+          }}
+        />
         <div>
           <h3
             className="text-2xl sm:text-3xl text-foreground mb-2"
@@ -787,6 +892,8 @@ const GhostCompanion: FC = () => {
     "Vivek wanted a 'glassmorphic frosted nav' so much, I had to freeze my ectoplasm for it! 🥶",
     "Click me! I spin faster than Vivek's CPU running deep learning epochs! 🌀",
     "PlexusNet attendance punches in 2 seconds, but it takes me 2 minutes to float to the header! 🏃💨",
+    "Look at those cards glow! I'm polishing the glass panels in the background with my ghost ectoplasm! 🧼✨",
+    "I'm following your cursor around with my ambient cosmic space glow! Feel the gravitational pull! 🌌",
     "Yes, I am a ghost. No, I am not a bug. Okay, maybe I'm a feature. 🐛✨"
   ]
 
@@ -839,14 +946,36 @@ const App: FC = () => {
   const sectionIds = ['home', 'projects', 'experience', 'skills', 'education', 'contact']
   const [activeSection, handleNavClick] = useActiveSection(sectionIds)
 
+  useEffect(() => {
+    const glowEl = document.getElementById('global-space-glow')
+    if (!glowEl) return
+
+    const handleGlobalMouseMove = (e: MouseEvent) => {
+      // Update coordinates dynamically on the DOM directly for optimal HMR performance (avoiding React re-renders)
+      glowEl.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`
+    }
+
+    window.addEventListener('mousemove', handleGlobalMouseMove)
+    return () => window.removeEventListener('mousemove', handleGlobalMouseMove)
+  }, [])
+
   return (
     <div className="relative min-h-screen w-full overflow-x-hidden bg-background selection:bg-white/10">
+      {/* Global Ambient Cosmic Mouse Follower */}
+      <div 
+        id="global-space-glow" 
+        className="fixed top-0 left-0 w-[550px] h-[550px] rounded-full bg-white/[0.012] blur-[110px] pointer-events-none z-0 select-none transition-all duration-300 ease-out hidden md:block" 
+      />
+
       {/* Fullscreen fixed looping video */}
       <BackgroundVideo />
 
       {/* Content stack (above video) */}
       <div className="relative z-10 flex flex-col min-h-screen">
-        <Navbar activeSection={activeSection} onNavClick={handleNavClick} />
+        <Navbar 
+          activeSection={activeSection} 
+          onNavClick={handleNavClick} 
+        />
         <Hero />
         <Projects />
         <Experience />
