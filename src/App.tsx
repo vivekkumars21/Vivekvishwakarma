@@ -20,7 +20,8 @@ import {
   Calendar,
   Download,
   ShieldCheck,
-  Zap
+  Zap,
+  Activity
 } from 'lucide-react'
 
 
@@ -285,10 +286,11 @@ const Projects: FC = () => {
     {
       title: 'Deepfake Detection System',
       subtitle: 'AI & Forensic Computer Vision',
-      desc: 'Built a multi-stream forensic classifier to detect AI-generated face videos. Combines frequency-domain analysis (DCT, SRM noise residuals) with EfficientNet-based spatial features to catch artifacts that single-model approaches miss. Operates completely offline on standard GPU hardware without external API dependencies.',
+      desc: 'Built a multi-stream forensic classifier (FakeGEN) to detect AI-generated face videos. Combines frequency-domain analysis (DCT, SRM noise residuals) with EfficientNet-based spatial features to catch artifacts that single-model approaches miss. Operates completely offline on standard GPU hardware without external API dependencies.',
       tech: ['Python', 'PyTorch', 'OpenCV', 'EfficientNet', 'CNNs'],
       icon: Cpu,
-      highlight: true
+      highlight: true,
+      link: 'https://github.com/vivekkumars21/FakeGEN'
     },
     {
       title: 'PlexusNet — EMS',
@@ -296,15 +298,17 @@ const Projects: FC = () => {
       desc: 'Built a synchronized mobile + web platform covering the full Employee → TL → Admin workflow with role-based access control and multi-level leave approvals. Features 2-second real-time attendance tracking (Punch In/Out) and team messaging powered by Firebase event-driven listeners, with robust admin CRUD operations.',
       tech: ['Flutter', 'Next.js', 'React', 'Firebase', 'Node.js'],
       icon: Database,
-      highlight: true
+      highlight: true,
+      link: 'https://github.com/vivekkumars21/EMS-for-Plexusnet'
     },
     {
-      title: 'Upcoming AI Solution',
-      subtitle: 'Under Development',
-      desc: 'An exciting new intelligent engineering system currently under architectural layout planning. I will add the implementation details here later.',
-      tech: ['AI / ML', 'Full-Stack', 'Next.js'],
-      icon: (props: any) => <Ghost variant="glass" className={props.className} />,
-      highlight: false
+      title: 'healthcareAI',
+      subtitle: 'Clinical Diagnosis Support',
+      desc: 'Engineered an intelligent diagnostics and health analytics system. Leverages medical data modeling and classification layers to predict disease risks and assist clinicians with real-time analytics. Combines secure clinical data processing pipelines with low-latency insights.',
+      tech: ['Python', 'PyTorch', 'scikit-learn', 'FastAPI', 'Next.js'],
+      icon: Activity,
+      highlight: true,
+      link: 'https://github.com/vivekkumars21/healthcareAI'
     }
   ]
 
@@ -369,7 +373,7 @@ const Projects: FC = () => {
                   ))}
                 </div>
                 <a
-                  href="https://github.com/vivekkumars21"
+                  href={project.link}
                   target="_blank"
                   rel="noreferrer"
                   className="text-xs text-foreground group-hover:text-muted-foreground flex items-center gap-1 transition-colors no-underline font-medium"
@@ -380,6 +384,28 @@ const Projects: FC = () => {
             </div>
           )
         })}
+      </div>
+
+      {/* Cool Coming Soon Banner */}
+      <div className="mt-16 flex justify-center">
+        <div className="
+          liquid-glass 
+          rounded-2xl p-6 sm:p-8 max-w-3xl text-center border border-white/10
+          flex flex-col sm:flex-row items-center gap-6
+          transition-all duration-300 hover:scale-[1.01] hover:border-white/15
+        ">
+          <div className="w-12 h-12 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center text-foreground shrink-0 animate-pulse">
+            <Code2 className="w-5 h-5 stroke-[1.5] text-white/80" />
+          </div>
+          <div className="text-left">
+            <h4 className="text-2xl text-foreground mb-1" style={{ fontFamily: "'Instrument Serif', serif" }}>
+              More intelligent software is on the horizon
+            </h4>
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed m-0">
+              Active engineering is underway on new forensic computer vision models, scalable full-stack pipelines, and automated AI systems. Explore current codebases above or follow my GitHub for upcoming repository releases.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   )
