@@ -14,7 +14,7 @@ A state-of-the-art, premium developer portfolio website designed for **Vivek Vis
 *   **Dynamic Scroll Indicators:** 
     *   **Frosted Glass Navbar:** Glides seamlessly over contents and gains beautiful frosted blur background textures dynamically when scrolling starts.
     *   **Fading Bouncing Chevron:** A central interactive bouncing arrow hints to the user to scroll and elegantly fades out to `opacity-0` once scrolling begins past `30px`.
-*   **Double CV Integration:** The official CV is integrated dynamically both as a premium glass download button in the Hero section CTA and via the static public folder for fast client-side delivery.
+*   **Resume Integration:** The official resume is integrated dynamically both as a premium glass download button in the Hero section CTA and via the static public folder for fast client-side delivery.
 
 ---
 
@@ -39,10 +39,9 @@ d:/codes/portfioDesign/
 ├── tailwind.config.ts          # Custom Tailwind configuration including keyframes
 ├── postcss.config.js           # PostCSS compiler setups
 ├── tsconfig.json               # TypeScript configuration parameters
-├── VIVEK VISHWAKARMA CV.pdf    # Official professional resume (Source document)
 ├── public/
 │   ├── favicon.svg             # Premium aesthetic celestial coordinate star logo
-│   └── VIVEK VISHWAKARMA CV.pdf # Publicly accessible static asset for visitor downloads
+│   └── Vivek_Vishwakarma_Resume.pdf # Publicly accessible static asset for visitor downloads
 └── src/
     ├── main.tsx                # App entrypoint
     ├── App.tsx                 # Core Single-Page application containing all sections

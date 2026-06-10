@@ -251,8 +251,8 @@ const Hero: FC = () => {
           Explore Selected Work
         </a>
         <a
-          href="/VIVEK VISHWAKARMA CV.pdf"
-          download="VIVEK VISHWAKARMA CV.pdf"
+          href="/Vivek_Vishwakarma_Resume.pdf"
+          download="Vivek_Vishwakarma_Resume.pdf"
           className="
             glass-button
             rounded-full px-12 py-3.5
@@ -260,7 +260,7 @@ const Hero: FC = () => {
             no-underline flex items-center gap-2
           "
         >
-          <Download className="w-4 h-4" /> Download CV
+          <Download className="w-4 h-4" /> Download Resume
         </a>
       </div>
 
@@ -526,27 +526,27 @@ const Skills: FC = () => {
     {
       title: 'Programming',
       icon: Code2,
-      skills: ['Python', 'C', 'Java']
+      skills: ['Python', 'C', 'Java', 'JavaScript']
     },
     {
-      title: 'AI / ML',
-      icon: Cpu,
-      skills: ['PyTorch', 'scikit-learn', 'OpenCV', 'EfficientNet', 'NumPy', 'Pandas', 'Matplotlib']
-    },
-    {
-      title: 'Web & Mobile',
+      title: 'Web Development',
       icon: Server,
-      skills: ['HTML', 'CSS', 'JavaScript', 'Node.js', 'Next.js', 'React', 'Flutter', 'Django']
+      skills: ['HTML', 'CSS', 'React.js', 'Next.js', 'Node.js', 'Flutter']
     },
     {
-      title: 'Databases & Backend',
+      title: 'Data Science',
+      icon: Cpu,
+      skills: ['NumPy', 'Pandas', 'Matplotlib', 'Seaborn']
+    },
+    {
+      title: 'Databases',
       icon: Database,
-      skills: ['Firebase', 'MongoDB', 'MySQL']
+      skills: ['MySQL', 'Supabase', 'Firebase']
     },
     {
-      title: 'Tools & Platforms',
+      title: 'Tools',
       icon: Briefcase,
-      skills: ['Git', 'GitHub', 'VS Code', 'Power BI', 'Figma', 'Unreal Engine']
+      skills: ['Git', 'GitHub', 'Power BI', 'Figma']
     }
   ]
 
