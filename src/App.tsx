@@ -1,28 +1,7 @@
 import { type FC, useState, useEffect } from 'react'
 import { useActiveSection } from './hooks/useActiveSection'
 import { Ghost } from './components/ui/ghost'
-import {
-  Github,
-  Linkedin,
-  Cpu,
-  Database,
-  Mail,
-  Phone,
-  ExternalLink,
-  ChevronRight,
-  ChevronDown,
-  Code2,
-  Server,
-  Briefcase,
-  GraduationCap,
-  Award,
-  MapPin,
-  Calendar,
-  Download,
-  ShieldCheck,
-  Zap,
-  Activity
-} from 'lucide-react'
+
 
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -166,24 +145,6 @@ const Navbar: FC<NavbarProps> = ({ activeSection, onNavClick }) => {
 
 /* ─── Hero ──────────────────────────────────────────────────────────────────── */
 const Hero: FC = () => {
-  const [showScroll, setShowScroll] = useState(true)
-
-  useEffect(() => {
-    const handleScroll = (e?: any) => {
-      const scrollEl = e?.target && e.target !== document ? e.target : (document.documentElement || document.body)
-      const currentScroll = scrollEl.scrollTop ?? window.scrollY ?? document.documentElement.scrollTop ?? document.body.scrollTop
-      if (currentScroll > 30) {
-        setShowScroll(false)
-      } else {
-        setShowScroll(true)
-      }
-    }
-    window.addEventListener('scroll', handleScroll, true)
-    // Run once on mount to handle initial load
-    handleScroll()
-    return () => window.removeEventListener('scroll', handleScroll, true)
-  }, [])
-
   return (
     <section
       id="home"
@@ -196,8 +157,8 @@ const Hero: FC = () => {
       "
     >
       {/* Subheading / Location Badge */}
-      <div className="animate-fade-rise flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.02] border border-white/5 text-xs text-muted-foreground mb-8">
-        <MapPin className="w-3.5 h-3.5 text-white/60" /> Ahmedabad, Gujarat, India
+      <div className="animate-fade-rise px-4 py-1.5 rounded-full bg-white/[0.02] border border-white/5 text-xs text-muted-foreground mb-8">
+        Ahmedabad, Gujarat, India
       </div>
 
       {/* Headline */}
@@ -257,32 +218,10 @@ const Hero: FC = () => {
             glass-button
             rounded-full px-12 py-3.5
             text-sm font-medium
-            no-underline flex items-center gap-2
-          "
-        >
-          <Download className="w-4 h-4" /> Download Resume
-        </a>
-      </div>
-
-      {/* Elegant Bouncing Scroll Down Button */}
-      <div
-        className={`
-          absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce
-          transition-opacity duration-300 hidden md:block
-          ${showScroll ? 'opacity-100' : 'opacity-0 pointer-events-none'}
-        `}
-      >
-        <a
-          href="#projects"
-          className="
-            w-10 h-10 rounded-full
-            glass-button
-            flex items-center justify-center
             no-underline
           "
-          aria-label="Scroll Down"
         >
-          <ChevronDown className="w-5 h-5 text-white/70" />
+          Download Resume
         </a>
       </div>
     </section>
@@ -297,7 +236,6 @@ const Projects: FC = () => {
       subtitle: 'AI & Forensic Computer Vision',
       desc: 'Built a multi-stream forensic classifier (FakeGEN) to detect AI-generated face videos. Combines frequency-domain analysis (DCT, SRM noise residuals) with EfficientNet-based spatial features to catch artifacts that single-model approaches miss. Operates completely offline on standard GPU hardware without external API dependencies.',
       tech: ['Python', 'PyTorch', 'OpenCV', 'EfficientNet', 'CNNs'],
-      icon: Cpu,
       highlight: true,
       link: 'https://github.com/vivekkumars21/FakeGEN'
     },
@@ -306,7 +244,6 @@ const Projects: FC = () => {
       subtitle: 'Employee Management App & Web',
       desc: 'Built a synchronized mobile + web platform covering the full Employee → TL → Admin workflow with role-based access control and multi-level leave approvals. Features 2-second real-time attendance tracking (Punch In/Out) and team messaging powered by Firebase event-driven listeners, with robust admin CRUD operations.',
       tech: ['Flutter', 'Next.js', 'React', 'Firebase', 'Node.js'],
-      icon: Database,
       highlight: true,
       link: 'https://github.com/vivekkumars21/EMS-for-Plexusnet'
     },
@@ -315,7 +252,6 @@ const Projects: FC = () => {
       subtitle: 'Clinical Diagnosis Support',
       desc: 'Engineered an intelligent diagnostics and health analytics system. Leverages medical data modeling and classification layers to predict disease risks and assist clinicians with real-time analytics. Combines secure clinical data processing pipelines with low-latency insights.',
       tech: ['Python', 'PyTorch', 'scikit-learn', 'FastAPI', 'Next.js'],
-      icon: Activity,
       highlight: true,
       link: 'https://github.com/vivekkumars21/healthcareAI'
     }
@@ -337,7 +273,6 @@ const Projects: FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
         {projectsList.map((project, idx) => {
-          const Icon = project.icon
           return (
             <div
               key={idx}
@@ -357,16 +292,13 @@ const Projects: FC = () => {
                 }}
               />
               <div>
-                <div className="flex justify-between items-start mb-6">
-                  <div className="w-12 h-12 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-foreground group-hover:scale-110 transition-transform">
-                    <Icon className="w-6 h-6 stroke-[1.5]" />
-                  </div>
-                  {project.highlight && (
+                {project.highlight && (
+                  <div className="flex justify-start mb-6">
                     <span className="bg-white/10 backdrop-blur-md border border-white/20 text-[10px] uppercase tracking-widest px-3 py-1 rounded-full text-foreground font-semibold">
                       Core Project
                     </span>
-                  )}
-                </div>
+                  </div>
+                )}
                 <h3
                   className="text-3xl sm:text-4xl text-foreground mb-1"
                   style={{ fontFamily: "'Instrument Serif', serif" }}
@@ -393,9 +325,9 @@ const Projects: FC = () => {
                   href={project.link}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-xs text-foreground group-hover:text-muted-foreground flex items-center gap-1 transition-colors no-underline font-medium"
+                  className="text-xs text-foreground group-hover:text-muted-foreground transition-colors no-underline font-medium"
                 >
-                  Explore Code Repository <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                  Explore Code Repository
                 </a>
               </div>
             </div>
@@ -409,9 +341,9 @@ const Projects: FC = () => {
           onMouseMove={handleCardMouseMove}
           className="
             liquid-glass group
-            rounded-2xl p-6 sm:p-8 max-w-3xl text-center border border-white/10
-            flex flex-col sm:flex-row items-center gap-6
+            rounded-2xl p-6 sm:p-8 max-w-3xl border border-white/10
             transition-all duration-300 hover:scale-[1.01] hover:border-white/15
+            text-left
           "
         >
           {/* Radial Shimmer Effect Overlay */}
@@ -421,17 +353,12 @@ const Projects: FC = () => {
               background: 'radial-gradient(400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
             }}
           />
-          <div className="w-12 h-12 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center text-foreground shrink-0 animate-pulse">
-            <Code2 className="w-5 h-5 stroke-[1.5] text-white/80" />
-          </div>
-          <div className="text-left">
-            <h4 className="text-2xl text-foreground mb-1" style={{ fontFamily: "'Instrument Serif', serif" }}>
-              More intelligent software is on the horizon
-            </h4>
-            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed m-0">
-              Active engineering is underway on new forensic computer vision models, scalable full-stack pipelines, and automated AI systems. Explore current codebases above or follow my GitHub for upcoming repository releases.
-            </p>
-          </div>
+          <h4 className="text-2xl text-foreground mb-1" style={{ fontFamily: "'Instrument Serif', serif" }}>
+            More intelligent software is on the horizon
+          </h4>
+          <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed m-0">
+            Active engineering is underway on new forensic computer vision models, scalable full-stack pipelines, and automated AI systems. Explore current codebases above or follow my GitHub for upcoming repository releases.
+          </p>
         </div>
       </div>
     </section>
@@ -483,25 +410,20 @@ const Experience: FC = () => {
               }}
             />
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-foreground">
-                  <Briefcase className="w-5 h-5 stroke-[1.5]" />
-                </div>
-                <div>
-                  <h3
-                    className="text-2xl sm:text-3xl text-foreground leading-tight"
-                    style={{ fontFamily: "'Instrument Serif', serif" }}
-                  >
-                    {exp.role}
-                  </h3>
-                  <span className="text-sm text-muted-foreground font-medium">
-                    {exp.company} — <em className="not-italic opacity-80">{exp.location}</em>
-                  </span>
-                </div>
+              <div>
+                <h3
+                  className="text-2xl sm:text-3xl text-foreground leading-tight"
+                  style={{ fontFamily: "'Instrument Serif', serif" }}
+                >
+                  {exp.role}
+                </h3>
+                <span className="text-sm text-muted-foreground font-medium">
+                  {exp.company} — <em className="not-italic opacity-80">{exp.location}</em>
+                </span>
               </div>
               
-              <div className="flex items-center gap-2 text-xs text-muted-foreground bg-white/[0.02] border border-white/5 px-3.5 py-1.5 rounded-full self-start sm:self-auto">
-                <Calendar className="w-3.5 h-3.5" /> {exp.period}
+              <div className="text-xs text-muted-foreground bg-white/[0.02] border border-white/5 px-3.5 py-1.5 rounded-full self-start sm:self-auto">
+                {exp.period}
               </div>
             </div>
 
@@ -525,27 +447,22 @@ const Skills: FC = () => {
   const skillCategories = [
     {
       title: 'Programming',
-      icon: Code2,
       skills: ['Python', 'C', 'Java', 'JavaScript']
     },
     {
       title: 'Web Development',
-      icon: Server,
-      skills: ['HTML', 'CSS', 'React.js', 'Next.js', 'Node.js', 'Flutter']
+      skills: ['HTML', 'CSS', 'React.js', 'Node.js']
     },
     {
       title: 'Data Science',
-      icon: Cpu,
       skills: ['NumPy', 'Pandas', 'Matplotlib', 'Seaborn']
     },
     {
       title: 'Databases',
-      icon: Database,
       skills: ['MySQL', 'Supabase', 'Firebase']
     },
     {
       title: 'Tools',
-      icon: Briefcase,
       skills: ['Git', 'GitHub', 'Power BI', 'Figma']
     }
   ]
@@ -566,7 +483,6 @@ const Skills: FC = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
         {skillCategories.map((cat, idx) => {
-          const Icon = cat.icon
           return (
             <div 
               key={idx} 
@@ -580,10 +496,7 @@ const Skills: FC = () => {
                   background: 'radial-gradient(200px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
                 }}
               />
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-8 h-8 rounded-lg bg-white/[0.02] border border-white/5 flex items-center justify-center text-foreground shrink-0">
-                  <Icon className="w-4 h-4 stroke-[1.5]" />
-                </div>
+              <div className="mb-5">
                 <h3
                   className="text-lg text-foreground leading-tight"
                   style={{ fontFamily: "'Instrument Serif', serif" }}
@@ -647,16 +560,11 @@ const Education: FC = () => {
               background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
             }}
           />
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-12 h-12 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-foreground shrink-0">
-              <GraduationCap className="w-5 h-5 stroke-[1.5]" />
-            </div>
-            <div>
-              <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold">Degree</span>
-              <h3 className="text-xl text-foreground" style={{ fontFamily: "'Instrument Serif', serif" }}>
-                B.E. — Information Technology
-              </h3>
-            </div>
+          <div className="mb-6">
+            <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold">Degree</span>
+            <h3 className="text-xl text-foreground" style={{ fontFamily: "'Instrument Serif', serif" }}>
+              B.E. — Information Technology
+            </h3>
           </div>
           
           <p className="text-sm text-muted-foreground leading-relaxed m-0">
@@ -680,22 +588,17 @@ const Education: FC = () => {
               background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
             }}
           />
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-12 h-12 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-foreground">
-              <Award className="w-5 h-5 stroke-[1.5]" />
-            </div>
-            <div>
-              <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold">Credentials</span>
-              <h3 className="text-xl text-foreground" style={{ fontFamily: "'Instrument Serif', serif" }}>
-                Certifications
-              </h3>
-            </div>
+          <div className="mb-6">
+            <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold">Credentials</span>
+            <h3 className="text-xl text-foreground" style={{ fontFamily: "'Instrument Serif', serif" }}>
+              Certifications
+            </h3>
           </div>
 
           <ul className="flex flex-col gap-4 m-0 p-0 list-none">
             {certifications.map((cert) => (
               <li key={cert} className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed">
-                <ShieldCheck className="w-4 h-4 text-white/50 shrink-0 mt-0.5" />
+                <span className="w-1.5 h-1.5 rounded-full bg-white/30 mt-2 shrink-0" />
                 <span>{cert}</span>
               </li>
             ))}
@@ -714,16 +617,11 @@ const Education: FC = () => {
               background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
             }}
           />
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-12 h-12 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-foreground">
-              <Zap className="w-5 h-5 stroke-[1.5]" />
-            </div>
-            <div>
-              <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold">Strengths</span>
-              <h3 className="text-xl text-foreground" style={{ fontFamily: "'Instrument Serif', serif" }}>
-                Core Competencies
-              </h3>
-            </div>
+          <div className="mb-6">
+            <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold">Strengths</span>
+            <h3 className="text-xl text-foreground" style={{ fontFamily: "'Instrument Serif', serif" }}>
+              Core Competencies
+            </h3>
           </div>
 
           <ul className="flex flex-col gap-4 m-0 p-0 list-none">
@@ -761,7 +659,7 @@ const Contact: FC = () => (
         <a
           href="mailto:vivekvishwakarma21@outlook.com"
           onMouseMove={handleCardMouseMove}
-          className="liquid-glass rounded-2xl p-6 border border-white/[0.05] hover:scale-[1.01] transition-transform flex items-center gap-6 no-underline group relative overflow-hidden"
+          className="liquid-glass rounded-2xl p-6 border border-white/[0.05] hover:scale-[1.01] transition-transform no-underline group relative overflow-hidden block"
         >
           {/* Radial Shimmer Effect Overlay */}
           <div 
@@ -770,9 +668,6 @@ const Contact: FC = () => (
               background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
             }}
           />
-          <div className="w-12 h-12 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-foreground group-hover:scale-110 transition-transform shrink-0">
-            <Mail className="w-5 h-5 stroke-[1.5]" />
-          </div>
           <div>
             <span className="text-xs text-muted-foreground uppercase tracking-wider block font-semibold">Primary Email</span>
             <span className="text-base sm:text-lg text-foreground font-medium group-hover:text-muted-foreground transition-colors break-all">
@@ -784,7 +679,7 @@ const Contact: FC = () => (
         <a
           href="tel:+919328797168"
           onMouseMove={handleCardMouseMove}
-          className="liquid-glass rounded-2xl p-6 border border-white/[0.05] hover:scale-[1.01] transition-transform flex items-center gap-6 no-underline group relative overflow-hidden"
+          className="liquid-glass rounded-2xl p-6 border border-white/[0.05] hover:scale-[1.01] transition-transform no-underline group relative overflow-hidden block"
         >
           {/* Radial Shimmer Effect Overlay */}
           <div 
@@ -793,9 +688,6 @@ const Contact: FC = () => (
               background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
             }}
           />
-          <div className="w-12 h-12 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-foreground group-hover:scale-110 transition-transform shrink-0">
-            <Phone className="w-5 h-5 stroke-[1.5]" />
-          </div>
           <div>
             <span className="text-xs text-muted-foreground uppercase tracking-wider block font-semibold">Mobile Connection</span>
             <span className="text-base sm:text-lg text-foreground font-medium group-hover:text-muted-foreground transition-colors">
@@ -837,12 +729,12 @@ const Contact: FC = () => (
             className="
               flex-1
               glass-button
-              rounded-xl py-3.5 flex items-center justify-center gap-2
+              rounded-xl py-3.5 flex items-center justify-center
               text-xs uppercase tracking-wider font-semibold
               no-underline
             "
           >
-            <Github className="w-4 h-4" /> GitHub <ExternalLink className="w-3 h-3 opacity-60" />
+            GitHub
           </a>
 
           <a
@@ -852,12 +744,12 @@ const Contact: FC = () => (
             className="
               flex-1
               glass-button
-              rounded-xl py-3.5 flex items-center justify-center gap-2
+              rounded-xl py-3.5 flex items-center justify-center
               text-xs uppercase tracking-wider font-semibold
               no-underline
             "
           >
-            <Linkedin className="w-4 h-4" /> LinkedIn <ExternalLink className="w-3 h-3 opacity-60" />
+            LinkedIn
           </a>
         </div>
       </div>
