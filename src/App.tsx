@@ -10,15 +10,15 @@ import { Ghost } from './components/ui/ghost'
 ───────────────────────────────────────────────────────────────────────────── */
 
 const VIDEO_SRC =
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4'
+  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260330_145725_08886141-ed95-4a8e-8d6d-b75eaadce638.mp4'
 
 const NAV_LINKS = [
-  { label: 'Home',       href: '#home' },
-  { label: 'Projects',   href: '#projects' },
+  { label: 'Home', href: '#home' },
+  { label: 'Projects', href: '#projects' },
   { label: 'Experience', href: '#experience' },
-  { label: 'Skills',     href: '#skills' },
-  { label: 'Education',  href: '#education' },
-  { label: 'Contact',    href: '#contact' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Education', href: '#education' },
+  { label: 'Contact', href: '#contact' },
 ]
 
 /* ─── Hover Effect Utility ─────────────────────────────────────────────────── */
@@ -100,10 +100,9 @@ const Navbar: FC<NavbarProps> = ({ activeSection, onNavClick }) => {
                   }}
                   className={`
                     px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 no-underline border
-                    ${
-                      isActive
-                        ? 'text-foreground bg-white/[0.06] border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.03)] scale-[1.02]'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-white/[0.02] border-transparent'
+                    ${isActive
+                      ? 'text-foreground bg-white/[0.06] border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.03)] scale-[1.02]'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-white/[0.02] border-transparent'
                     }
                   `}
                 >
@@ -173,7 +172,7 @@ const Hero: FC = () => {
           mx-auto
         "
         style={{
-          fontFamily:    "'Instrument Serif', serif",
+          fontFamily: "'Instrument Serif', serif",
           letterSpacing: '-1.5px',
         }}
       >
@@ -285,7 +284,7 @@ const Projects: FC = () => {
               `}
             >
               {/* Radial Shimmer Effect Overlay */}
-              <div 
+              <div
                 className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 style={{
                   background: 'radial-gradient(400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
@@ -337,7 +336,7 @@ const Projects: FC = () => {
 
       {/* Cool Coming Soon Banner */}
       <div className="mt-16 flex justify-center">
-        <div 
+        <div
           onMouseMove={handleCardMouseMove}
           className="
             liquid-glass group
@@ -347,7 +346,7 @@ const Projects: FC = () => {
           "
         >
           {/* Radial Shimmer Effect Overlay */}
-          <div 
+          <div
             className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             style={{
               background: 'radial-gradient(400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
@@ -397,13 +396,13 @@ const Experience: FC = () => {
 
       <div className="max-w-3xl mx-auto">
         {experiences.map((exp, idx) => (
-          <div 
-            key={idx} 
+          <div
+            key={idx}
             onMouseMove={handleCardMouseMove}
             className="liquid-glass group rounded-2xl p-6 sm:p-10 border border-white/[0.05] relative overflow-hidden"
           >
             {/* Radial Shimmer Effect Overlay */}
-            <div 
+            <div
               className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               style={{
                 background: 'radial-gradient(450px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
@@ -421,7 +420,7 @@ const Experience: FC = () => {
                   {exp.company} — <em className="not-italic opacity-80">{exp.location}</em>
                 </span>
               </div>
-              
+
               <div className="text-xs text-muted-foreground bg-white/[0.02] border border-white/5 px-3.5 py-1.5 rounded-full self-start sm:self-auto">
                 {exp.period}
               </div>
@@ -484,13 +483,13 @@ const Skills: FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
         {skillCategories.map((cat, idx) => {
           return (
-            <div 
-              key={idx} 
+            <div
+              key={idx}
               onMouseMove={handleCardMouseMove}
               className="liquid-glass group rounded-2xl p-6 border border-white/[0.05] hover:scale-[1.02] transition-all duration-300 relative overflow-hidden"
             >
               {/* Radial Shimmer Effect Overlay */}
-              <div 
+              <div
                 className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 style={{
                   background: 'radial-gradient(200px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
@@ -549,12 +548,12 @@ const Education: FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
         {/* University Info */}
-        <div 
+        <div
           onMouseMove={handleCardMouseMove}
           className="liquid-glass group rounded-2xl p-6 sm:p-8 border border-white/[0.05] flex flex-col lg:col-span-1 relative overflow-hidden"
         >
           {/* Radial Shimmer Effect Overlay */}
-          <div 
+          <div
             className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             style={{
               background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
@@ -566,7 +565,7 @@ const Education: FC = () => {
               B.E. — Information Technology
             </h3>
           </div>
-          
+
           <p className="text-sm text-muted-foreground leading-relaxed m-0">
             <strong>Sal Engineering and Technical Institute</strong>
             <br />
@@ -577,12 +576,12 @@ const Education: FC = () => {
         </div>
 
         {/* Certifications */}
-        <div 
+        <div
           onMouseMove={handleCardMouseMove}
           className="liquid-glass group rounded-2xl p-6 sm:p-8 border border-white/[0.05] lg:col-span-1 relative overflow-hidden"
         >
           {/* Radial Shimmer Effect Overlay */}
-          <div 
+          <div
             className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             style={{
               background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
@@ -606,12 +605,12 @@ const Education: FC = () => {
         </div>
 
         {/* Strengths */}
-        <div 
+        <div
           onMouseMove={handleCardMouseMove}
           className="liquid-glass group rounded-2xl p-6 sm:p-8 border border-white/[0.05] lg:col-span-1 relative overflow-hidden"
         >
           {/* Radial Shimmer Effect Overlay */}
-          <div 
+          <div
             className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             style={{
               background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
@@ -662,7 +661,7 @@ const Contact: FC = () => (
           className="liquid-glass rounded-2xl p-6 border border-white/[0.05] hover:scale-[1.01] transition-transform no-underline group relative overflow-hidden block"
         >
           {/* Radial Shimmer Effect Overlay */}
-          <div 
+          <div
             className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             style={{
               background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
@@ -682,7 +681,7 @@ const Contact: FC = () => (
           className="liquid-glass rounded-2xl p-6 border border-white/[0.05] hover:scale-[1.01] transition-transform no-underline group relative overflow-hidden block"
         >
           {/* Radial Shimmer Effect Overlay */}
-          <div 
+          <div
             className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             style={{
               background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
@@ -698,12 +697,12 @@ const Contact: FC = () => (
       </div>
 
       {/* Social Links Panel */}
-      <div 
+      <div
         onMouseMove={handleCardMouseMove}
         className="liquid-glass rounded-2xl p-8 border border-white/[0.05] flex flex-col justify-between group relative overflow-hidden"
       >
         {/* Radial Shimmer Effect Overlay */}
-        <div 
+        <div
           className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           style={{
             background: 'radial-gradient(400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
@@ -760,7 +759,7 @@ const Contact: FC = () => (
 /* ─── Background Video ──────────────────────────────────────────────────────── */
 const BackgroundVideo: FC = () => (
   <video
-    className="fixed inset-0 w-full h-full object-cover z-0 pointer-events-none opacity-95"
+    className="fixed inset-0 w-screen h-screen object-cover z-0 pointer-events-none opacity-95"
     src={VIDEO_SRC}
     autoPlay
     loop
@@ -854,9 +853,9 @@ const App: FC = () => {
   return (
     <div className="relative min-h-screen w-full overflow-x-hidden bg-background selection:bg-white/10">
       {/* Global Ambient Cosmic Mouse Follower */}
-      <div 
-        id="global-space-glow" 
-        className="fixed top-0 left-0 w-[550px] h-[550px] rounded-full bg-white/[0.012] blur-[110px] pointer-events-none z-0 select-none transition-all duration-300 ease-out hidden md:block" 
+      <div
+        id="global-space-glow"
+        className="fixed top-0 left-0 w-[550px] h-[550px] rounded-full bg-white/[0.012] blur-[110px] pointer-events-none z-0 select-none transition-all duration-300 ease-out hidden md:block"
       />
 
       {/* Fullscreen fixed looping video */}
@@ -864,9 +863,9 @@ const App: FC = () => {
 
       {/* Content stack (above video) */}
       <div className="relative z-10 flex flex-col min-h-screen">
-        <Navbar 
-          activeSection={activeSection} 
-          onNavClick={handleNavClick} 
+        <Navbar
+          activeSection={activeSection}
+          onNavClick={handleNavClick}
         />
         <Hero />
         <Projects />
@@ -874,10 +873,10 @@ const App: FC = () => {
         <Skills />
         <Education />
         <Contact />
-        
+
         {/* Interactive Ghost Companion */}
         <GhostCompanion />
-        
+
         {/* Footer */}
         <footer className="relative z-10 w-full py-8 border-t border-white/[0.03] text-center">
           <p className="text-[11px] text-muted-foreground uppercase tracking-widest m-0">
