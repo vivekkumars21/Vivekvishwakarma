@@ -1,121 +1,129 @@
-# Vivek Vishwakarma — Cinematic Portfolio Website
+# Vivek Vishwakarma — Developer Portfolio
 
 > *"Engineering intelligent software with clean architectures."*
 
-A state-of-the-art, premium developer portfolio website designed for **Vivek Vishwakarma**. Features an ultra-premium, cinematic single-page iOS-style frosted glassmorphic UI with zero blue/cyan undertones, overlaying a starry, stellar canola field background video loop.
+A premium, cinematic single-page developer portfolio built with React, TypeScript, and Tailwind CSS. Features a dark frosted glassmorphic UI with performance-optimized hover effects, a looping space background video, and an interactive ghost companion.
 
 ---
 
-## 🌟 Visual & Design Highlights
+## 🌟 Design & Visual Highlights
 
-*   **iOS Frosted Glassmorphic Aesthetic:** Completely tailored clean-white frosted panels using fine vector-thin borders, `backdrop-filter: blur(24px) saturate(160%)`, and delicate translucent color hues (`rgba(255, 255, 255, 0.065)`).
-*   **Immersive Space Loop:** Rendered in HSL pure dark tones (`--background: 240 10% 3.9%`) underneath an edge-to-edge celestial background video running at `opacity-95` to eliminate washed-out colors.
-*   **Full-Bleed Viewport & Hidden Scrollbars:** Custom global stylesheets systematically hide default desktop scrollbar rails for a game-engine like, premium web-app immersion while maintaining fluid native scrolling capability.
-*   **Dynamic Scroll Indicators:** 
-    *   **Frosted Glass Navbar:** Glides seamlessly over contents and gains beautiful frosted blur background textures dynamically when scrolling starts.
-    *   **Fading Bouncing Chevron:** A central interactive bouncing arrow hints to the user to scroll and elegantly fades out to `opacity-0` once scrolling begins past `30px`.
-*   **Resume Integration:** The official resume is integrated dynamically both as a premium glass download button in the Hero section CTA and via the static public folder for fast client-side delivery.
+- **Dark Frosted Glassmorphism:** Cards and panels use a dark-tinted frosted glass (`rgba(10, 10, 18, 0.55)` + `backdrop-filter: blur(28px)`) for excellent text readability over the video background.
+- **Immersive Space Video Loop:** Full-viewport looping background video rendered behind all content at `opacity-95`, with a pure dark base (`--background: 240 10% 3.9%`).
+- **Performance-Optimized Hover Effects:** Radial mouse-following shimmer glow on all cards using CSS custom properties (`--mouse-x`, `--mouse-y`) with cached bounding rects to eliminate layout thrashing.
+- **Flicker-Free Navbar:** Solid dark background navbar (no `backdrop-filter`) that activates on scroll — zero GPU cost during scrolling.
+- **Hidden Scrollbars:** Custom stylesheets hide scrollbar rails across all browsers for an app-like immersive experience.
+- **Interactive Ghost Companion:** A floating ghost mascot in the bottom-left corner with click-to-spin interactions and rotating speech bubbles.
+- **Ambient Cursor Glow:** A large, blurred radial glow that follows the mouse cursor across the page (desktop only).
+- **Resume Download:** Integrated as a glass-styled CTA button in the Hero section.
 
 ---
 
 ## 🛠️ Technology Stack
 
-| Technology | Purpose & Usage |
+| Technology | Purpose |
 | :--- | :--- |
-| **React 18** | Declarative state management and component-driven architecture |
-| **Vite 5** | Lightning-fast HMR dev server and optimized production bundler |
-| **TypeScript 5** | Strict static typing for robust and reliable component interfaces |
-| **Tailwind CSS 3** | High-utility modern styling framework for responsive layout structure |
-| **Lucide Icons** | Premium stroke-based minimal vector SVG icons |
+| **React 18** | Component-driven UI with hooks for state and effects |
+| **Vite 5** | Fast HMR dev server and optimized production bundler |
+| **TypeScript 5** | Strict static typing for all components and utilities |
+| **Tailwind CSS 3** | Utility-first responsive styling framework |
+| **Lucide Icons** | Minimal stroke-based SVG icon set |
 
 ---
 
 ## 📂 Project Structure
 
 ```
-d:/codes/portfioDesign/
-├── index.html                  # Core HTML (Loads custom Google Fonts: Inter & Instrument Serif)
-├── vite.config.ts              # Configured Vite runner with path aliasing
-├── tailwind.config.ts          # Custom Tailwind configuration including keyframes
-├── postcss.config.js           # PostCSS compiler setups
-├── tsconfig.json               # TypeScript configuration parameters
+portfioDesign/
+├── index.html                  # HTML entry — loads Google Fonts (Inter, Space Grotesk, Instrument Serif)
+├── vite.config.ts              # Vite config with path aliasing
+├── tailwind.config.ts          # Custom Tailwind theme (colors, fonts, animations)
+├── postcss.config.js           # PostCSS + Tailwind pipeline
+├── tsconfig.json               # TypeScript compiler config
 ├── public/
-│   ├── favicon.svg             # Premium aesthetic celestial coordinate star logo
-│   └── Vivek_Vishwakarma_Resume.pdf # Publicly accessible static asset for visitor downloads
+│   ├── favicon.svg             # Site favicon
+│   ├── ghost.svg               # Ghost companion SVG asset
+│   └── Vivek_Vishwakarma_Resume.pdf
 └── src/
-    ├── main.tsx                # App entrypoint
-    ├── App.tsx                 # Core Single-Page application containing all sections
-    ├── index.css               # Main styling sheet housing design tokens and Liquid Glass styles
-    ├── vite-env.d.ts           # Vite Environment declarations
+    ├── main.tsx                # React app entrypoint
+    ├── App.tsx                 # All sections: Hero, Projects, Experience, Skills, Education, Contact
+    ├── index.css               # Design tokens, Liquid Glass styles, animations
+    ├── vite-env.d.ts           # Vite type declarations
+    ├── hooks/
+    │   └── useActiveSection.ts # Intersection Observer hook for nav highlighting
     ├── lib/
-    │   └── utils.ts            # Dynamic Tailwind classes combiner utility (cn)
+    │   └── utils.ts            # Tailwind class merge utility (cn)
     └── components/
         └── ui/
-            └── button.tsx      # Standardized design-system Button primitive
+            ├── button.tsx      # Design-system Button primitive
+            └── ghost.tsx       # Ghost companion SVG component
 ```
 
 ---
 
 ## 🚀 Getting Started
 
-Follow these steps to run the portfolio locally on your machine.
+### Prerequisites
+[Node.js](https://nodejs.org) v18 or higher.
 
-### 1. Prerequisites
-Ensure you have [Node.js](https://nodejs.org) (v18 or higher recommended) installed.
-
-### 2. Installation
-Clone the repository and install all dependencies:
+### Installation
 ```bash
-# Install package dependencies
+git clone https://github.com/vivekkumars21/Vivekvishwakarma.git
+cd Vivekvishwakarma
 npm install
 ```
 
-### 3. Development Server
-Launch the local developer server:
+### Development
 ```bash
-# Run server
 npm run dev
 ```
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-### 4. Build for Production
-To build the application for deployment:
+### Production Build
 ```bash
-# Build optimized bundle
 npm run build
-
-# Preview build locally
 npm run preview
 ```
 
 ---
 
-## 💅 Styling Systems
+## 💅 Styling Architecture
 
-### 1. Liquid Glass Utilities (`src/index.css`)
-Provides the ultra-luxurious translucent glass layers:
+### Liquid Glass (`src/index.css`)
+Dark-tinted frosted glass panels optimized for readability:
 ```css
 .liquid-glass {
-  background: rgba(255, 255, 255, 0.065);
-  backdrop-filter: blur(24px) saturate(160%);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  background: rgba(10, 10, 18, 0.55);
+  backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 ```
 
-### 2. Fine-grained Scroll Detection
-Since standard stylesheets define fixed bounds, scrolling can capture inside wrappers. `App.tsx` handles this gracefully using **Capture-Phase Event Listeners** registered globally (`true` parameter) to dynamically track `e.target.scrollTop` as fallback targets.
+### Hover Performance
+Cards use cached bounding rects and targeted CSS transitions to avoid layout thrashing and `backdrop-filter` recompositing:
+- `handleCardMouseEnter` — caches `getBoundingClientRect()` once on hover entry
+- `handleCardMouseMove` — reads from cache, updates `--mouse-x` / `--mouse-y` custom properties
+- `.card-hover-transition` — transitions only `border-color` and `box-shadow` (never `all`)
+- No `hover:scale` transforms on glass elements (scale + backdrop-filter = flicker)
 
-```typescript
-window.addEventListener('scroll', handleScroll, true);
-```
-
-### 3. Typography Pairings
-*   **Headlines & Accents:** `Instrument Serif` (Google Fonts) — Editorial, high-fashion serif styling.
-*   **Body & Interfaces:** `Inter` (Google Fonts) — Precision-engineered sans-serif.
+### Typography
+- **Headlines:** `Instrument Serif` — editorial serif for visual impact
+- **Body:** `Space Grotesk` / `Inter` — clean, precise sans-serif
 
 ---
 
-## 🤝 Contribution & License
-Created specifically as the personal developer portfolio for **Vivek Vishwakarma**. Unauthorized distribution of personal resume assets and details is prohibited. All layout styles are free to be customized under normal development pipelines.
+## 📑 Sections
+
+| Section | Description |
+| :--- | :--- |
+| **Hero** | Headline, subtitle, location badge, and CTA buttons |
+| **Projects** | 3 featured project cards (Deepfake Detection, PlexusNet EMS, healthcareAI) |
+| **Experience** | Leadership role at ISTE with bullet highlights |
+| **Skills** | 5-column grid: Programming, Web Dev, Data Science, Databases, Tools |
+| **Education** | Degree info, certifications, and core competencies |
+| **Contact** | Email card, GitHub and LinkedIn profile cards |
+
+---
+
+## 🤝 License
+Personal developer portfolio for **Vivek Vishwakarma**. Layout and styles are free to customize. Unauthorized distribution of personal resume assets and details is prohibited.
