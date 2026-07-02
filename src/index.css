@@ -205,3 +205,15 @@
 .animate-float-ghost {
   animation: float-ghost 4s ease-in-out infinite;
 }
+
+/* Card Hover Transition - limits transitions to border and box-shadow to avoid CSS variables recalculations */
+.card-hover-transition {
+  transition: border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+/* Mouse Glow Follower optimization - uses will-change for GPU transform rendering and avoids transforming transitions */
+.mouse-glow-follower {
+  will-change: transform;
+  transition: opacity 0.5s ease-out;
+}

@@ -22,8 +22,21 @@ const NAV_LINKS = [
 ]
 
 /* ─── Hover Effect Utility ─────────────────────────────────────────────────── */
-const handleCardMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+const handleCardMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
   const rect = e.currentTarget.getBoundingClientRect()
+  ;(e.currentTarget as any)._cardRect = rect
+}
+
+const handleCardMouseLeave = (e: React.MouseEvent<HTMLElement>) => {
+  ;(e.currentTarget as any)._cardRect = null
+}
+
+const handleCardMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+  let rect = (e.currentTarget as any)._cardRect
+  if (!rect) {
+    rect = e.currentTarget.getBoundingClientRect()
+    ;(e.currentTarget as any)._cardRect = rect
+  }
   const x = e.clientX - rect.left
   const y = e.clientY - rect.top
   e.currentTarget.style.setProperty('--mouse-x', `${x}px`)
@@ -276,11 +289,13 @@ const Projects: FC = () => {
           return (
             <div
               key={idx}
+              onMouseEnter={handleCardMouseEnter}
+              onMouseLeave={handleCardMouseLeave}
               onMouseMove={handleCardMouseMove}
               className={`
-                liquid-glass
+                liquid-glass card-hover-transition
                 rounded-2xl p-6 sm:p-10 flex flex-col justify-between
-                transition-all duration-300 hover:scale-[1.01] group
+                group hover:border-white/15
                 ${project.highlight ? 'border border-white/15 shadow-2xl shadow-white/[0.01]' : 'border border-white/[0.05]'}
               `}
             >
@@ -338,11 +353,13 @@ const Projects: FC = () => {
       {/* Cool Coming Soon Banner */}
       <div className="mt-16 flex justify-center">
         <div
+          onMouseEnter={handleCardMouseEnter}
+          onMouseLeave={handleCardMouseLeave}
           onMouseMove={handleCardMouseMove}
           className="
-            liquid-glass group
+            liquid-glass card-hover-transition group
             rounded-2xl p-6 sm:p-8 max-w-3xl border border-white/10
-            transition-all duration-300 hover:scale-[1.01] hover:border-white/15
+            hover:border-white/15
             text-left
           "
         >
@@ -399,8 +416,10 @@ const Experience: FC = () => {
         {experiences.map((exp, idx) => (
           <div
             key={idx}
+            onMouseEnter={handleCardMouseEnter}
+            onMouseLeave={handleCardMouseLeave}
             onMouseMove={handleCardMouseMove}
-            className="liquid-glass group rounded-2xl p-6 sm:p-10 border border-white/[0.05] relative overflow-hidden"
+            className="liquid-glass card-hover-transition group rounded-2xl p-6 sm:p-10 border border-white/[0.05] relative overflow-hidden"
           >
             {/* Radial Shimmer Effect Overlay */}
             <div
@@ -486,8 +505,10 @@ const Skills: FC = () => {
           return (
             <div
               key={idx}
+              onMouseEnter={handleCardMouseEnter}
+              onMouseLeave={handleCardMouseLeave}
               onMouseMove={handleCardMouseMove}
-              className="liquid-glass group rounded-2xl p-6 border border-white/[0.05] hover:scale-[1.02] transition-all duration-300 relative overflow-hidden"
+              className="liquid-glass card-hover-transition group rounded-2xl p-6 border border-white/[0.05] hover:border-white/15 relative overflow-hidden"
             >
               {/* Radial Shimmer Effect Overlay */}
               <div
@@ -550,8 +571,10 @@ const Education: FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
         {/* University Info */}
         <div
+          onMouseEnter={handleCardMouseEnter}
+          onMouseLeave={handleCardMouseLeave}
           onMouseMove={handleCardMouseMove}
-          className="liquid-glass group rounded-2xl p-6 sm:p-8 border border-white/[0.05] flex flex-col lg:col-span-1 relative overflow-hidden"
+          className="liquid-glass card-hover-transition group rounded-2xl p-6 sm:p-8 border border-white/[0.05] flex flex-col lg:col-span-1 relative overflow-hidden"
         >
           {/* Radial Shimmer Effect Overlay */}
           <div
@@ -578,8 +601,10 @@ const Education: FC = () => {
 
         {/* Certifications */}
         <div
+          onMouseEnter={handleCardMouseEnter}
+          onMouseLeave={handleCardMouseLeave}
           onMouseMove={handleCardMouseMove}
-          className="liquid-glass group rounded-2xl p-6 sm:p-8 border border-white/[0.05] lg:col-span-1 relative overflow-hidden"
+          className="liquid-glass card-hover-transition group rounded-2xl p-6 sm:p-8 border border-white/[0.05] lg:col-span-1 relative overflow-hidden"
         >
           {/* Radial Shimmer Effect Overlay */}
           <div
@@ -607,8 +632,10 @@ const Education: FC = () => {
 
         {/* Strengths */}
         <div
+          onMouseEnter={handleCardMouseEnter}
+          onMouseLeave={handleCardMouseLeave}
           onMouseMove={handleCardMouseMove}
-          className="liquid-glass group rounded-2xl p-6 sm:p-8 border border-white/[0.05] lg:col-span-1 relative overflow-hidden"
+          className="liquid-glass card-hover-transition group rounded-2xl p-6 sm:p-8 border border-white/[0.05] lg:col-span-1 relative overflow-hidden"
         >
           {/* Radial Shimmer Effect Overlay */}
           <div
@@ -649,109 +676,99 @@ const Contact: FC = () => (
         Let&rsquo;s Connect
       </h2>
       <p className="text-muted-foreground max-w-xl mt-4 text-sm sm:text-base">
-        I am currently looking for summer internships, student projects, or just chatting about code. Feel free to shoot me an email or call!
+        I am currently looking for summer internships, student projects, or just chatting about code. Feel free to shoot me an email!
       </p>
     </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch max-w-5xl mx-auto">
-      {/* Contact Cards */}
-      <div className="flex flex-col gap-4">
-        <a
-          href="mailto:vivekvishwakarma21@outlook.com"
-          onMouseMove={handleCardMouseMove}
-          className="liquid-glass rounded-2xl p-6 border border-white/[0.05] hover:scale-[1.01] transition-transform no-underline group relative overflow-hidden block"
-        >
-          {/* Radial Shimmer Effect Overlay */}
-          <div
-            className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            style={{
-              background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
-            }}
-          />
-          <div>
-            <span className="text-xs text-muted-foreground uppercase tracking-wider block font-semibold">Primary Email</span>
-            <span className="text-base sm:text-lg text-foreground font-medium group-hover:text-muted-foreground transition-colors break-all">
-              vivekvishwakarma21@outlook.com
-            </span>
-          </div>
-        </a>
-
-        <a
-          href="tel:+919328797168"
-          onMouseMove={handleCardMouseMove}
-          className="liquid-glass rounded-2xl p-6 border border-white/[0.05] hover:scale-[1.01] transition-transform no-underline group relative overflow-hidden block"
-        >
-          {/* Radial Shimmer Effect Overlay */}
-          <div
-            className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            style={{
-              background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
-            }}
-          />
-          <div>
-            <span className="text-xs text-muted-foreground uppercase tracking-wider block font-semibold">Mobile Connection</span>
-            <span className="text-base sm:text-lg text-foreground font-medium group-hover:text-muted-foreground transition-colors">
-              +91 93287 97168
-            </span>
-          </div>
-        </a>
-      </div>
-
-      {/* Social Links Panel */}
-      <div
+    <div className="flex flex-col gap-6 max-w-4xl mx-auto">
+      {/* Full-width Email Card */}
+      <a
+        href="mailto:vivekvishwakarma21@outlook.com"
+        onMouseEnter={handleCardMouseEnter}
+        onMouseLeave={handleCardMouseLeave}
         onMouseMove={handleCardMouseMove}
-        className="liquid-glass rounded-2xl p-8 border border-white/[0.05] flex flex-col justify-between group relative overflow-hidden"
+        className="liquid-glass card-hover-transition rounded-2xl p-8 sm:p-10 border border-white/[0.05] hover:border-white/15 no-underline group relative overflow-hidden block"
       >
         {/* Radial Shimmer Effect Overlay */}
         <div
           className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           style={{
-            background: 'radial-gradient(400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
+            background: 'radial-gradient(500px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
           }}
         />
-        <div>
-          <h3
-            className="text-2xl sm:text-3xl text-foreground mb-2"
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <span className="text-[10px] text-muted-foreground uppercase tracking-widest block font-semibold mb-1">Get In Touch</span>
+            <span
+              className="text-2xl sm:text-3xl text-foreground group-hover:text-white/80 transition-colors"
+              style={{ fontFamily: "'Instrument Serif', serif" }}
+            >
+              vivekvishwakarma21@outlook.com
+            </span>
+          </div>
+          <span className="text-xs text-muted-foreground uppercase tracking-wider font-semibold shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            Send Email →
+          </span>
+        </div>
+      </a>
+
+      {/* Social Links Row */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <a
+          href="https://github.com/vivekkumars21"
+          target="_blank"
+          rel="noreferrer"
+          onMouseEnter={handleCardMouseEnter}
+          onMouseLeave={handleCardMouseLeave}
+          onMouseMove={handleCardMouseMove}
+          className="liquid-glass card-hover-transition rounded-2xl p-8 border border-white/[0.05] hover:border-white/15 no-underline group relative overflow-hidden block"
+        >
+          {/* Radial Shimmer Effect Overlay */}
+          <div
+            className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={{
+              background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
+            }}
+          />
+          <span className="text-[10px] text-muted-foreground uppercase tracking-widest block font-semibold mb-1">Code</span>
+          <span
+            className="text-xl sm:text-2xl text-foreground group-hover:text-white/80 transition-colors"
             style={{ fontFamily: "'Instrument Serif', serif" }}
           >
-            Digital Profiles
-          </h3>
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            Feel free to check out my GitHub to see what projects I'm working on right now, or connect with me on LinkedIn to say hi.
-          </p>
-        </div>
-
-        <div className="flex flex-row gap-4 mt-8">
-          <a
-            href="https://github.com/vivekkumars21"
-            target="_blank"
-            rel="noreferrer"
-            className="
-              flex-1
-              glass-button
-              rounded-xl py-3.5 flex items-center justify-center
-              text-xs uppercase tracking-wider font-semibold
-              no-underline
-            "
-          >
             GitHub
-          </a>
+          </span>
+          <p className="text-xs text-muted-foreground mt-2 m-0 leading-relaxed">
+            Check out what I'm building and pushing today.
+          </p>
+        </a>
 
-          <a
-            href="https://www.linkedin.com/in/viveks21/"
-            target="_blank"
-            rel="noreferrer"
-            className="
-              flex-1
-              glass-button
-              rounded-xl py-3.5 flex items-center justify-center
-              text-xs uppercase tracking-wider font-semibold
-              no-underline
-            "
+        <a
+          href="https://www.linkedin.com/in/viveks21/"
+          target="_blank"
+          rel="noreferrer"
+          onMouseEnter={handleCardMouseEnter}
+          onMouseLeave={handleCardMouseLeave}
+          onMouseMove={handleCardMouseMove}
+          className="liquid-glass card-hover-transition rounded-2xl p-8 border border-white/[0.05] hover:border-white/15 no-underline group relative overflow-hidden block"
+        >
+          {/* Radial Shimmer Effect Overlay */}
+          <div
+            className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={{
+              background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
+            }}
+          />
+          <span className="text-[10px] text-muted-foreground uppercase tracking-widest block font-semibold mb-1">Network</span>
+          <span
+            className="text-xl sm:text-2xl text-foreground group-hover:text-white/80 transition-colors"
+            style={{ fontFamily: "'Instrument Serif', serif" }}
           >
             LinkedIn
-          </a>
-        </div>
+          </span>
+          <p className="text-xs text-muted-foreground mt-2 m-0 leading-relaxed">
+            Connect with me to say hi or talk opportunities.
+          </p>
+        </a>
       </div>
     </div>
   </section>
@@ -759,15 +776,17 @@ const Contact: FC = () => (
 
 /* ─── Background Video ──────────────────────────────────────────────────────── */
 const BackgroundVideo: FC = () => (
-  <video
-    className="fixed inset-0 w-screen h-screen object-cover z-0 pointer-events-none opacity-95"
-    src={VIDEO_SRC}
-    autoPlay
-    loop
-    muted
-    playsInline
-    aria-hidden="true"
-  />
+  <div className="fixed inset-0 w-screen h-screen overflow-hidden z-0 pointer-events-none">
+    <video
+      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto aspect-video object-cover opacity-95"
+      src={VIDEO_SRC}
+      autoPlay
+      loop
+      muted
+      playsInline
+      aria-hidden="true"
+    />
+  </div>
 )
 
 /* ─── Ghost Companion ──────────────────────────────────────────────────────── */
@@ -856,7 +875,7 @@ const App: FC = () => {
       {/* Global Ambient Cosmic Mouse Follower */}
       <div
         id="global-space-glow"
-        className="fixed top-0 left-0 w-[550px] h-[550px] rounded-full bg-white/[0.012] blur-[110px] pointer-events-none z-0 select-none transition-all duration-300 ease-out hidden md:block"
+        className="fixed top-0 left-0 w-[550px] h-[550px] rounded-full bg-white/[0.012] blur-[110px] pointer-events-none z-0 select-none mouse-glow-follower hidden md:block"
       />
 
       {/* Fullscreen fixed looping video */}
