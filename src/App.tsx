@@ -88,7 +88,8 @@ const Navbar: FC<NavbarProps> = ({ activeSection, onNavClick }) => {
   return (
     <nav
       className={`
-        fixed top-0 left-0 w-full z-50 transition-all duration-300
+        fixed top-0 left-0 w-full z-50
+        transition-[padding] duration-300
         ${isScrolled ? 'glass-frosted-nav py-4' : 'bg-transparent border-none py-6'}
       `}
     >
