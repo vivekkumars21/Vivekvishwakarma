@@ -40,7 +40,7 @@ const config: Config = {
       },
       fontFamily: {
         display: ['Instrument Serif', 'serif'],
-        body:    ['Inter', 'sans-serif'],
+        body:    ['Space Grotesk', 'Inter', 'sans-serif'],
       },
       keyframes: {
         'fade-rise': {

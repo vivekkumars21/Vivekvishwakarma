@@ -176,10 +176,10 @@ const Hero: FC = () => {
           letterSpacing: '-1.5px',
         }}
       >
-        Engineering{' '}
-        <span className="text-white/50">intelligent software</span>{' '}
-        with{' '}
-        <span className="text-white/50">clean architectures.</span>
+        Coding{' '}
+        <span className="text-white/50">side projects</span>,{' '}
+        learning <span className="text-white/50">AI</span>, and building for the{' '}
+        <span className="text-white/50">web.</span>
       </h1>
 
       {/* Subtext */}
@@ -188,13 +188,14 @@ const Hero: FC = () => {
           animate-fade-rise-delay
           text-white/70
           text-base sm:text-lg font-light
-          max-w-3xl
+          max-w-[820px]
           mt-8
           leading-relaxed
           mx-auto
+          tracking-wide
         "
       >
-        I am Vivek Vishwakarma, an Information Technology undergraduate at Gujarat Technological University (2027) exploring AI and full-stack development. I build synchronized digital platforms, forensic computer vision classifiers, and clean modern interfaces.
+        Hi, I'm Vivekkumar Vishwakarma. I'm currently studying Information Technology at GTU (Batch of 2027). I spend my free time writing clean code, building full-stack web apps, and playing around with computer vision models.
       </p>
 
       {/* Hero CTA */}
@@ -232,8 +233,8 @@ const Projects: FC = () => {
   const projectsList = [
     {
       title: 'Deepfake Detection System',
-      subtitle: 'AI & Forensic Computer Vision',
-      desc: 'Built a multi-stream forensic classifier (FakeGEN) to detect AI-generated face videos. Combines frequency-domain analysis (DCT, SRM noise residuals) with EfficientNet-based spatial features to catch artifacts that single-model approaches miss. Operates completely offline on standard GPU hardware without external API dependencies.',
+      subtitle: 'AI & Computer Vision Project',
+      desc: 'I wanted to understand how AI-generated face videos can be spotted, so I built FakeGEN. It extracts video frames using OpenCV and uses PyTorch (EfficientNet) to detect face manipulation artifacts. It runs completely offline on standard local hardware.',
       tech: ['Python', 'PyTorch', 'OpenCV', 'EfficientNet', 'CNNs'],
       highlight: true,
       link: 'https://github.com/vivekkumars21/FakeGEN'
@@ -241,7 +242,7 @@ const Projects: FC = () => {
     {
       title: 'PlexusNet — EMS',
       subtitle: 'Employee Management App & Web',
-      desc: 'Built a synchronized mobile + web platform covering the full Employee → TL → Admin workflow with role-based access control and multi-level leave approvals. Features 2-second real-time attendance tracking (Punch In/Out) and team messaging powered by Firebase event-driven listeners, with robust admin CRUD operations.',
+      desc: 'A simple Employee Management portal I built to learn full-stack sync. Uses Flutter for the mobile app, React/Next.js for the admin dashboard, and Firebase to handle attendance check-ins and message alerts in real-time.',
       tech: ['Flutter', 'Next.js', 'React', 'Firebase', 'Node.js'],
       highlight: true,
       link: 'https://github.com/vivekkumars21/EMS-for-Plexusnet'
@@ -249,7 +250,7 @@ const Projects: FC = () => {
     {
       title: 'healthcareAI',
       subtitle: 'Clinical Diagnosis Support',
-      desc: 'Engineered an intelligent diagnostics and health analytics system. Leverages medical data modeling and classification layers to predict disease risks and assist clinicians with real-time analytics. Combines secure clinical data processing pipelines with low-latency insights.',
+      desc: 'Built this during a hackathon to play around with health data classification. It takes basic patient parameters and passes them to a scikit-learn model, serving quick risk predictions via FastAPI backend to a clean frontend layout.',
       tech: ['Python', 'PyTorch', 'scikit-learn', 'FastAPI', 'Next.js'],
       highlight: true,
       link: 'https://github.com/vivekkumars21/healthcareAI'
@@ -266,7 +267,7 @@ const Projects: FC = () => {
           Selected Work
         </h2>
         <p className="text-muted-foreground max-w-xl mt-4 text-sm sm:text-base">
-          A showcase of architectural systems and AI solutions I have designed, strictly matching my technical credentials.
+          A showcase of side projects and applications I have built while studying.
         </p>
       </div>
 
@@ -353,10 +354,10 @@ const Projects: FC = () => {
             }}
           />
           <h4 className="text-2xl text-foreground mb-1" style={{ fontFamily: "'Instrument Serif', serif" }}>
-            More intelligent software is on the horizon
+            Learning and building something new every day
           </h4>
           <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed m-0">
-            Active engineering is underway on new forensic computer vision models, scalable full-stack pipelines, and automated AI systems. Explore current codebases above or follow my GitHub for upcoming repository releases.
+            Currently learning more about Docker, Next.js, and training custom model weights. Always coding new things in my hostel room or during lab sessions. Check my GitHub to see what I'm pushing today!
           </p>
         </div>
       </div>
@@ -390,7 +391,7 @@ const Experience: FC = () => {
           Leadership & Experience
         </h2>
         <p className="text-muted-foreground max-w-xl mt-4 text-sm sm:text-base">
-          My academic leadership activities and management roles within the college technical communities.
+          My activities and volunteer roles in college technical groups and student events.
         </p>
       </div>
 
@@ -476,7 +477,7 @@ const Skills: FC = () => {
           Technical Palette
         </h2>
         <p className="text-muted-foreground max-w-xl mt-4 text-sm sm:text-base">
-          A comprehensive summary of the languages, libraries, and tools I utilize across computing projects.
+          A list of the languages, libraries, and tools I have used in my projects so far.
         </p>
       </div>
 
@@ -527,9 +528,9 @@ const Education: FC = () => {
   ]
 
   const strengths = [
-    'Problem decomposition under ambiguity',
-    'Fast prototyping',
-    'Cross-functional team coordination'
+    'Enjoys figuring out code logic',
+    'Building and testing projects quickly',
+    'Working together with group mates'
   ]
 
   return (
@@ -648,7 +649,7 @@ const Contact: FC = () => (
         Let&rsquo;s Connect
       </h2>
       <p className="text-muted-foreground max-w-xl mt-4 text-sm sm:text-base">
-        Currently exploring starting roles, technical collaborations, and academic opportunities in the AI and software engineering fields. Reach out directly.
+        I am currently looking for summer internships, student projects, or just chatting about code. Feel free to shoot me an email or call!
       </p>
     </div>
 
@@ -716,7 +717,7 @@ const Contact: FC = () => (
             Digital Profiles
           </h3>
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Follow my latest coding updates, open-source repositories, and professional networks. I actively share updates on projects in AI systems and technical coordination.
+            Feel free to check out my GitHub to see what projects I'm working on right now, or connect with me on LinkedIn to say hi.
           </p>
         </div>
 
@@ -795,15 +796,15 @@ const GhostCompanion: FC = () => {
 
   return (
     <div
-      className="fixed bottom-6 right-6 z-40 flex flex-col items-end group"
+      className="fixed bottom-6 left-6 z-40 flex flex-col items-start group"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       {/* Speech bubble */}
       <div
         className={`
-          mb-3 mr-1 p-4 rounded-2xl liquid-glass border border-white/10
-          max-w-[220px] text-xs text-foreground transition-all duration-300 origin-bottom-right
+          mb-3 ml-1 p-4 rounded-2xl liquid-glass border border-white/10
+          max-w-[220px] text-xs text-foreground transition-all duration-300 origin-bottom-left
           ${hovered ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-90 translate-y-2 pointer-events-none'}
         `}
       >
