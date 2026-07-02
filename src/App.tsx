@@ -778,7 +778,7 @@ const GhostCompanion: FC = () => {
 
   const quotes = [
     "Boo! 👻 I'm Vivek's late-night coding ghost. I literally compile his React bugs into features!",
-    "\"Engineering intelligent software...\" or just drinking 3 AM Chai trying to center a Tailwind div! ☕",
+    "\"Engineering intelligent software...\" or just drinking 3 AM Coffee trying to center a Tailwind div! ☕",
     "Fun fact: Vivek sketched me on paper during an IT lecture at College. Don't tell the professor! 🤫",
     "I guard the Deepfake Detection model. If any suspicious face vectors show up, I scare them away! 👁️",
     "Vivek wanted a 'glassmorphic frosted nav' so much, I had to freeze my ectoplasm for it! 🥶",
