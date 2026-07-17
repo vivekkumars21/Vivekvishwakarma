@@ -684,7 +684,7 @@ const Contact: FC = () => (
     <div className="flex flex-col gap-6 max-w-4xl mx-auto">
       {/* Full-width Email Card */}
       <a
-        href="mailto:vivekvishwakarma21@outlook.com"
+        href="mailto:vivekvishwakarma.dev@gmail.com"
         onMouseEnter={handleCardMouseEnter}
         onMouseLeave={handleCardMouseLeave}
         onMouseMove={handleCardMouseMove}
@@ -704,7 +704,7 @@ const Contact: FC = () => (
               className="text-2xl sm:text-3xl text-foreground group-hover:text-white/80 transition-colors"
               style={{ fontFamily: "'Instrument Serif', serif" }}
             >
-              vivekvishwakarma21@outlook.com
+              vivekvishwakarma.dev@gmail.com
             </span>
           </div>
           <span className="text-xs text-muted-foreground uppercase tracking-wider font-semibold shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
