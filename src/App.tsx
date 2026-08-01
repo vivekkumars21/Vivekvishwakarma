@@ -244,95 +244,177 @@ const Hero: FC = () => {
 
 /* ─── Projects Section ──────────────────────────────────────────────────────── */
 const Projects: FC = () => {
+  const [activeCategory, setActiveCategory] = useState<'All' | 'AI & ML' | 'Full Stack' | 'Tools & CLI'>('All')
+
   const projectsList = [
+    {
+      title: 'Loan Approval & Load Prediction',
+      subtitle: 'End-to-End ML & Web Application',
+      desc: 'A full-stack machine learning application built with Scikit-learn, FastAPI backend, and Streamlit frontend. Predicts applicant loan approval eligibility and financial load risks in real-time based on historical metrics.',
+      tech: ['Python', 'Scikit-learn', 'FastAPI', 'Streamlit', 'Pandas'],
+      category: 'AI & ML',
+      highlight: true,
+      badgeText: 'Featured ML App',
+      link: 'https://github.com/vivekkumars21/loanPrediction_fullstack'
+    },
+    {
+      title: 'MediPredict AI — Healthcare & Heart Finder',
+      subtitle: 'Clinical Diagnosis & Doctor Finder',
+      desc: 'An intelligent healthcare platform predicting disease and heart risk conditions from patient symptoms. Features a Flask REST API, scikit-learn disease classification model, and specialist doctor recommendation directory.',
+      tech: ['Python', 'Flask', 'scikit-learn', 'Pandas', 'NumPy'],
+      category: 'AI & ML',
+      highlight: true,
+      badgeText: 'Healthcare AI',
+      link: 'https://github.com/vivekkumars21/healthcareAI'
+    },
     {
       title: 'Deepfake Detection System',
       subtitle: 'AI & Computer Vision Project',
-      desc: 'I wanted to understand how AI-generated face videos can be spotted, so I built FakeGEN. It extracts video frames using OpenCV and uses PyTorch (EfficientNet) to detect face manipulation artifacts. It runs completely offline on standard local hardware.',
+      desc: 'Built FakeGEN to detect face manipulation in video content. Combines OpenCV frame extraction with a PyTorch EfficientNet-B3 multi-stream backbone for spatial and frequency artifact classification offline.',
       tech: ['Python', 'PyTorch', 'OpenCV', 'EfficientNet', 'CNNs'],
+      category: 'AI & ML',
       highlight: true,
+      badgeText: 'Computer Vision',
       link: 'https://github.com/vivekkumars21/FakeGEN'
+    },
+    {
+      title: 'IntraKart — AI + AR Interior Design',
+      subtitle: 'Next-Gen Spatial Web Application',
+      desc: 'Modern spatial interior design platform featuring AI-driven room image analysis and interactive augmented reality (AR) room layout preview built with Next.js.',
+      tech: ['TypeScript', 'Next.js', 'React', 'Tailwind CSS', 'AI/AR'],
+      category: 'Full Stack',
+      highlight: true,
+      badgeText: 'Core Project',
+      link: 'https://github.com/vivekkumars21/LIV.AI'
+    },
+    {
+      title: 'Farm Fresh',
+      subtitle: 'Agri-Tech E-Commerce Platform',
+      desc: 'Direct-to-consumer agricultural marketplace connecting local farmers with consumers. Features modern catalog management, clean UI, and fast page loads built with Next.js 15.',
+      tech: ['Next.js 15', 'TypeScript', 'React', 'Tailwind CSS', 'Node.js'],
+      category: 'Full Stack',
+      highlight: false,
+      link: 'https://github.com/vivekkumars21/Farms-Fresh'
+    },
+    {
+      title: 'Logistics Analytics Dashboard',
+      subtitle: 'Real-Time Supply Chain Monitor',
+      desc: 'Interactive enterprise logistics control panel displaying real-time fleet analytics, shipment status tracking, and dynamic supply chain performance charts.',
+      tech: ['Next.js', 'TypeScript', 'React', 'Tailwind CSS', 'Recharts'],
+      category: 'Full Stack',
+      highlight: false,
+      link: 'https://github.com/vivekkumars21/logistics_dashboard'
     },
     {
       title: 'PlexusNet — EMS',
       subtitle: 'Employee Management App & Web',
-      desc: 'A simple Employee Management portal I built to learn full-stack sync. Uses Flutter for the mobile app, React/Next.js for the admin dashboard, and Firebase to handle attendance check-ins and message alerts in real-time.',
+      desc: 'Cross-platform Employee Management System utilizing Flutter for mobile check-ins, Next.js for the administrator web dashboard, and Firebase for real-time notifications.',
       tech: ['Flutter', 'Next.js', 'React', 'Firebase', 'Node.js'],
-      highlight: true,
+      category: 'Full Stack',
+      highlight: false,
       link: 'https://github.com/vivekkumars21/EMS-for-Plexusnet'
     },
     {
-      title: 'healthcareAI',
-      subtitle: 'Clinical Diagnosis Support',
-      desc: 'Built this during a hackathon to play around with health data classification. It takes basic patient parameters and passes them to a scikit-learn model, serving quick risk predictions via FastAPI backend to a clean frontend layout.',
-      tech: ['Python', 'PyTorch', 'scikit-learn', 'FastAPI', 'Next.js'],
-      highlight: true,
-      link: 'https://github.com/vivekkumars21/healthcareAI'
+      title: 'YouTube Video Manager CLI',
+      subtitle: 'Terminal Channel Management Tool',
+      desc: 'Command-line tool for managing YouTube channels, monitoring real-time video performance statistics, and securing API sessions using OAuth 2.0 authentication.',
+      tech: ['Python', 'OAuth 2.0', 'YouTube API', 'CLI', 'JSON'],
+      category: 'Tools & CLI',
+      highlight: false,
+      link: 'https://github.com/vivekkumars21/YT-video-manager'
     }
   ]
 
+  const categories = ['All', 'AI & ML', 'Full Stack', 'Tools & CLI'] as const
+
+  const filteredProjects = activeCategory === 'All'
+    ? projectsList
+    : projectsList.filter(p => p.category === activeCategory)
+
   return (
     <section id="projects" className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 py-20 sm:py-28 border-t border-white/[0.03]">
-      <div className="flex flex-col items-center text-center mb-16">
+      <div className="flex flex-col items-center text-center mb-12">
         <h2
           className="text-4xl sm:text-6xl text-foreground"
           style={{ fontFamily: "'Instrument Serif', serif" }}
         >
-          Selected Work
+          Selected Work & Projects
         </h2>
         <p className="text-muted-foreground max-w-xl mt-4 text-sm sm:text-base">
-          A showcase of side projects and applications I have built while studying.
+          A collection of machine learning systems, full-stack applications, and side projects pushed to GitHub.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-        {projectsList.map((project, idx) => {
+      {/* Category Filter Tabs */}
+      <div className="flex flex-wrap justify-center gap-3 mb-12">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setActiveCategory(cat)}
+            className={`
+              px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 border cursor-pointer
+              ${activeCategory === cat
+                ? 'text-foreground bg-white/10 border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.05)] scale-105'
+                : 'text-muted-foreground hover:text-foreground bg-white/[0.02] border-white/5 hover:border-white/10'
+              }
+            `}
+          >
+            {cat} {cat === 'All' ? `(${projectsList.length})` : `(${projectsList.filter(p => p.category === cat).length})`}
+          </button>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        {filteredProjects.map((project, idx) => {
           return (
             <div
-              key={idx}
+              key={project.title + idx}
               onMouseEnter={handleCardMouseEnter}
               onMouseLeave={handleCardMouseLeave}
               onMouseMove={handleCardMouseMove}
               className={`
                 liquid-glass card-hover-transition
-                rounded-2xl p-6 sm:p-10 flex flex-col justify-between
-                group hover:border-white/15
+                rounded-2xl p-6 sm:p-8 flex flex-col justify-between
+                group hover:border-white/15 relative overflow-hidden
                 ${project.highlight ? 'border border-white/15 shadow-2xl shadow-white/[0.01]' : 'border border-white/[0.05]'}
               `}
             >
               {/* Radial Shimmer Effect Overlay */}
               <div
-                className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 style={{
                   background: 'radial-gradient(400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
                 }}
               />
               <div>
-                {project.highlight && (
-                  <div className="flex justify-start mb-6">
+                <div className="flex items-center justify-between gap-2 mb-4">
+                  <span className="text-[10px] uppercase tracking-widest px-2.5 py-0.5 rounded-full text-white/70 bg-white/[0.05] border border-white/10 font-mono font-medium">
+                    {project.category}
+                  </span>
+                  {project.highlight && (
                     <span className="bg-white/10 backdrop-blur-md border border-white/20 text-[10px] uppercase tracking-widest px-3 py-1 rounded-full text-foreground font-semibold">
-                      Core Project
+                      {project.badgeText || 'Core Project'}
                     </span>
-                  </div>
-                )}
+                  )}
+                </div>
                 <h3
-                  className="text-3xl sm:text-4xl text-foreground mb-1"
+                  className="text-2xl sm:text-3xl text-foreground mb-1 leading-snug"
                   style={{ fontFamily: "'Instrument Serif', serif" }}
                 >
                   {project.title}
                 </h3>
-                <span className="text-xs text-muted-foreground tracking-wider uppercase block mb-6 font-semibold">
+                <span className="text-xs text-muted-foreground tracking-wider uppercase block mb-4 font-semibold">
                   {project.subtitle}
                 </span>
-                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-8">
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-6">
                   {project.desc}
                 </p>
               </div>
 
               <div>
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-1.5 mb-6">
                   {project.tech.map((t) => (
-                    <span key={t} className="text-[11px] bg-white/[0.02] border border-white/[0.05] text-muted-foreground px-2.5 py-1 rounded font-mono">
+                    <span key={t} className="text-[10px] bg-white/[0.02] border border-white/[0.05] text-muted-foreground px-2 py-0.5 rounded font-mono">
                       {t}
                     </span>
                   ))}
@@ -341,9 +423,10 @@ const Projects: FC = () => {
                   href={project.link}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-xs text-foreground group-hover:text-muted-foreground transition-colors no-underline font-medium"
+                  className="inline-flex items-center gap-1.5 text-xs text-foreground group-hover:text-white transition-colors no-underline font-medium hover:underline"
                 >
-                  Explore Code Repository
+                  <span>Explore Code Repository</span>
+                  <span className="text-xs opacity-70">↗</span>
                 </a>
               </div>
             </div>
@@ -351,7 +434,7 @@ const Projects: FC = () => {
         })}
       </div>
 
-      {/* Cool Coming Soon Banner */}
+      {/* GitHub Callout Banner */}
       <div className="mt-16 flex justify-center">
         <div
           onMouseEnter={handleCardMouseEnter}
@@ -359,24 +442,33 @@ const Projects: FC = () => {
           onMouseMove={handleCardMouseMove}
           className="
             liquid-glass card-hover-transition group
-            rounded-2xl p-6 sm:p-8 max-w-3xl border border-white/10
-            hover:border-white/15
-            text-left
+            rounded-2xl p-6 sm:p-8 max-w-4xl w-full border border-white/10
+            hover:border-white/15 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6
           "
         >
           {/* Radial Shimmer Effect Overlay */}
           <div
-            className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             style={{
               background: 'radial-gradient(400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
             }}
           />
-          <h4 className="text-2xl text-foreground mb-1" style={{ fontFamily: "'Instrument Serif', serif" }}>
-            Learning and building something new every day
-          </h4>
-          <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed m-0">
-            Currently learning more about Docker, Next.js, and training custom model weights. Always coding new things in my hostel room or during lab sessions. Check my GitHub to see what I'm pushing today!
-          </p>
+          <div>
+            <h4 className="text-2xl text-foreground mb-1" style={{ fontFamily: "'Instrument Serif', serif" }}>
+              Explore All Repositories on GitHub
+            </h4>
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed m-0 max-w-xl">
+              I am constantly building new side projects, training custom models, and experimenting with full-stack technologies. Check out all my open-source code on GitHub!
+            </p>
+          </div>
+          <a
+            href="https://github.com/vivekkumars21?tab=repositories"
+            target="_blank"
+            rel="noreferrer"
+            className="glass-button rounded-full px-6 py-2.5 text-xs font-semibold uppercase tracking-wider shrink-0 no-underline whitespace-nowrap"
+          >
+            View GitHub Profile ↗
+          </a>
         </div>
       </div>
     </section>
@@ -424,7 +516,7 @@ const Experience: FC = () => {
           >
             {/* Radial Shimmer Effect Overlay */}
             <div
-              className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               style={{
                 background: 'radial-gradient(450px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
               }}
@@ -466,24 +558,29 @@ const Experience: FC = () => {
 const Skills: FC = () => {
   const skillCategories = [
     {
-      title: 'Programming',
-      skills: ['Python', 'C', 'Java', 'JavaScript']
+      title: 'Programming Languages',
+      badge: 'Core Syntax',
+      skills: ['Python', 'JavaScript', 'Java']
     },
     {
-      title: 'Web Development',
-      skills: ['HTML', 'CSS', 'React.js', 'Node.js']
+      title: 'AI & Machine Learning',
+      badge: 'Vision & Models',
+      skills: ['Tensorflow', 'Keras', 'Scikit-learn', 'FastAPI', 'Streamlit']
     },
     {
-      title: 'Data Science',
-      skills: ['NumPy', 'Pandas', 'Matplotlib', 'Seaborn']
+      title: 'Web & Mobile Frameworks',
+      badge: 'Full Stack',
+      skills: ['Next.js', 'React.js', 'REST APIs']
     },
     {
-      title: 'Databases',
-      skills: ['MySQL', 'Supabase', 'Firebase']
+      title: 'Databases & Cloud',
+      badge: 'Data Storage',
+      skills: ['MySQL', 'Supabase', 'Firebase', 'SQLite']
     },
     {
-      title: 'Tools',
-      skills: ['Git', 'GitHub', 'Power BI', 'Figma']
+      title: 'Data Science & Tools',
+      badge: 'Analytics & Dev',
+      skills: ['NumPy & Pandas', 'Matplotlib & Seaborn', 'Git & GitHub', 'Docker', 'Power BI', 'Figma']
     }
   ]
 
@@ -497,11 +594,11 @@ const Skills: FC = () => {
           Technical Palette
         </h2>
         <p className="text-muted-foreground max-w-xl mt-4 text-sm sm:text-base">
-          A list of the languages, libraries, and tools I have used in my projects so far.
+          A comprehensive suite of programming languages, AI frameworks, web stack technologies, and tools I use in my projects.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 max-w-7xl mx-auto">
         {skillCategories.map((cat, idx) => {
           return (
             <div
@@ -509,31 +606,36 @@ const Skills: FC = () => {
               onMouseEnter={handleCardMouseEnter}
               onMouseLeave={handleCardMouseLeave}
               onMouseMove={handleCardMouseMove}
-              className="liquid-glass card-hover-transition group rounded-2xl p-6 border border-white/[0.05] hover:border-white/15 relative overflow-hidden"
+              className="liquid-glass card-hover-transition group rounded-2xl p-6 border border-white/[0.05] hover:border-white/15 relative overflow-hidden flex flex-col justify-between"
             >
               {/* Radial Shimmer Effect Overlay */}
               <div
-                className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 style={{
-                  background: 'radial-gradient(200px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
+                  background: 'radial-gradient(220px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
                 }}
               />
-              <div className="mb-5">
+              <div>
+                <div className="mb-2">
+                  <span className="text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-full text-white/60 bg-white/[0.04] border border-white/10 font-mono font-medium">
+                    {cat.badge}
+                  </span>
+                </div>
                 <h3
-                  className="text-lg text-foreground leading-tight"
+                  className="text-xl text-foreground mb-4 leading-tight"
                   style={{ fontFamily: "'Instrument Serif', serif" }}
                 >
                   {cat.title}
                 </h3>
+                <ul className="flex flex-col gap-2.5 m-0 p-0 list-none">
+                  {cat.skills.map((skill) => (
+                    <li key={skill} className="flex items-center gap-2 text-xs text-muted-foreground group-hover:text-foreground/90 transition-colors">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white/30 group-hover:bg-white/60 shrink-0 transition-colors"></span>
+                      <span>{skill}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className="flex flex-col gap-2 m-0 p-0 list-none">
-                {cat.skills.map((skill) => (
-                  <li key={skill} className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground">
-                    <span className="w-1 h-1 rounded-full bg-white/20 shrink-0"></span>
-                    {skill}
-                  </li>
-                ))}
-              </ul>
             </div>
           )
         })}
@@ -579,7 +681,7 @@ const Education: FC = () => {
         >
           {/* Radial Shimmer Effect Overlay */}
           <div
-            className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             style={{
               background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
             }}
@@ -609,7 +711,7 @@ const Education: FC = () => {
         >
           {/* Radial Shimmer Effect Overlay */}
           <div
-            className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             style={{
               background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
             }}
@@ -640,7 +742,7 @@ const Education: FC = () => {
         >
           {/* Radial Shimmer Effect Overlay */}
           <div
-            className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             style={{
               background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
             }}
@@ -692,7 +794,7 @@ const Contact: FC = () => (
       >
         {/* Radial Shimmer Effect Overlay */}
         <div
-          className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           style={{
             background: 'radial-gradient(500px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
           }}
@@ -726,7 +828,7 @@ const Contact: FC = () => (
         >
           {/* Radial Shimmer Effect Overlay */}
           <div
-            className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             style={{
               background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
             }}
@@ -754,7 +856,7 @@ const Contact: FC = () => (
         >
           {/* Radial Shimmer Effect Overlay */}
           <div
-            className="absolute inset-0 -z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             style={{
               background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
             }}
