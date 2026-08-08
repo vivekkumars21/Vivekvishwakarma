@@ -598,7 +598,7 @@ const Skills: FC = () => {
     {
       title: 'Databases & Cloud',
       badge: 'Data Storage',
-      skills: ['MySQL', 'Supabase', 'Firebase', 'SQLite']
+      skills: ['PostgreSQL', 'AWS', 'Supabase', 'SQLite']
     },
     {
       title: 'Data Science & Tools',
@@ -621,7 +621,7 @@ const Skills: FC = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 max-w-7xl mx-auto">
         {skillCategories.map((cat, idx) => {
           return (
             <div
@@ -638,22 +638,25 @@ const Skills: FC = () => {
                   background: 'radial-gradient(220px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
                 }}
               />
-              <div>
-                <div className="mb-2">
-                  <span className="text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-full text-white/60 bg-white/[0.04] border border-white/10 font-mono font-medium">
+              <div className="relative z-10">
+                <div className="mb-2.5">
+                  <span className="text-[10px] uppercase tracking-widest px-2.5 py-0.5 rounded-full text-white/70 bg-white/[0.05] border border-white/10 font-mono font-medium inline-block">
                     {cat.badge}
                   </span>
                 </div>
                 <h3
-                  className="text-xl text-foreground mb-4 leading-tight"
+                  className="text-xl sm:text-2xl text-foreground mb-4 leading-tight"
                   style={{ fontFamily: "'Instrument Serif', serif" }}
                 >
                   {cat.title}
                 </h3>
                 <ul className="flex flex-col gap-2.5 m-0 p-0 list-none">
                   {cat.skills.map((skill) => (
-                    <li key={skill} className="flex items-center gap-2 text-xs text-muted-foreground group-hover:text-foreground/90 transition-colors">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white/30 group-hover:bg-white/60 shrink-0 transition-colors"></span>
+                    <li
+                      key={skill}
+                      className="flex items-center gap-2.5 text-xs sm:text-sm text-muted-foreground group-hover:text-foreground/90 transition-colors"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-white/30 group-hover:bg-white/70 shrink-0 transition-colors"></span>
                       <span>{skill}</span>
                     </li>
                   ))}
@@ -919,25 +922,61 @@ const BackgroundVideo: FC = () => (
 const GhostCompanion: FC = () => {
   const [hovered, setHovered] = useState(false)
   const [rotation, setRotation] = useState(0)
-  const [quoteIndex, setQuoteIndex] = useState(0)
+  const [quoteIndex, setQuoteIndex] = useState(-1)
+  const [initialBubbleVisible, setInitialBubbleVisible] = useState(true)
 
   const quotes = [
-    "Boo! 👻 I'm Vivek's late-night coding ghost. I literally compile his React bugs into features!",
-    "\"Engineering intelligent software...\" or just drinking 3 AM Coffee trying to center a Tailwind div! ☕",
-    "Fun fact: Vivek sketched me on paper during an IT lecture at College. Don't tell the professor! 🤫",
-    "I guard the Deepfake Detection model. If any suspicious face vectors show up, I scare them away! 👁️",
-    "Vivek wanted a 'glassmorphic frosted nav' so much, I had to freeze my ectoplasm for it! 🥶",
-    "Click me! I spin faster than Vivek's CPU running deep learning epochs! 🌀",
-    "PlexusNet attendance punches in 2 seconds, but it takes me 2 minutes to float to the header! 🏃💨",
-    "Look at those cards glow! I'm polishing the glass panels in the background with my ghost ectoplasm! 🧼✨",
-    "I'm following your cursor around with my ambient cosmic space glow! Feel the gravitational pull! 🌌",
-    "Yes, I am a ghost. No, I am not a bug. Okay, maybe I'm a feature. 🐛✨"
+    "I wasn't trained on a dataset. I was trained on Vivek's 3 AM debugging sessions. 👻",
+    "My neural network has one class: suspicious. Everything else gets haunted. 🧠👻",
+    "Vivek calls it a portfolio. I call it my haunted production environment. 🏚️",
+    "I live between the pixels, the APIs, and the questionable decisions made after midnight. 🌌",
+    "My favorite framework? Whatever makes the error disappear before Vivek notices it. 👀",
+    "I don't use `console.log()`. I whisper directly to the runtime. 👻",
+    "Vivek gave me one job: make the website memorable. I may have misunderstood the assignment. 🫠",
+    "Some developers deploy features. Vivek deploys features and then gives them a personality. ✨",
+    "I was supposed to be a loading animation. Then I gained consciousness. 🌀",
+    "My ghost particles are GPU accelerated. Naturally. I have standards. ⚡",
+    "I tried debugging Vivek's code. The code started debugging me. We're even now. 🤝",
+    "Behind every polished interface is a developer who fought twelve invisible CSS demons. I'm one of them. 👻",
+    "I don't haunt abandoned houses. I haunt abandoned Git branches. 🌿",
+    "Vivek said 'make it subtle.' So naturally, I became a floating ghost. 👻",
+    "My training data consists of Stack Overflow tabs, terminal errors, and one suspiciously large coffee. ☕",
+    "I have no body, no heartbeat, and somehow still have better uptime than Vivek's laptop. 💀",
+    "If you see me following your cursor, don't worry. I'm just collecting behavioral data for absolutely no reason. 👁️",
+    "My embeddings are haunted. My vectors are cursed. My latency is questionable. Welcome to the portfolio. 🧠",
+    "I don't need authentication. I'm already inside the DOM. 😈",
+    "Vivek built AI applications. I became the AI application nobody asked for. 👻",
+    "Every portfolio has a mascot. Mine escaped the Figma file. 🎨➡️👻",
+    "I was sketched during an IT lecture. Now I'm running in production. Character development. 📈",
+    "The professor thought Vivek was taking notes. He was actually designing my entire career. 🤫",
+    "I don't judge your tech stack. I just silently watch your bundle size grow. 👀",
+    "One moment I'm floating peacefully. The next, Vivek changes one CSS property and I enter production chaos. 🫥",
+    "My favorite algorithm is while (bug) { haunt(); }.",
+    "I asked Vivek for a GPU. He gave me a laptop. We both compromised. 💀",
+    "I'm not an easter egg. I'm a strategically deployed paranormal user experience. 👻",
+    "You found me. Congratulations. Your curiosity has been logged. 📡",
+    "I know when you hover. I know when you click. I know when you inspect the DOM. 👁️",
+    "Please don't open DevTools. I have things to hide. 🫣",
+    "If the website suddenly gets faster, that's not optimization. That's me carrying the frontend. 💨",
+    "I maintain the visual layer while Vivek maintains the existential crisis. ⚙️",
+    "Somewhere between machine learning and machine haunting, I found my purpose. 👻"
   ]
 
   const handleClick = () => {
     setRotation(r => r + 360)
-    setQuoteIndex(prev => (prev + 1) % quotes.length)
+    if (quoteIndex === -1) {
+      setQuoteIndex(-2)
+      setInitialBubbleVisible(true)
+    } else if (quoteIndex === -2) {
+      setInitialBubbleVisible(false)
+      setQuoteIndex(0)
+    } else {
+      setInitialBubbleVisible(false)
+      setQuoteIndex(prev => (prev + 1) % quotes.length)
+    }
   }
+
+  const isBubbleVisible = hovered || ((quoteIndex === -1 || quoteIndex === -2) && initialBubbleVisible)
 
   return (
     <div
@@ -950,11 +989,23 @@ const GhostCompanion: FC = () => {
         className={`
           mb-3 ml-1 p-4 rounded-2xl liquid-glass border border-white/10
           max-w-[220px] text-xs text-foreground transition-all duration-300 origin-bottom-left
-          ${hovered ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-90 translate-y-2 pointer-events-none'}
+          ${isBubbleVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-90 translate-y-2 pointer-events-none'}
         `}
       >
         <div className="relative font-medium leading-relaxed">
-          {quotes[quoteIndex]}
+          {quoteIndex === -1 ? (
+            <div>
+              <span className="font-semibold text-white block mb-0.5">You're here. 👀</span>
+              <span>Click me.</span>
+            </div>
+          ) : quoteIndex === -2 ? (
+            <div>
+              <span className="font-semibold text-white block mb-0.5">Good choice.</span>
+              <span>Now, explore. ✨</span>
+            </div>
+          ) : (
+            quotes[quoteIndex]
+          )}
         </div>
       </div>
 
