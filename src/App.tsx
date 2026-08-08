@@ -248,6 +248,17 @@ const Projects: FC = () => {
 
   const projectsList = [
     {
+      title: 'Next Word & Sentence Prediction',
+      subtitle: 'End-to-End LSTM Deep Learning & Streamlit App',
+      desc: 'Complete deep learning pipeline built from scratch to deployment for sequential text completion. Features a custom-trained Keras/TensorFlow LSTM model with text sequence tokenization & padding, paired with a real-time interactive Streamlit web interface.',
+      tech: ['Python', 'TensorFlow', 'Keras', 'LSTM', 'Streamlit', 'NumPy', 'Pickle'],
+      category: 'AI & ML',
+      highlight: true,
+      badgeText: 'Deep Learning',
+      link: 'https://github.com/vivekkumars21/nextWordPrediction',
+      secondaryLink: 'https://github.com/vivekkumars21/FFRAM/blob/main/DL/senComp/senCompletion.ipynb'
+    },
+    {
       title: 'Loan Approval & Load Prediction',
       subtitle: 'End-to-End ML & Web Application',
       desc: 'A full-stack machine learning application built with Scikit-learn, FastAPI backend, and Streamlit frontend. Predicts applicant loan approval eligibility and financial load risks in real-time based on historical metrics.',
@@ -419,15 +430,28 @@ const Projects: FC = () => {
                     </span>
                   ))}
                 </div>
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs text-foreground group-hover:text-white transition-colors no-underline font-medium hover:underline"
-                >
-                  <span>Explore Code Repository</span>
-                  <span className="text-xs opacity-70">↗</span>
-                </a>
+                <div className="flex flex-wrap items-center gap-3">
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs text-foreground group-hover:text-white transition-colors no-underline font-medium hover:underline"
+                  >
+                    <span>{project.secondaryLink ? 'App Repository' : 'Explore Code Repository'}</span>
+                    <span className="text-xs opacity-70">↗</span>
+                  </a>
+                  {project.secondaryLink && (
+                    <a
+                      href={project.secondaryLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-white transition-colors no-underline font-medium hover:underline"
+                    >
+                      <span>Model Notebook</span>
+                      <span className="text-xs opacity-70">↗</span>
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           )
@@ -565,7 +589,7 @@ const Skills: FC = () => {
     {
       title: 'AI & Machine Learning',
       badge: 'Vision & Models',
-      skills: ['Tensorflow', 'Keras', 'Scikit-learn', 'FastAPI', 'Streamlit']
+      skills: ['TensorFlow & Keras', 'LSTM & RNNs', 'Scikit-learn', 'FastAPI', 'Streamlit']
     },
     {
       title: 'Web & Mobile Frameworks',
