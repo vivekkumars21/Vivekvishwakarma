@@ -24,18 +24,18 @@ const NAV_LINKS = [
 /* ─── Hover Effect Utility ─────────────────────────────────────────────────── */
 const handleCardMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
   const rect = e.currentTarget.getBoundingClientRect()
-  ;(e.currentTarget as any)._cardRect = rect
+    ; (e.currentTarget as any)._cardRect = rect
 }
 
 const handleCardMouseLeave = (e: React.MouseEvent<HTMLElement>) => {
-  ;(e.currentTarget as any)._cardRect = null
+  ; (e.currentTarget as any)._cardRect = null
 }
 
 const handleCardMouseMove = (e: React.MouseEvent<HTMLElement>) => {
   let rect = (e.currentTarget as any)._cardRect
   if (!rect) {
     rect = e.currentTarget.getBoundingClientRect()
-    ;(e.currentTarget as any)._cardRect = rect
+      ; (e.currentTarget as any)._cardRect = rect
   }
   const x = e.clientX - rect.left
   const y = e.clientY - rect.top
@@ -169,16 +169,16 @@ const Hero: FC = () => {
         min-h-[calc(100vh-80px)]
       "
     >
-      {/* Subheading / Location Badge */}
-      <div className="animate-fade-rise px-4 py-1.5 rounded-full bg-white/[0.02] border border-white/5 text-xs text-muted-foreground mb-8">
-        Ahmedabad, Gujarat, India
+      {/* Identity Line */}
+      <div className="animate-fade-rise text-[11px] sm:text-xs font-mono tracking-[0.2em] uppercase text-white/50 mb-8">
+        AI/ML &middot; CREATIVE TECHNOLOGY &middot; PRODUCT DESIGN
       </div>
 
       {/* Headline */}
       <h1
         className="
           animate-fade-rise
-          text-5xl sm:text-7xl md:text-8xl
+          text-5xl sm:text-6xl md:text-7xl lg:text-8xl
           leading-[1.05]
           font-normal
           text-foreground
@@ -190,10 +190,9 @@ const Hero: FC = () => {
           letterSpacing: '-1.5px',
         }}
       >
-        Coding{' '}
-        <span className="text-white/50">side projects</span>,{' '}
-        learning <span className="text-white/50">AI</span>, and building for the{' '}
-        <span className="text-white/50">web.</span>
+        Building <span className="text-white/50">AI</span>, designing{' '}
+        <span className="text-white/50">experiences</span>, and turning{' '}
+        <span className="text-white/50">ideas</span> into products.
       </h1>
 
       {/* Subtext */}
@@ -202,18 +201,18 @@ const Hero: FC = () => {
           animate-fade-rise-delay
           text-white/70
           text-base sm:text-lg font-light
-          max-w-[820px]
+          max-w-[760px]
           mt-8
           leading-relaxed
           mx-auto
           tracking-wide
         "
       >
-        Hi, I'm Vivekkumar Vishwakarma. I'm currently studying Information Technology at GTU (Batch of 2027). I spend my free time writing clean code, building full-stack web apps, and playing around with computer vision models.
+        Information Technology undergraduate focused on Machine Learning, Deep Learning, and AI-powered applications — with a passion for creative technology and product design.
       </p>
 
       {/* Hero CTA */}
-      <div className="animate-fade-rise-delay-2 flex flex-col sm:flex-row gap-4 mt-12 justify-center items-center">
+      <div className="animate-fade-rise-delay-2 flex flex-col sm:flex-row gap-4 mt-10 justify-center items-center">
         <a
           href="#projects"
           className="
