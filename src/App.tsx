@@ -247,6 +247,16 @@ const Projects: FC = () => {
 
   const projectsList = [
     {
+      title: 'Retrieval-Augmented Generation (RAG)',
+      subtitle: 'Context-Aware Document Q&A & Vector Search',
+      desc: 'End-to-end Retrieval-Augmented Generation pipeline built with LangChain, ChromaDB vector store, and Mistral AI. Ingests and chunks PDF documents, generates dense semantic embeddings using Sentence Transformers (all-MiniLM-L6-v2), and retrieves relevant context via MMR to synthesize hallucination-free answers.',
+      tech: ['Python', 'LangChain', 'ChromaDB', 'Mistral AI', 'Hugging Face', 'Vector Search'],
+      category: 'AI & ML',
+      highlight: true,
+      badgeText: 'Generative AI',
+      link: 'https://github.com/vivekkumars21/RAG'
+    },
+    {
       title: 'Next Word & Sentence Prediction',
       subtitle: 'End-to-End LSTM Deep Learning & Streamlit App',
       desc: 'Complete deep learning pipeline built from scratch to deployment for sequential text completion. Features a custom-trained Keras/TensorFlow LSTM model with text sequence tokenization & padding, paired with a real-time interactive Streamlit web interface.',
@@ -588,7 +598,7 @@ const Skills: FC = () => {
     {
       title: 'AI & Machine Learning',
       badge: 'Vision & Models',
-      skills: ['TensorFlow & Keras', 'LSTM & RNNs', 'Scikit-learn', 'FastAPI', 'Streamlit']
+      skills: ['LangChain & RAG', 'TensorFlow & Keras', 'LSTM & RNNs', 'Scikit-learn', 'FastAPI', 'Streamlit']
     },
     {
       title: 'Web & Mobile Frameworks',
@@ -598,7 +608,7 @@ const Skills: FC = () => {
     {
       title: 'Databases & Cloud',
       badge: 'Data Storage',
-      skills: ['PostgreSQL', 'AWS', 'Supabase', 'SQLite']
+      skills: ['ChromaDB', 'PostgreSQL', 'AWS', 'Supabase', 'SQLite']
     },
     {
       title: 'Data Science & Tools',
