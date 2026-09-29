@@ -171,7 +171,7 @@ const Hero: FC = () => {
     >
       {/* Identity Line */}
       <div className="animate-fade-rise text-[11px] sm:text-xs font-mono tracking-[0.2em] uppercase text-white/50 mb-8">
-        AI/ML &middot; CREATIVE TECHNOLOGY &middot; PRODUCT DESIGN
+        AI/ML ENGINEER &middot; GENERATIVE AI &middot; NLP &middot; LLM APPLICATIONS
       </div>
 
       {/* Headline */}
@@ -208,7 +208,7 @@ const Hero: FC = () => {
           tracking-wide
         "
       >
-        Information Technology undergraduate focused on Machine Learning, Deep Learning, and AI-powered applications — with a passion for creative technology and product design.
+        Information Technology undergraduate focused on Machine Learning, NLP, and Generative AI — building LLM and RAG applications with Python, Transformers, and FastAPI.
       </p>
 
       {/* Hero CTA */}
@@ -247,31 +247,41 @@ const Projects: FC = () => {
 
   const projectsList = [
     {
-      title: 'Retrieval-Augmented Generation (RAG)',
-      subtitle: 'Context-Aware Document Q&A & Vector Search',
-      desc: 'End-to-end Retrieval-Augmented Generation pipeline built with LangChain, ChromaDB vector store, and Mistral AI. Ingests and chunks PDF documents, generates dense semantic embeddings using Sentence Transformers (all-MiniLM-L6-v2), and retrieves relevant context via MMR to synthesize hallucination-free answers.',
-      tech: ['Python', 'LangChain', 'ChromaDB', 'Mistral AI', 'Hugging Face', 'Vector Search'],
+      title: 'Deepfake Detection System (FakeGEN)',
+      subtitle: 'Multi-Stream Deep Learning & Artifact Forensics',
+      desc: 'Advanced multi-stream deepfake detection framework built with PyTorch and EfficientNet-B3. Combines 4 parallel feature streams: Spatial features (EfficientNet-B3 RGB, 1536 dims), Frequency features (DCT convolutions, 256 dims), Noise features (SRM filters, 128 dims), and EXIF metadata (32 dims) with dynamic weighted feature fusion. Implemented Focal Loss for class imbalance and FP16 mixed-precision training targeting >95% accuracy and >0.98 AUC-ROC.',
+      tech: ['Python', 'PyTorch', 'EfficientNet-B3', 'DCT & SRM', 'OpenCV', 'Focal Loss', 'FP16', 'AdamW'],
+      category: 'AI & ML',
+      highlight: true,
+      badgeText: 'Featured CV & Deep Learning',
+      link: 'https://github.com/vivekkumars21/FakeGEN'
+    },
+    {
+      title: 'RAG — Deep Learning Book Q&A',
+      subtitle: 'End-to-End Context Retrieval & LLM Generation',
+      desc: 'Built an end-to-end Retrieval-Augmented Generation (RAG) system engineered for high-precision question answering over domain-specific deep learning literature. Developed an automated document chunking and vector retrieval pipeline utilizing LangChain, Hugging Face Transformers, dense semantic embeddings, and ChromaDB vector search.',
+      tech: ['Python', 'LangChain', 'Hugging Face', 'Transformers', 'ChromaDB', 'Vector Search', 'FastAPI'],
       category: 'AI & ML',
       highlight: true,
       badgeText: 'Generative AI',
       link: 'https://github.com/vivekkumars21/RAG'
     },
     {
-      title: 'Next Word & Sentence Prediction',
-      subtitle: 'End-to-End LSTM Deep Learning & Streamlit App',
-      desc: 'Complete deep learning pipeline built from scratch to deployment for sequential text completion. Features a custom-trained Keras/TensorFlow LSTM model with text sequence tokenization & padding, paired with a real-time interactive Streamlit web interface.',
-      tech: ['Python', 'TensorFlow', 'Keras', 'LSTM', 'Streamlit', 'NumPy', 'Pickle'],
+      title: 'LSTM Next Word Prediction System',
+      subtitle: 'Sequential NLP & Deep Learning Language Model',
+      desc: 'Developed and trained an LSTM-based NLP model for next-word prediction using tokenization, sequence generation, padding, and word embeddings. Implemented sequential text processing pipelines to capture contextual dependencies for predictive generation with an interactive Streamlit UI.',
+      tech: ['Python', 'TensorFlow', 'Keras', 'LSTM', 'NLP', 'Tokenization', 'Streamlit'],
       category: 'AI & ML',
       highlight: true,
-      badgeText: 'Deep Learning',
+      badgeText: 'NLP & Deep Learning',
       link: 'https://github.com/vivekkumars21/nextWordPrediction',
       secondaryLink: 'https://github.com/vivekkumars21/FFRAM/blob/main/DL/senComp/senCompletion.ipynb'
     },
     {
       title: 'Loan Approval & Load Prediction',
-      subtitle: 'End-to-End ML & Web Application',
-      desc: 'A full-stack machine learning application built with Scikit-learn, FastAPI backend, and Streamlit frontend. Predicts applicant loan approval eligibility and financial load risks in real-time based on historical metrics.',
-      tech: ['Python', 'Scikit-learn', 'FastAPI', 'Streamlit', 'Pandas'],
+      subtitle: 'Supervised Machine Learning & REST API',
+      desc: 'A full-stack machine learning application built with Scikit-learn, FastAPI backend, and Streamlit frontend. Applies data preprocessing, feature engineering, and model evaluation to predict applicant loan approval eligibility and financial load risks in real-time.',
+      tech: ['Python', 'Scikit-learn', 'FastAPI', 'Streamlit', 'Pandas', 'NumPy'],
       category: 'AI & ML',
       highlight: true,
       badgeText: 'Featured ML App',
@@ -283,19 +293,9 @@ const Projects: FC = () => {
       desc: 'An intelligent healthcare platform predicting disease and heart risk conditions from patient symptoms. Features a Flask REST API, scikit-learn disease classification model, and specialist doctor recommendation directory.',
       tech: ['Python', 'Flask', 'scikit-learn', 'Pandas', 'NumPy'],
       category: 'AI & ML',
-      highlight: true,
+      highlight: false,
       badgeText: 'Healthcare AI',
       link: 'https://github.com/vivekkumars21/healthcareAI'
-    },
-    {
-      title: 'Deepfake Detection System',
-      subtitle: 'AI & Computer Vision Project',
-      desc: 'Built FakeGEN to detect face manipulation in video content. Combines OpenCV frame extraction with a PyTorch EfficientNet-B3 multi-stream backbone for spatial and frequency artifact classification offline.',
-      tech: ['Python', 'PyTorch', 'OpenCV', 'EfficientNet', 'CNNs'],
-      category: 'AI & ML',
-      highlight: true,
-      badgeText: 'Computer Vision',
-      link: 'https://github.com/vivekkumars21/FakeGEN'
     },
     {
       title: 'IntraKart — AI + AR Interior Design',
@@ -512,14 +512,25 @@ const Projects: FC = () => {
 const Experience: FC = () => {
   const experiences = [
     {
-      role: 'Technical Head',
-      company: 'Indian Society for Technical Education (ISTE)',
-      location: 'Sal Education, Ahmedabad',
-      period: 'Aug 2024 – Present',
+      role: 'Python AI/ML Intern',
+      company: 'Softcoding Solutions',
+      location: 'Ahmedabad, Gujarat, India',
+      period: 'Python AI/ML Internship',
       bullets: [
-        'Organized and led 50+ technical and cultural events with 800+ student participants across the academic year.',
-        'Managed a team of 10 volunteers, coordinating photography, cinematography, and live troubleshooting under tight timelines.',
-        'Oversaw photography, videography, and post-production for official college coverage.'
+        'Built and evaluated supervised machine learning models using Python and Scikit-learn.',
+        'Applied data preprocessing, feature engineering, model training, and evaluation techniques.',
+        'Conducted classification and regression performance benchmarking using cross-validation and evaluation metrics.'
+      ]
+    },
+    {
+      role: 'Technical Head',
+      company: 'Indian Society for Technical Education (ISTE SAL)',
+      location: 'SAL Education, Ahmedabad',
+      period: 'Sept 2024 – Present',
+      bullets: [
+        'Led technical and media teams to coordinate 50+ events for 800+ participants, managing logistics and scheduling.',
+        'Managed a team of student coordinators for live troubleshooting, technical infrastructure, and event scheduling under tight deadlines.',
+        'Directed digital media production and spearheaded tech workshops across the institute.'
       ]
     }
   ]
@@ -531,14 +542,14 @@ const Experience: FC = () => {
           className="text-4xl sm:text-6xl text-foreground"
           style={{ fontFamily: "'Instrument Serif', serif" }}
         >
-          Leadership & Experience
+          Experience & Leadership
         </h2>
         <p className="text-muted-foreground max-w-xl mt-4 text-sm sm:text-base">
-          My activities and volunteer roles in college technical groups and student events.
+          Practical machine learning industry experience and student technical leadership roles.
         </p>
       </div>
 
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-3xl mx-auto flex flex-col gap-6">
         {experiences.map((exp, idx) => (
           <div
             key={idx}
@@ -591,29 +602,29 @@ const Experience: FC = () => {
 const Skills: FC = () => {
   const skillCategories = [
     {
-      title: 'Programming Languages',
-      badge: 'Core Syntax',
-      skills: ['Python', 'JavaScript', 'Java']
+      title: 'Generative AI & LLMs',
+      badge: 'GenAI & RAG',
+      skills: ['LLMs & AI Agents', 'Transformers & Hugging Face', 'RAG Applications', 'Embeddings & Vector DBs', 'LangChain Framework', 'ChromaDB']
     },
     {
-      title: 'AI & Machine Learning',
-      badge: 'Vision & Models',
-      skills: ['LangChain & RAG', 'TensorFlow & Keras', 'LSTM & RNNs', 'Scikit-learn', 'FastAPI', 'Streamlit']
+      title: 'Machine Learning & NLP',
+      badge: 'Core ML / DL',
+      skills: ['Deep Learning & NLP', 'PyTorch & TensorFlow', 'Scikit-Learn & XGBoost', 'LSTM Sequential Models', 'Feature Engineering', 'Model Evaluation']
     },
     {
-      title: 'Web & Mobile Frameworks',
-      badge: 'Full Stack',
-      skills: ['Next.js', 'React.js', 'REST APIs']
+      title: 'AI Engineering',
+      badge: 'Production AI',
+      skills: ['FastAPI & REST APIs', 'Pydantic Validation', 'Model Deployment', 'Docker Containerization', 'CI/CD Pipelines', 'Streamlit']
     },
     {
-      title: 'Databases & Cloud',
-      badge: 'Data Storage',
-      skills: ['ChromaDB', 'PostgreSQL', 'AWS', 'Supabase', 'SQLite']
+      title: 'Languages & Databases',
+      badge: 'Code & Data',
+      skills: ['Python', 'SQL & PostgreSQL', 'JavaScript', 'NumPy & Pandas', 'Data Preprocessing']
     },
     {
-      title: 'Data Science & Tools',
-      badge: 'Analytics & Dev',
-      skills: ['NumPy & Pandas', 'Matplotlib & Seaborn', 'Git & GitHub', 'Docker', 'Power BI', 'Figma']
+      title: 'Cloud, MLOps & Tools',
+      badge: 'MLOps & Tools',
+      skills: ['AWS Cloud Services', 'MLFlow Tracking', 'Git & GitHub', 'Linux Environment', 'Postman']
     }
   ]
 
@@ -627,7 +638,7 @@ const Skills: FC = () => {
           Technical Palette
         </h2>
         <p className="text-muted-foreground max-w-xl mt-4 text-sm sm:text-base">
-          A comprehensive suite of programming languages, AI frameworks, web stack technologies, and tools I use in my projects.
+          A comprehensive suite of machine learning frameworks, generative AI tools, programming languages, and MLOps platforms.
         </p>
       </div>
 
@@ -683,14 +694,17 @@ const Skills: FC = () => {
 /* ─── Education Section ──────────────────────────────────────────────────────── */
 const Education: FC = () => {
   const certifications = [
-    'Cyber Security Workshop Certification',
-    'CodeDex Python Programming Certification'
+    'Python AI/ML Internship — Softcoding Solutions',
+    'Python Programming Certification',
+    'Cyber Security Workshop Certification'
   ]
 
-  const strengths = [
-    'Enjoys figuring out code logic',
-    'Building and testing projects quickly',
-    'Working together with group mates'
+  const coursework = [
+    'AI / Machine Learning',
+    'Data Science & Analytics',
+    'Database Management Systems (DBMS)',
+    'Object-Oriented Programming (OOP)',
+    'Computer Networks'
   ]
 
   return (
@@ -703,7 +717,7 @@ const Education: FC = () => {
           Academic & Credentials
         </h2>
         <p className="text-muted-foreground max-w-xl mt-4 text-sm sm:text-base">
-          Details about my university education, verified professional credentials, and core operational strengths.
+          Formal engineering degree at SAL Institute, verified certifications, and core computer science coursework.
         </p>
       </div>
 
@@ -713,7 +727,7 @@ const Education: FC = () => {
           onMouseEnter={handleCardMouseEnter}
           onMouseLeave={handleCardMouseLeave}
           onMouseMove={handleCardMouseMove}
-          className="liquid-glass card-hover-transition group rounded-2xl p-6 sm:p-8 border border-white/[0.05] flex flex-col lg:col-span-1 relative overflow-hidden"
+          className="liquid-glass card-hover-transition group rounded-2xl p-6 sm:p-8 border border-white/[0.05] flex flex-col justify-between relative overflow-hidden"
         >
           {/* Radial Shimmer Effect Overlay */}
           <div
@@ -722,20 +736,31 @@ const Education: FC = () => {
               background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
             }}
           />
-          <div className="mb-6">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold">Degree</span>
-            <h3 className="text-xl text-foreground" style={{ fontFamily: "'Instrument Serif', serif" }}>
-              B.E. — Information Technology
+          <div>
+            <div className="mb-4">
+              <span className="text-[10px] uppercase tracking-widest px-2.5 py-0.5 rounded-full text-white/70 bg-white/[0.05] border border-white/10 font-mono font-medium inline-block">
+                Degree
+              </span>
+            </div>
+            <h3 className="text-2xl text-foreground mb-1" style={{ fontFamily: "'Instrument Serif', serif" }}>
+              B.E. in Information Technology
             </h3>
+            <span className="text-xs text-white/60 tracking-wider uppercase block mb-4 font-semibold">
+              SAL Engineering and Technical Institute
+            </span>
+            <p className="text-sm text-muted-foreground leading-relaxed m-0">
+              Ahmedabad, Gujarat &middot; GTU
+              <br />
+              <span className="text-white/80 font-medium">Batch:</span> 2023 – Present
+            </p>
           </div>
 
-          <p className="text-sm text-muted-foreground leading-relaxed m-0">
-            <strong>Sal Engineering and Technical Institute</strong>
-            <br />
-            Gujarat Technological University (GTU)
-            <br />
-            Batch: 2023 – 2027
-          </p>
+          <div className="mt-6 pt-4 border-t border-white/[0.05] flex items-center justify-between">
+            <span className="text-xs text-muted-foreground font-mono">Academic Standing</span>
+            <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/10 text-white">
+              CGPA: 7.7 / 10 (thru 6th sem)
+            </span>
+          </div>
         </div>
 
         {/* Certifications */}
@@ -743,7 +768,7 @@ const Education: FC = () => {
           onMouseEnter={handleCardMouseEnter}
           onMouseLeave={handleCardMouseLeave}
           onMouseMove={handleCardMouseMove}
-          className="liquid-glass card-hover-transition group rounded-2xl p-6 sm:p-8 border border-white/[0.05] lg:col-span-1 relative overflow-hidden"
+          className="liquid-glass card-hover-transition group rounded-2xl p-6 sm:p-8 border border-white/[0.05] relative overflow-hidden flex flex-col justify-between"
         >
           {/* Radial Shimmer Effect Overlay */}
           <div
@@ -752,29 +777,33 @@ const Education: FC = () => {
               background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
             }}
           />
-          <div className="mb-6">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold">Credentials</span>
-            <h3 className="text-xl text-foreground" style={{ fontFamily: "'Instrument Serif', serif" }}>
+          <div>
+            <div className="mb-4">
+              <span className="text-[10px] uppercase tracking-widest px-2.5 py-0.5 rounded-full text-white/70 bg-white/[0.05] border border-white/10 font-mono font-medium inline-block">
+                Credentials
+              </span>
+            </div>
+            <h3 className="text-2xl text-foreground mb-4" style={{ fontFamily: "'Instrument Serif', serif" }}>
               Certifications
             </h3>
-          </div>
 
-          <ul className="flex flex-col gap-4 m-0 p-0 list-none">
-            {certifications.map((cert) => (
-              <li key={cert} className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed">
-                <span className="w-1.5 h-1.5 rounded-full bg-white/30 mt-2 shrink-0" />
-                <span>{cert}</span>
-              </li>
-            ))}
-          </ul>
+            <ul className="flex flex-col gap-3.5 m-0 p-0 list-none">
+              {certifications.map((cert) => (
+                <li key={cert} className="flex items-start gap-3 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/40 mt-2 shrink-0" />
+                  <span>{cert}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
-        {/* Strengths */}
+        {/* Relevant Coursework */}
         <div
           onMouseEnter={handleCardMouseEnter}
           onMouseLeave={handleCardMouseLeave}
           onMouseMove={handleCardMouseMove}
-          className="liquid-glass card-hover-transition group rounded-2xl p-6 sm:p-8 border border-white/[0.05] lg:col-span-1 relative overflow-hidden"
+          className="liquid-glass card-hover-transition group rounded-2xl p-6 sm:p-8 border border-white/[0.05] relative overflow-hidden flex flex-col justify-between"
         >
           {/* Radial Shimmer Effect Overlay */}
           <div
@@ -783,21 +812,25 @@ const Education: FC = () => {
               background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
             }}
           />
-          <div className="mb-6">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold">Strengths</span>
-            <h3 className="text-xl text-foreground" style={{ fontFamily: "'Instrument Serif', serif" }}>
-              Core Competencies
+          <div>
+            <div className="mb-4">
+              <span className="text-[10px] uppercase tracking-widest px-2.5 py-0.5 rounded-full text-white/70 bg-white/[0.05] border border-white/10 font-mono font-medium inline-block">
+                Curriculum
+              </span>
+            </div>
+            <h3 className="text-2xl text-foreground mb-4" style={{ fontFamily: "'Instrument Serif', serif" }}>
+              Relevant Coursework
             </h3>
-          </div>
 
-          <ul className="flex flex-col gap-4 m-0 p-0 list-none">
-            {strengths.map((str) => (
-              <li key={str} className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed">
-                <span className="w-1.5 h-1.5 rounded-full bg-white/30 mt-2 shrink-0" />
-                <span>{str}</span>
-              </li>
-            ))}
-          </ul>
+            <ul className="flex flex-col gap-3 m-0 p-0 list-none">
+              {coursework.map((course) => (
+                <li key={course} className="flex items-start gap-3 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/40 mt-2 shrink-0" />
+                  <span>{course}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -815,7 +848,7 @@ const Contact: FC = () => (
         Let&rsquo;s Connect
       </h2>
       <p className="text-muted-foreground max-w-xl mt-4 text-sm sm:text-base">
-        I am currently looking for summer internships, student projects, or just chatting about code. Feel free to shoot me an email!
+        Open for AI/ML engineering roles, internships, and research collaborations. Feel free to reach out directly.
       </p>
     </div>
 
@@ -851,8 +884,8 @@ const Contact: FC = () => (
         </div>
       </a>
 
-      {/* Social Links Row */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {/* Contact & Social Links Row */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
         <a
           href="https://github.com/vivekkumars21"
           target="_blank"
@@ -860,7 +893,7 @@ const Contact: FC = () => (
           onMouseEnter={handleCardMouseEnter}
           onMouseLeave={handleCardMouseLeave}
           onMouseMove={handleCardMouseMove}
-          className="liquid-glass card-hover-transition rounded-2xl p-8 border border-white/[0.05] hover:border-white/15 no-underline group relative overflow-hidden block"
+          className="liquid-glass card-hover-transition rounded-2xl p-6 sm:p-8 border border-white/[0.05] hover:border-white/15 no-underline group relative overflow-hidden block"
         >
           {/* Radial Shimmer Effect Overlay */}
           <div
@@ -877,7 +910,7 @@ const Contact: FC = () => (
             GitHub
           </span>
           <p className="text-xs text-muted-foreground mt-2 m-0 leading-relaxed">
-            Check out what I'm building and pushing today.
+            Explore open-source models, notebooks & pipelines.
           </p>
         </a>
 
@@ -888,7 +921,7 @@ const Contact: FC = () => (
           onMouseEnter={handleCardMouseEnter}
           onMouseLeave={handleCardMouseLeave}
           onMouseMove={handleCardMouseMove}
-          className="liquid-glass card-hover-transition rounded-2xl p-8 border border-white/[0.05] hover:border-white/15 no-underline group relative overflow-hidden block"
+          className="liquid-glass card-hover-transition rounded-2xl p-6 sm:p-8 border border-white/[0.05] hover:border-white/15 no-underline group relative overflow-hidden block"
         >
           {/* Radial Shimmer Effect Overlay */}
           <div
@@ -905,9 +938,36 @@ const Contact: FC = () => (
             LinkedIn
           </span>
           <p className="text-xs text-muted-foreground mt-2 m-0 leading-relaxed">
-            Connect with me to say hi or talk opportunities.
+            Connect for career opportunities & networking.
           </p>
         </a>
+
+        <div
+          onMouseEnter={handleCardMouseEnter}
+          onMouseLeave={handleCardMouseLeave}
+          onMouseMove={handleCardMouseMove}
+          className="liquid-glass card-hover-transition rounded-2xl p-6 sm:p-8 border border-white/[0.05] group relative overflow-hidden block"
+        >
+          {/* Radial Shimmer Effect Overlay */}
+          <div
+            className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={{
+              background: 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)'
+            }}
+          />
+          <span className="text-[10px] text-muted-foreground uppercase tracking-widest block font-semibold mb-1">Direct</span>
+          <span
+            className="text-xl sm:text-2xl text-foreground"
+            style={{ fontFamily: "'Instrument Serif', serif" }}
+          >
+            Ahmedabad, India
+          </span>
+          <p className="text-xs text-muted-foreground mt-2 m-0 leading-relaxed font-mono">
+            +91 9328797168
+            <br />
+            <span className="text-white/60">vivekvishwakarma.dev</span>
+          </p>
+        </div>
       </div>
     </div>
   </section>
