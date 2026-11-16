@@ -1,25 +1,3090 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vivekkumar Vishwakarma </title>
-  <meta name="description"
-    content="Portfolio of Vivek Vishwakarma  AI/ML Engineer specializing in Generative AI, LLMs, NLP, and Deep Learning. Discover projects including Deepfake Detection (FakeGEN), RAG pipelines, and AI applications." />
+  <meta name="theme-color" content="#000000" />
 
-  <!-- Google Fonts: Instrument Serif + Space Grotesk + Inter -->
+  <title>Vivekkumar Vishwakarma — Final-Year AI/ML Engineer</title>
+  <meta name="description"
+    content="Final-year Information Technology student focused on Generative AI, NLP, RAG systems, and multi-agent applications." />
+  <meta name="author" content="Vivekkumar Vishwakarma" />
+
+  <!-- Favicon -->
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cg transform='rotate(-30 12 12)'%3E%3Ccircle cx='7.3' cy='3.2' r='1.45'/%3E%3Crect x='5.5' y='4.7' width='3.6' height='14.6' rx='1.8'/%3E%3Crect x='14.9' y='4.7' width='3.6' height='14.6' rx='1.8'/%3E%3Ccircle cx='16.7' cy='20.8' r='1.45'/%3E%3C/g%3E%3C/svg%3E" />
+
+  <!-- Premium Typography: Syne (Display Headings), Plus Jakarta Sans (Body), Instrument Serif (Italic Accent), JetBrains Mono (Code/Terminal) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Syne:wght@500;600;700;800&display=swap"
     rel="stylesheet" />
+
+  <style>
+    /* ─── 1. BASE DESIGN TOKENS (OBSIDIAN GLASS & EDITORIAL HIERARCHY) ─ */
+    html,
+    body {
+      background: #000000 !important;
+      color: #eeeeee;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #000000;
+      --card-bg: rgba(12, 13, 16, 0.75);
+      --card-border: rgba(255, 255, 255, 0.09);
+      --card-border-hover: rgba(255, 255, 255, 0.28);
+      --card-glow: rgba(255, 255, 255, 0.04);
+      --text-main: #ffffff;
+      --text-body: #d4d4dc;
+      --text-muted: #8e8e98;
+      --text-dim: #5c5c66;
+      --font-display: 'Syne', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-serif: 'Instrument Serif', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --max-w: 1120px;
+      --nav-h: 68px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--nav-h) + 24px);
+    }
+
+    body {
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+
+    /* Minimal Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #070709;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.16);
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.32);
+    }
+
+    /* Ambient Cursor Spotlight */
+    .cursor-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 1;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.035) 0%, transparent 65%);
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s ease;
+    }
+
+    /* ─── 2. VIDEO BACKDROP (SMOOTH DARK LIQUID WAVES) ────────────── */
+    .hero-video-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .hero-video-bg video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0.40;
+      filter: grayscale(12%) contrast(1.1) brightness(0.9);
+    }
+
+    .hero-video-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 18%, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.78) 60%, #000000 100%);
+    }
+
+    /* Subtle Film Grain */
+    .grain {
+      position: fixed;
+      inset: 0;
+      z-index: 98;
+      pointer-events: none;
+      opacity: 0.02;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* ─── 3. TOP NAVIGATION ────────────────────────────────────────── */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-h);
+      z-index: 90;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 max(24px, calc((100vw - var(--max-w)) / 2));
+      background: rgba(8, 8, 10, 0.72);
+      backdrop-filter: blur(20px) saturate(140%);
+      -webkit-backdrop-filter: blur(20px) saturate(140%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+
+    .brand-logo svg {
+      width: 19px;
+      height: 19px;
+    }
+
+    .brand-suffix {
+      color: #8c8c96;
+      font-weight: 400;
+    }
+
+    .status-capsule {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: #b0b0b8;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+      animation: pulse 2.6s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.35;
+        transform: scale(0.85);
+      }
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-pill {
+      height: 35px;
+      padding: 0 13px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(18, 18, 22, 0.55);
+      color: #c0c0c8;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .nav-pill:hover {
+      border-color: rgba(255, 255, 255, 0.24);
+      color: #ffffff;
+      background: rgba(28, 28, 34, 0.85);
+    }
+
+    .nav-pill.active {
+      border-color: rgba(255, 255, 255, 0.35);
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .nav-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-liquid {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      height: 36px;
+      padding: 0 15px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .btn-solid {
+      background: #ffffff;
+      color: #000000;
+      border: 1px solid #ffffff;
+      font-weight: 600;
+    }
+
+    .btn-solid:hover {
+      background: #ededed;
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #e5e5ea;
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.28);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .burger {
+      display: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(18, 18, 22, 0.6);
+      place-items: center;
+      align-content: center;
+      gap: 5px;
+      padding: 0;
+    }
+
+    .burger span {
+      display: block;
+      width: 16px;
+      height: 1.5px;
+      background: #ffffff;
+      border-radius: 1px;
+      transition: all 0.2s ease;
+    }
+
+    body.menu-open .burger span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+
+    body.menu-open .burger span:nth-child(2) {
+      opacity: 0;
+    }
+
+    body.menu-open .burger span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
+
+    .menu-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(20px);
+    }
+
+    body.menu-open .menu-backdrop {
+      display: block;
+    }
+
+    /* ─── 4. MAIN LAYOUT ─────────────────────────────────────────── */
+    .main-wrap {
+      position: relative;
+      z-index: 10;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: calc(var(--nav-h) + 36px) 24px 80px;
+    }
+
+    /* ─── 5. HERO SECTION (ELEVATED TYPOGRAPHY) ───────────────────── */
+    .hero-sec {
+      min-height: calc(82vh - var(--nav-h));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 24px 0 46px;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 11.5px;
+      font-family: var(--font-mono);
+      font-weight: 500;
+      color: #dedee5;
+      margin-bottom: 24px;
+      backdrop-filter: blur(12px);
+    }
+
+    .badge-indicator {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.7);
+    }
+
+    .hero-h1 {
+      font-family: var(--font-display);
+      font-size: clamp(34px, 5.2vw, 56px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.035em;
+      color: #ffffff;
+      max-width: 860px;
+      margin-bottom: 20px;
+    }
+
+    .hero-h1 em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      color: #ffffff;
+      padding-right: 2px;
+    }
+
+    .hero-lede {
+      font-size: clamp(15px, 1.8vw, 16.5px);
+      line-height: 1.68;
+      color: var(--text-body);
+      max-width: 640px;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 44px;
+    }
+
+    .hero-actions .btn-liquid {
+      height: 42px;
+      padding: 0 20px;
+      font-size: 13.5px;
+    }
+
+    /* Minimal Metric Strip */
+    .metric-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .metric-item {
+      background: rgba(14, 15, 20, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(14px);
+      padding: 14px 16px;
+      border-radius: 8px;
+      text-align: left;
+      transition: all 0.2s ease;
+    }
+
+    .metric-item:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+      background: rgba(20, 21, 28, 0.75);
+    }
+
+    .metric-val {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .metric-desc {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* ─── 6. SECTION SYSTEM ───────────────────────────────────────── */
+    .section-wrap {
+      padding: 60px 0;
+    }
+
+    .section-head {
+      margin-bottom: 28px;
+    }
+
+    .section-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 3.4vw, 36px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    .section-title em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .section-desc {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      max-width: 620px;
+    }
+
+    /* ─── 7. BENTO PROJECTS GRID & 3D CARDS ───────────────────────── */
+    .project-filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .filter-btn {
+      font-size: 12px;
+      padding: 5px 13px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: #ffffff;
+    }
+
+    .filter-btn.active {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.32);
+      color: #ffffff;
+    }
+
+    .projects-bento {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .glass-card {
+      position: relative;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px) saturate(120%);
+      -webkit-backdrop-filter: blur(20px) saturate(120%);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+    }
+
+    .glass-card.spotlight {
+      grid-column: span 2;
+      background: linear-gradient(135deg, rgba(16, 17, 24, 0.88) 0%, rgba(12, 13, 17, 0.88) 100%);
+      border-color: rgba(255, 255, 255, 0.14);
+    }
+
+    .glass-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(450px circle at var(--card-mx, 50%) var(--card-my, 50%), rgba(255, 255, 255, 0.06), transparent 40%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .glass-card:hover::before {
+      opacity: 1;
+    }
+
+    .glass-card:hover {
+      border-color: var(--card-border-hover);
+      box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.7);
+    }
+
+    .card-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .card-badge {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      color: #e0e0e6;
+    }
+
+    .card-index {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .glass-card.spotlight .card-title {
+      font-size: 24px;
+    }
+
+    .card-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      font-family: var(--font-mono);
+    }
+
+    .card-desc {
+      font-size: 13.5px;
+      color: var(--text-body);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    /* Interactive Pipeline Visual Preview */
+    .pipeline-diagram {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 16px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #dedee6;
+    }
+
+    .pipe-node {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .pipe-arr {
+      color: var(--text-dim);
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .tech-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      color: #d1d1d8;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .repo-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #ffffff;
+      transition: opacity 0.2s ease;
+    }
+
+    .repo-link:hover {
+      opacity: 0.75;
+      text-decoration: underline;
+    }
+
+    .chip-btn {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #b5b5be;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .chip-btn:hover {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(255, 255, 255, 0.28);
+      color: #ffffff;
+    }
+
+    /* ─── 8. DEVELOPER SHELL (MACOS TERMINAL STYLE) ────────────────── */
+    .terminal-container {
+      margin-top: 10px;
+      background: rgba(11, 12, 16, 0.90);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.6);
+    }
+
+    .terminal-header {
+      background: rgba(16, 17, 23, 0.95);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .window-dots {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 9.5px;
+      height: 9.5px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .dot-red {
+      background: #e05d52;
+    }
+
+    .dot-amber {
+      background: #e0a352;
+    }
+
+    .dot-green {
+      background: #52e088;
+    }
+
+    .terminal-title {
+      font-size: 12px;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+    }
+
+    .terminal-body {
+      padding: 22px;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      color: #d1d1db;
+      max-height: 380px;
+      overflow-y: auto;
+      line-height: 1.6;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+    }
+
+    .terminal-body::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .terminal-body::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.25);
+    }
+
+    .terminal-body::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.16);
+      border-radius: 3px;
+    }
+
+    .term-banner {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.02);
+      padding: 12px 14px;
+      border-radius: 6px;
+      margin-bottom: 14px;
+      color: #e5e5eb;
+      white-space: pre-wrap;
+    }
+
+    .term-history {
+      margin-bottom: 12px;
+    }
+
+    .term-input-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .term-prompt {
+      color: #ffffff;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .term-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+    }
+
+    .term-chips-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 10px 18px;
+      background: rgba(14, 15, 20, 0.95);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    /* ─── 9. SKILLS BENTO MATRIX ──────────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+    }
+
+    .skill-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 11px;
+      padding: 22px;
+      backdrop-filter: blur(18px);
+      transition: all 0.2s ease;
+    }
+
+    .skill-card:hover {
+      border-color: rgba(255, 255, 255, 0.24);
+      transform: translateY(-2px);
+    }
+
+    .skill-header {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 14px;
+      color: #ffffff;
+      font-family: var(--font-display);
+      font-size: 15.5px;
+      font-weight: 700;
+    }
+
+    .skill-icon-box {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      display: grid;
+      place-items: center;
+      color: #ffffff;
+    }
+
+    .skill-pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .skill-pill {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      padding: 3.5px 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #dedee6;
+    }
+
+    .skill-note {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    /* ─── 10. ACADEMIC TIMELINE (2023 - 2027) ─────────────────────── */
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      bottom: 6px;
+      left: 7px;
+      width: 1px;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 32px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -28px;
+      top: 6px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #000000;
+      border: 2px solid #ffffff;
+    }
+
+    .timeline-period {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
+      margin-bottom: 3px;
+    }
+
+    .timeline-role {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 3px;
+    }
+
+    .timeline-place {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .timeline-body {
+      font-size: 13.5px;
+      color: var(--text-body);
+      line-height: 1.55;
+      max-width: 720px;
+    }
+
+    /* ─── 11. FAQ ACCORDION ───────────────────────────────────────── */
+    .faq-grid {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .faq-item {
+      background: rgba(14, 15, 20, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+
+    .faq-item:hover {
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .faq-question {
+      padding: 15px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-size: 14.5px;
+      font-weight: 500;
+      color: #ffffff;
+    }
+
+    .faq-question svg {
+      transition: transform 0.2s ease;
+      color: var(--text-dim);
+    }
+
+    .faq-item.open .faq-question svg {
+      transform: rotate(180deg);
+      color: #ffffff;
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 18px 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+
+    /* ─── 12. CONTACT BANNER ──────────────────────────────────────── */
+    .contact-card {
+      background: linear-gradient(135deg, rgba(16, 17, 24, 0.85) 0%, rgba(10, 11, 15, 0.85) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 40px 24px;
+      text-align: center;
+      backdrop-filter: blur(20px);
+    }
+
+    .contact-title {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3.6vw, 34px);
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .contact-title em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .contact-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 580px;
+      margin: 0 auto 24px;
+      line-height: 1.6;
+    }
+
+    .contact-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .copy-chip-btn {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 9px 15px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #dedee5;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .copy-chip-btn:hover {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(255, 255, 255, 0.32);
+      color: #ffffff;
+    }
+
+    .footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 26px 20px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1000;
+      background: #14151a;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: #ffffff;
+      padding: 9px 16px;
+      border-radius: 5px;
+      font-size: 12px;
+      font-family: var(--font-mono);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* ─── 13. RESPONSIVE MEDIA QUERIES ────────────────────────────── */
+    @media (max-width: 900px) {
+      .nav {
+        display: none;
+      }
+
+      .burger {
+        display: grid;
+      }
+
+      .metric-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .projects-bento {
+        grid-template-columns: 1fr;
+      }
+
+      .glass-card.spotlight {
+        grid-column: span 1;
+      }
+
+      body.menu-open .nav {
+        display: flex;
+        position: fixed;
+        inset: 0;
+        z-index: 85;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        padding: 30px;
+      }
+
+      body.menu-open .nav-pill {
+        width: 100%;
+        max-width: 280px;
+        height: 44px;
+        font-size: 14px;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .metric-strip {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Immersive editorial layout, preserving the original monochrome palette */
+    :root {
+      --max-w: 1360px;
+    }
+
+    .main-wrap {
+      max-width: 1440px;
+      padding-left: clamp(28px, 5vw, 88px);
+      padding-right: clamp(28px, 5vw, 88px);
+    }
+
+    .header {
+      padding-left: max(32px, calc((100vw - 1320px) / 2));
+      padding-right: max(32px, calc((100vw - 1320px) / 2));
+    }
+
+    .hero-sec {
+      min-height: min(820px, calc(94vh - var(--nav-h)));
+      align-items: flex-start;
+      text-align: left;
+      padding: 80px 0 92px;
+    }
+
+    .hero-h1 {
+      max-width: 1100px;
+      font-size: clamp(48px, 7vw, 92px);
+      line-height: 1.02;
+      letter-spacing: -.065em;
+    }
+
+    .hero-h1 em {
+      color: #c8c8d0;
+    }
+
+    .hero-lede {
+      max-width: 700px;
+      font-size: clamp(16px, 1.35vw, 18px);
+    }
+
+    .hero-actions {
+      justify-content: flex-start;
+      margin-bottom: 52px;
+    }
+
+    .metric-strip {
+      max-width: 1120px;
+      gap: 14px;
+    }
+
+    .metric-item {
+      border-radius: 10px;
+      padding: 18px 20px;
+      background: linear-gradient(145deg, rgba(21, 22, 28, .76), rgba(9, 9, 12, .72));
+    }
+
+    .section-wrap {
+      padding: clamp(76px, 8vw, 118px) 0;
+    }
+
+    .section-head {
+      margin-bottom: 34px;
+    }
+
+    .section-title {
+      font-size: clamp(34px, 4.2vw, 54px);
+      letter-spacing: -.055em;
+    }
+
+    .section-desc {
+      font-size: 16px;
+      max-width: 720px;
+      line-height: 1.75;
+    }
+
+    .projects-bento {
+      gap: 20px;
+    }
+
+    .glass-card {
+      padding: clamp(22px, 2.5vw, 34px);
+      border-radius: 14px;
+    }
+
+    .glass-card.spotlight {
+      background: linear-gradient(120deg, rgba(18, 19, 25, .94), rgba(10, 10, 13, .92));
+    }
+
+    .card-title {
+      letter-spacing: -.035em;
+    }
+
+    .timeline {
+      max-width: 920px;
+    }
+
+    .contact-card {
+      padding: clamp(42px, 6vw, 76px) 28px;
+    }
+
+    .section-wrap {
+      padding: clamp(64px, 6.2vw, 92px) 0;
+    }
+
+    .section-head {
+      margin-bottom: 28px;
+    }
+
+    .term-banner {
+      width: fit-content;
+      max-width: 100%;
+      overflow-x: auto;
+      padding: 14px 16px;
+      line-height: 1.55;
+    }
+
+    .terminal-body {
+      max-height: 320px;
+    }
+
+    .terminal-container {
+      max-width: 1280px;
+    }
+
+    .glass-card {
+      transition: opacity .55s ease, transform .55s cubic-bezier(.2, .75, .25, 1), border-color .3s ease, box-shadow .3s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-3px) !important;
+    }
+
+    .skill-card,
+    .faq-item,
+    .metric-item,
+    .repo-more-item {
+      transition: transform .32s cubic-bezier(.2, .75, .25, 1), border-color .28s ease, background-color .28s ease;
+    }
+
+    .repo-more {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 20px 30px;
+      align-items: center;
+      margin-top: 28px;
+      padding: 22px 24px;
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 12px;
+      background: rgba(12, 13, 17, .52);
+    }
+
+    .repo-more-title {
+      font: 600 14px var(--font-display);
+      color: #ececf0;
+      white-space: nowrap;
+    }
+
+    .repo-more-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .repo-more-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 14px;
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 8px;
+      color: #eee;
+      background: rgba(255, 255, 255, .025);
+    }
+
+    .repo-more-item:hover {
+      transform: translateY(-2px);
+      border-color: rgba(199, 255, 94, .38);
+      background: rgba(199, 255, 94, .055);
+    }
+
+    .repo-more-item strong {
+      font: 500 12px var(--font-mono);
+    }
+
+    .repo-more-item span {
+      color: #92929c;
+      font: 10px var(--font-mono);
+    }
+
+    .repo-more-item svg {
+      width: 13px;
+      height: 13px;
+      flex: 0 0 auto;
+      color: #a5a5ae;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .7s ease, transform .7s cubic-bezier(.2, .7, .25, 1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+      transition-delay: .08s;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: .16s;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: .24s;
+    }
+
+    .hero-video-bg video {
+      opacity: .3;
+      filter: grayscale(100%) contrast(1.08) brightness(.7);
+    }
+
+    .hero-video-bg::after {
+      background: linear-gradient(90deg, rgba(0, 0, 0, .48), rgba(0, 0, 0, .15) 58%, rgba(0, 0, 0, .38)), linear-gradient(180deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .72) 76%, #000 100%);
+    }
+
+    .section-tag {
+      color: #9a9aa5;
+    }
+
+    .section-title em,
+    .contact-title em {
+      color: #dedee5;
+    }
+
+    @media (min-width: 1500px) {
+      .main-wrap {
+        max-width: 1600px;
+      }
+
+      .header {
+        padding-left: max(48px, calc((100vw - 1480px) / 2));
+        padding-right: max(48px, calc((100vw - 1480px) / 2));
+      }
+
+      .hero-sec {
+        min-height: min(900px, calc(94vh - var(--nav-h)));
+      }
+    }
+
+    /* Lime accent from the original direction, on the restored monochrome base */
+    :root {
+      --accent: #C1F36B;
+    }
+
+    .brand-suffix,
+    .section-tag {
+      color: var(--accent);
+    }
+
+    .status-dot,
+    .badge-indicator {
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(199, 255, 94, .7);
+    }
+
+    .nav-pill.active {
+      border-color: rgba(199, 255, 94, .44);
+      color: var(--accent);
+      background: rgba(199, 255, 94, .09);
+    }
+
+    .hero-h1 em,
+    .section-title em,
+    .contact-title em {
+      color: var(--accent);
+    }
+
+    .badge-pill {
+      border-color: rgba(199, 255, 94, .28);
+      background: rgba(199, 255, 94, .06);
+      color: #edf6d8;
+    }
+
+    .btn-solid,
+    .hero-actions .btn-solid {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #10130a;
+    }
+
+    .btn-solid:hover,
+    .hero-actions .btn-solid:hover {
+      background: #d7ff8a;
+      border-color: #d7ff8a;
+      color: #10130a;
+    }
+
+    .filter-btn.active {
+      color: #10130a;
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .glass-card.spotlight {
+      border-color: rgba(199, 255, 94, .2);
+    }
+
+    .glass-card:hover,
+    .skill-card:hover {
+      border-color: rgba(199, 255, 94, .4);
+    }
+
+    .term-prompt {
+      color: var(--accent);
+    }
+
+    .skill-icon-box {
+      color: var(--accent);
+      border-color: rgba(199, 255, 94, .18);
+      background: rgba(199, 255, 94, .07);
+    }
+
+    .timeline::before {
+      background: linear-gradient(var(--accent), rgba(199, 255, 94, .08));
+    }
+
+    .timeline-dot {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(199, 255, 94, .1);
+    }
+
+    .timeline-period {
+      color: var(--accent);
+    }
+
+    .faq-item.open .faq-question svg,
+    .repo-link:hover,
+    .copy-chip-btn:hover {
+      color: var(--accent);
+    }
+
+    .contact-card {
+      border-color: rgba(199, 255, 94, .2);
+    }
+
+    .toast {
+      border-color: rgba(199, 255, 94, .4);
+    }
+
+    @media (max-width: 900px) {
+      body.menu-open .nav-pill.active {
+        border-color: rgba(199, 255, 94, .42);
+        background: rgba(199, 255, 94, .09);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .main-wrap {
+        padding-left: 28px;
+        padding-right: 28px;
+      }
+
+      .hero-sec {
+        min-height: auto;
+        padding: 76px 0 62px;
+      }
+
+      .hero-h1 {
+        font-size: clamp(42px, 8vw, 68px);
+      }
+
+      .section-wrap {
+        padding: 68px 0;
+      }
+
+      .metric-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .header {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .repo-more {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .repo-more-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .main-wrap {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: calc(var(--nav-h) + 18px);
+      }
+
+      .hero-sec {
+        padding: 56px 0 42px;
+      }
+
+      .hero-h1 {
+        font-size: clamp(38px, 10.5vw, 54px);
+      }
+
+      .hero-lede {
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      .hero-actions {
+        gap: 9px;
+        margin-bottom: 36px;
+      }
+
+      .hero-actions .btn-liquid {
+        min-height: 44px;
+        padding: 0 14px;
+      }
+
+      .metric-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+      }
+
+      .metric-item {
+        padding: 13px;
+      }
+
+      .metric-val {
+        font-size: 15px;
+      }
+
+      .metric-desc {
+        font-size: 10.5px;
+      }
+
+      .section-wrap {
+        padding: 58px 0;
+      }
+
+      .section-head {
+        margin-bottom: 24px;
+      }
+
+      .glass-card {
+        padding: 19px;
+      }
+
+      .terminal-body {
+        padding: 16px;
+        font-size: 11.5px;
+      }
+
+      .terminal-title {
+        display: none;
+      }
+
+      .terminal-container {
+        max-width: 100%;
+      }
+
+      .term-banner {
+        font-size: 10px;
+        padding: 11px;
+      }
+
+      .repo-more {
+        padding: 16px;
+      }
+
+      .repo-more-list {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-card {
+        padding: 38px 20px;
+      }
+
+      .toast {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        text-align: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* Obsidian, graphite and soft lime: preserve the original visual identity */
+    :root {
+      --accent: #C1F36B;
+      --bg: #0C0D0E;
+      --card-bg: rgba(25, 27, 29, .82);
+      --card-border: rgba(133, 137, 140, .18);
+      --text-main: #E8E9E5;
+      --text-body: #C5C7C5;
+      --text-muted: #85898C;
+      --text-dim: #707477;
+    }
+
+    html,
+    body {
+      background: #0C0D0E !important;
+      color: #E8E9E5;
+    }
+
+    .hero-h1,
+    .section-title,
+    .card-title,
+    .contact-title,
+    .skill-header,
+    .timeline-role,
+    .repo-link {
+      color: #E8E9E5;
+    }
+
+    .header {
+      background: rgba(12, 13, 14, .9);
+      border-bottom-color: #303438;
+    }
+
+    .section-tag {
+      color: #85898C;
+    }
+
+    .brand-suffix {
+      color: #E8E9E5;
+    }
+
+    .hero-h1 em,
+    .section-title em,
+    .contact-title em {
+      color: #C1F36B;
+    }
+
+    .status-dot,
+    .badge-indicator {
+      background: #C1F36B;
+      box-shadow: none;
+    }
+
+    .nav-pill.active {
+      border-color: #303438;
+      color: #E8E9E5;
+      background: #191B1D;
+    }
+
+    .badge-pill {
+      border-color: #303438;
+      background: rgba(25, 27, 29, .7);
+      color: #C5C7C5;
+    }
+
+    .hero-video-bg::after {
+      background: linear-gradient(90deg, rgba(12, 13, 14, .62), rgba(12, 13, 14, .22) 58%, rgba(12, 13, 14, .48)), linear-gradient(180deg, rgba(12, 13, 14, .18), rgba(12, 13, 14, .72) 76%, #0C0D0E 100%);
+    }
+
+    .terminal-container {
+      background: rgba(18, 19, 20, .97);
+    }
+
+    .terminal-header,
+    .term-chips-bar {
+      background: #191B1D;
+    }
+
+    .term-banner {
+      white-space: normal;
+      background: #191B1D;
+      border-color: #303438;
+    }
+
+    .term-banner-title {
+      font: 600 13px var(--font-mono);
+      letter-spacing: .025em;
+      color: #E8E9E5;
+    }
+
+    .term-banner-title span {
+      color: #C1F36B;
+    }
+
+    .term-banner p {
+      margin-top: 5px;
+      color: #C5C7C5;
+    }
+
+    .term-banner small {
+      display: block;
+      margin-top: 12px;
+      color: #85898C;
+    }
+
+    .term-banner kbd {
+      padding: 2px 6px;
+      border: 1px solid #303438;
+      border-radius: 4px;
+      color: #E8E9E5;
+      background: #242729;
+      font: 11px var(--font-mono);
+    }
+
+    .btn-solid,
+    .hero-actions .btn-solid {
+      background: #C1F36B;
+      border-color: #C1F36B;
+      color: #0C0D0E;
+    }
+
+    .btn-solid:hover,
+    .hero-actions .btn-solid:hover {
+      background: #D0F791;
+      border-color: #D0F791;
+      color: #0C0D0E;
+      box-shadow: 0 6px 20px rgba(193, 243, 107, .12);
+    }
+
+    .filter-btn.active {
+      color: #E8E9E5;
+      background: #191B1D;
+      border-color: #85898C;
+    }
+
+    .glass-card.spotlight,
+    .contact-card {
+      border-color: #303438;
+    }
+
+    .glass-card.spotlight {
+      background: linear-gradient(120deg, rgba(25, 27, 29, .94), rgba(17, 18, 19, .92));
+    }
+
+    .skill-card,
+    .faq-item {
+      background: rgba(25, 27, 29, .76);
+    }
+
+    .metric-item {
+      background: linear-gradient(145deg, rgba(25, 27, 29, .86), rgba(17, 18, 19, .8));
+    }
+
+    .repo-more {
+      border-color: #303438;
+      background: rgba(25, 27, 29, .42);
+    }
+
+    .glass-card:hover,
+    .skill-card:hover {
+      border-color: #555b5f;
+    }
+
+    .term-prompt,
+    .skill-icon-box,
+    .faq-item.open .faq-question svg,
+    .repo-link:hover,
+    .copy-chip-btn:hover {
+      color: #C1F36B;
+    }
+
+    .timeline-period {
+      color: #85898C;
+    }
+
+    .skill-icon-box {
+      border-color: #303438;
+      background: #191B1D;
+    }
+
+    .timeline::before {
+      background: linear-gradient(#85898C, rgba(133, 137, 140, .08));
+    }
+
+    .timeline-dot {
+      border-color: #85898C;
+      box-shadow: none;
+    }
+
+    .repo-more-item:hover {
+      border-color: #555b5f;
+      background: #242729;
+    }
+
+    .toast {
+      border-color: #303438;
+    }
+
+    .nav-pill:hover,
+    .filter-btn:hover,
+    .chip-btn:hover,
+    .copy-chip-btn:hover,
+    .repo-more-item:hover {
+      box-shadow: 0 4px 18px rgba(193, 243, 107, .08);
+    }
+
+    @media (max-width: 900px) {
+      body.menu-open .nav-pill.active {
+        border-color: #555b5f;
+        background: #191B1D;
+      }
+    }
+
+    /* First-screen hero and a compact navigation */
+    .main-wrap {
+      padding-top: calc(var(--nav-h) + 8px);
+      padding-bottom: 54px;
+    }
+
+    .header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      height: 66px;
+      gap: 18px;
+    }
+
+    .brand-wrap {
+      gap: 10px;
+    }
+
+    .brand-wrap {
+      justify-self: start;
+    }
+
+    .nav {
+      justify-self: center;
+      gap: 4px;
+    }
+
+    .nav-pill {
+      height: 34px;
+      padding: 0 11px;
+      font-size: 12px;
+    }
+
+    .nav-cta-group {
+      justify-self: end;
+      gap: 8px;
+    }
+
+    .nav-cta-group .btn-liquid {
+      height: 35px;
+      padding: 0 13px;
+      font-size: 12px;
+    }
+
+    .hero-sec {
+      min-height: calc(100svh - var(--nav-h) - 24px);
+      padding: clamp(28px, 4vh, 48px) 0 42px;
+      justify-content: center;
+    }
+
+    .hero-h1 {
+      max-width: 1040px;
+      font-size: clamp(44px, 5.4vw, 80px);
+      line-height: 1.04;
+      margin-bottom: 14px;
+    }
+
+    .badge-pill {
+      margin-bottom: 18px;
+    }
+
+    .hero-lede {
+      max-width: 660px;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+
+    .hero-actions {
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions .btn-liquid {
+      height: 40px;
+      font-size: 12.5px;
+    }
+
+    .metric-strip {
+      max-width: 1040px;
+      gap: 10px;
+    }
+
+    .metric-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 5px;
+      min-height: 96px;
+      padding: 13px 16px;
+    }
+
+    .metric-val {
+      font-size: 15px;
+      line-height: 1.25;
+    }
+
+    .metric-desc {
+      display: block;
+      font-size: 10.5px;
+      line-height: 1.45;
+    }
+
+    .section-desc {
+      max-width: 640px;
+      font-size: 14px;
+    }
+
+    .card-desc,
+    .skill-note,
+    .timeline-body,
+    .faq-answer,
+    .contact-desc {
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    @media (min-width: 901px) and (max-width: 1240px) {
+      .header {
+        padding-left: 24px;
+        padding-right: 24px;
+        gap: 12px;
+      }
+
+      .nav-pill {
+        padding: 0 8px;
+        font-size: 11.5px;
+      }
+
+      .nav-cta-group {
+        gap: 6px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .header {
+        grid-template-columns: minmax(0, 1fr) auto;
+      }
+
+      .main-wrap {
+        padding-top: calc(var(--nav-h) + 8px);
+      }
+
+      .hero-sec {
+        min-height: auto;
+        padding: 42px 0 38px;
+      }
+
+      .hero-h1 {
+        font-size: clamp(42px, 8vw, 68px);
+      }
+
+      .nav-cta-group>.btn-ghost {
+        display: none;
+      }
+
+      .nav-cta-group .btn-solid {
+        height: 36px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .main-wrap {
+        padding-top: calc(var(--nav-h) + 4px);
+      }
+
+      .header {
+        height: 60px;
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      :root {
+        --nav-h: 60px;
+      }
+
+      .hero-sec {
+        padding: 36px 0 28px;
+      }
+
+      .hero-h1 {
+        font-size: clamp(39px, 10.4vw, 52px);
+        line-height: 1.06;
+      }
+
+      .hero-lede {
+        font-size: 14px;
+      }
+
+      .hero-actions {
+        margin-bottom: 25px;
+      }
+
+      .metric-desc {
+        font-size: 10px;
+      }
+    }
+
+    @media (min-width: 901px) and (max-height: 780px) {
+      .hero-sec {
+        min-height: auto;
+        padding-top: 28px;
+        padding-bottom: 30px;
+      }
+
+      .hero-actions {
+        margin-bottom: 22px;
+      }
+
+      .hero-lede {
+        margin-bottom: 16px;
+      }
+    }
+  </style>
 </head>
 
-<body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.tsx"></script>
+<body style="background:#000;color:#fff">
+
+  <!-- Ambient Cursor Glow -->
+  <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+  <!-- Grain Overlay -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Looping Dark Liquid Waves Background Video -->
+  <div class="hero-video-bg" aria-hidden="true">
+    <video autoplay muted loop playsinline
+      src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260818_072341_50851634-bbc3-4c33-9acc-7647d4db44aa.mp4"></video>
+  </div>
+
+  <!-- Mobile Menu Backdrop -->
+  <div class="menu-backdrop" id="menu-backdrop"></div>
+
+  <!-- Sticky Glass Navigation -->
+  <header class="header">
+    <div class="brand-wrap">
+      <a class="brand-logo" href="#hero" aria-label="Vivekkumar Vishwakarma Homepage">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <g transform="rotate(-30 12 12)">
+            <circle cx="7.3" cy="3.2" r="1.45" />
+            <rect x="5.5" y="4.7" width="3.6" height="14.6" rx="1.8" />
+            <rect x="14.9" y="4.7" width="3.6" height="14.6" rx="1.8" />
+            <circle cx="16.7" cy="20.8" r="1.45" />
+          </g>
+        </svg>
+        <span>vivek<span class="brand-suffix">.ai</span></span>
+      </a>
+
+    </div>
+
+    <!-- Navigation Links -->
+    <nav class="nav" id="site-nav" aria-label="Main Navigation">
+      <a class="nav-pill active" href="#hero">Home</a>
+      <a class="nav-pill" href="#projects">Projects</a>
+      <a class="nav-pill" href="#terminal">Shell</a>
+      <a class="nav-pill" href="#skills">Skills</a>
+      <a class="nav-pill" href="#education">Education</a>
+      <a class="nav-pill" href="#leadership">Leadership</a>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="nav-cta-group">
+      <a class="btn-liquid btn-ghost" href="/Vivek_Vishwakarma_Resume.pdf" download="Vivek_Vishwakarma_Resume.pdf"
+        title="Download ATS-Friendly Resume PDF">
+        <span>Resume</span>
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+      </a>
+
+      <a class="btn-liquid btn-solid" href="#contact">
+        <span>Contact</span>
+      </a>
+
+      <button class="burger" id="burger-btn" type="button" aria-controls="site-nav" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Wrap -->
+  <main class="main-wrap">
+
+    <!-- ─── 1. HERO SECTION ───────────────────────────────────────── -->
+    <section class="hero-sec" id="hero">
+      <div class="badge-pill">
+        <span class="badge-indicator"></span>
+        <span>FINAL-YEAR B.E. IT &middot; GTU &middot; 2023–2027</span>
+      </div>
+
+      <h1 class="hero-h1">
+        From neural architectures to <em> autonomous systems.</em>
+      </h1>
+
+      <p class="hero-lede">
+        Final-year IT student focused on AI systems engineering, multi-agent architectures, and applied intelligence.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn-liquid btn-solid" href="#projects">
+          <span>Explore Projects</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <polyline points="19 12 12 19 5 12"></polyline>
+          </svg>
+        </a>
+        <a class="btn-liquid btn-ghost" href="https://github.com/vivekkumars21" target="_blank" rel="noreferrer">
+          <span>GitHub</span>
+        </a>
+      </div>
+
+      <!-- Clean 4-Column Metric Strip -->
+      <div class="metric-strip">
+        <div class="metric-item">
+          <span class="metric-val">B.E. IT</span>
+          <span class="metric-desc">Final year · GTU</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-val">7.7 CGPA</span>
+          <span class="metric-desc">Through semester 6</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-val">10+ Projects</span>
+          <span class="metric-desc">GenAI · Transformers · NLP</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-val">50+ Events</span>
+          <span class="metric-desc">800+ participants · ISTE</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── 2. FEATURED PROJECTS BENTO SHOWCASE ───────────────────── -->
+    <section class="section-wrap" id="projects">
+      <div class="section-head">
+        <span class="section-tag">01 // Selected Work</span>
+        <h2 class="section-title">Featured <em>Projects</em></h2>
+        <p class="section-desc">
+          AI, machine learning, and software projects.
+        </p>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="project-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="genai">GenAI &amp; RAG</button>
+        <button class="filter-btn" data-filter="dl">NLP &amp; Deep Learning</button>
+        <button class="filter-btn" data-filter="ml">Machine Learning &amp; APIs</button>
+      </div>
+
+      <!-- Bento Grid with 3D Tilt -->
+      <div class="projects-bento" id="projects-bento">
+
+        <!-- Project 1: ResearchLab -->
+        <div class="glass-card spotlight" data-category="genai">
+          <div>
+            <div class="card-meta-row">
+              <span class="card-badge">SPOTLIGHT // MULTI-AGENT AI</span>
+              <span class="card-index">01 / 09</span>
+            </div>
+            <h3 class="card-title">ResearchLab</h3>
+            <div class="card-subtitle">Multi-Agent Research &amp; Report Generation</div>
+            <p class="card-desc">
+              Four agents search, read, write, and critique research reports. Reduced research time from ~15 minutes to
+              ~3.
+            </p>
+
+            <!-- Visual Pipeline Node Flow -->
+            <div class="pipeline-diagram">
+              <span class="pipe-node">Search · Tavily</span>
+              <span class="pipe-arr">&rarr;</span>
+              <span class="pipe-node">Read · BeautifulSoup</span>
+              <span class="pipe-arr">&rarr;</span>
+              <span class="pipe-node">Write · Gemini</span>
+              <span class="pipe-arr">&rarr;</span>
+              <span class="pipe-node">Critic · Review</span>
+            </div>
+
+            <div class="tag-row">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">LangChain</span>
+              <span class="tech-tag">Gemini API</span>
+              <span class="tech-tag">Tavily</span>
+              <span class="tech-tag">FastAPI</span>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a class="repo-link" href="https://github.com/vivekkumars21" target="_blank" rel="noreferrer">
+              <span>Find on GitHub</span>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+            <button class="chip-btn" onclick="executeInShell('researchlab')">Terminal Inspect</button>
+          </div>
+        </div>
+
+        <!-- Project 2: RAG Document Q&A -->
+        <div class="glass-card" data-category="genai">
+          <div>
+            <div class="card-meta-row">
+              <span class="card-badge">DOCUMENT RETRIEVAL</span>
+              <span class="card-index">02 / 09</span>
+            </div>
+            <h3 class="card-title">RAG Document Q&amp;A</h3>
+            <div class="card-subtitle">PDF search with MMR retrieval</div>
+            <p class="card-desc">
+              Mistral-powered PDF Q&amp;A, tested on 10 documents: 83% answer accuracy and ~4 seconds per query.
+            </p>
+            <div class="pipeline-diagram">
+              <span class="pipe-node">PDF</span><span class="pipe-arr">&rarr;</span>
+              <span class="pipe-node">Embeddings</span><span class="pipe-arr">&rarr;</span>
+              <span class="pipe-node">MMR Retrieval</span><span class="pipe-arr">&rarr;</span>
+              <span class="pipe-node">Mistral AI</span>
+            </div>
+            <div class="tag-row">
+              <span class="tech-tag">LangChain</span>
+              <span class="tech-tag">Mistral AI</span>
+              <span class="tech-tag">Hugging Face</span>
+              <span class="tech-tag">ChromaDB</span>
+              <span class="tech-tag">Python</span>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a class="repo-link" href="https://github.com/vivekkumars21/RAG" target="_blank" rel="noreferrer">
+              <span>View Code</span>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+            <button class="chip-btn" onclick="executeInShell('rag')">Terminal Inspect</button>
+          </div>
+        </div>
+
+        <!-- Project 3: LSTM Quote Generation -->
+        <div class="glass-card" data-category="dl">
+          <div>
+            <div class="card-meta-row">
+              <span class="card-badge">LANGUAGE GENERATION</span>
+              <span class="card-index">03 / 09</span>
+            </div>
+            <h3 class="card-title">LSTM-Based Quote Generation</h3>
+            <div class="card-subtitle">Next-word prediction · Streamlit</div>
+            <p class="card-desc">
+              Trained on 8,979 words, with 74% next-word accuracy. Deployed as an interactive Streamlit app.
+            </p>
+            <div class="tag-row">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">LSTM</span>
+              <span class="tech-tag">NLP</span>
+              <span class="tech-tag">Streamlit</span>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a class="repo-link" href="https://github.com/vivekkumars21/nextWordPrediction" target="_blank"
+              rel="noreferrer">
+              <span>View Code</span>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+            <button class="chip-btn" onclick="executeInShell('lstm')">Terminal Inspect</button>
+          </div>
+        </div>
+
+        <!-- Project 4: Loan Approval Classifier -->
+        <div class="glass-card" data-category="ml">
+          <div>
+            <div class="card-meta-row"><span class="card-badge">SUPERVISED ML</span><span class="card-index">04 /
+                09</span></div>
+            <h3 class="card-title">Loan Approval Classifier</h3>
+            <div class="card-subtitle">Credit scoring · FastAPI</div>
+            <p class="card-desc">Credit scoring model served through a validated FastAPI endpoint.</p>
+            <div class="tag-row">
+              <span class="tech-tag">Scikit-learn</span><span class="tech-tag">FastAPI</span><span
+                class="tech-tag">Pandas</span><span class="tech-tag">Docker</span>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a class="repo-link" href="https://github.com/vivekkumars21/loanPrediction_fullstack" target="_blank"
+              rel="noreferrer"><span>View Code</span></a>
+            <button class="chip-btn" onclick="executeInShell('loan')">Terminal Inspect</button>
+          </div>
+        </div>
+
+        <!-- Project 5: MediPredict -->
+        <div class="glass-card" data-category="ml">
+          <div>
+            <div class="card-meta-row"><span class="card-badge">HEALTHCARE ML</span><span class="card-index">05 /
+                09</span></div>
+            <h3 class="card-title">MediPredict AI</h3>
+            <div class="card-subtitle">Disease prediction · Flask</div>
+            <p class="card-desc">Symptom-based disease prediction with a Flask API and specialist directory.</p>
+            <div class="tag-row">
+              <span class="tech-tag">Python</span><span class="tech-tag">Flask</span><span
+                class="tech-tag">Scikit-learn</span><span class="tech-tag">NumPy</span>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a class="repo-link" href="https://github.com/vivekkumars21/healthcareAI" target="_blank"
+              rel="noreferrer"><span>View Code</span></a>
+            <button class="chip-btn" onclick="executeInShell('medipredict')">Terminal Inspect</button>
+          </div>
+        </div>
+
+        <!-- Project 6: CNN Image Classifier -->
+        <div class="glass-card" data-category="dl">
+          <div>
+            <div class="card-meta-row"><span class="card-badge">COMPUTER VISION</span><span class="card-index">06 /
+                09</span></div>
+            <h3 class="card-title">CNN Image Classifier</h3>
+            <div class="card-subtitle">Image classification · PyTorch</div>
+            <p class="card-desc">Image classification experiments with convolutional networks and OpenCV.</p>
+            <div class="tag-row">
+              <span class="tech-tag">PyTorch</span><span class="tech-tag">OpenCV</span><span
+                class="tech-tag">Torchvision</span><span class="tech-tag">Python</span>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a class="repo-link" href="https://github.com/vivekkumars21" target="_blank" rel="noreferrer"><span>View
+                GitHub Profile</span></a>
+            <button class="chip-btn" onclick="executeInShell('vision')">Terminal Inspect</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="repo-more" aria-label="More GitHub repositories">
+        <div class="repo-more-title">More projects</div>
+        <div class="repo-more-list">
+          <a class="repo-more-item" href="https://github.com/vivekkumars21/Farms-Fresh" target="_blank"
+            rel="noreferrer"><strong>Farms-Fresh</strong><span>TypeScript</span><svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M7 17 17 7M7 7h10v10" />
+            </svg></a>
+          <a class="repo-more-item" href="https://github.com/vivekkumars21/FFRAM" target="_blank"
+            rel="noreferrer"><strong>FFRAM</strong><span>Jupyter Notebook</span><svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M7 17 17 7M7 7h10v10" />
+            </svg></a>
+          <a class="repo-more-item" href="https://github.com/vivekkumars21/INterm" target="_blank"
+            rel="noreferrer"><strong>INterm</strong><span>Jupyter Notebook</span><svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M7 17 17 7M7 7h10v10" />
+            </svg></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── 3. DEVELOPER SHELL HUD ────────────────────────────────── -->
+    <section class="section-wrap" id="terminal">
+      <div class="section-head">
+        <span class="section-tag">02 // Interactive Interface</span>
+        <h2 class="section-title">Developer <em>Shell</em></h2>
+        <p class="section-desc">
+          Explore projects and background with a few commands.
+        </p>
+      </div>
+
+      <div class="terminal-container" id="terminal-box">
+        <div class="terminal-header">
+          <div class="window-dots">
+            <span class="dot dot-red" title="Clear Terminal" onclick="clearShell()"></span>
+            <span class="dot dot-amber" title="Reset"></span>
+            <span class="dot dot-green" title="Active"></span>
+          </div>
+          <div class="terminal-title">vivekkumar@student-workstation:~ (bash)</div>
+          <div style="font-size:11px; color:#8c8c94; font-family:var(--font-mono);">GTU IT 2023–2027</div>
+        </div>
+
+        <div class="terminal-body" id="term-body">
+          <div class="term-banner">
+            <div class="term-banner-title">VIVEK VISHWAKARMA <span>// STUDENT DEVELOPER</span></div>
+            <p>B.E. Information Technology · SAL / GTU · 2023–2027</p>
+            <small>Type <kbd>help</kbd> or choose a shortcut below.</small>
+          </div>
+          <div class="term-history" id="term-history"></div>
+
+          <div class="term-input-row">
+            <span class="term-prompt">visitor@workstation:~$</span>
+            <input type="text" class="term-input" id="term-input" placeholder="Type help or a command..."
+              autocomplete="off" spellcheck="false" />
+          </div>
+        </div>
+
+        <!-- Terminal Quick Action Chips -->
+        <div class="term-chips-bar">
+          <span style="font-size:11px; color:var(--text-dim); align-self:center; margin-right:4px;">SHORTCUTS:</span>
+          <button class="chip-btn" onclick="executeInShell('help')">help</button>
+          <button class="chip-btn" onclick="executeInShell('projects')">projects</button>
+          <button class="chip-btn" onclick="executeInShell('skills')">skills</button>
+          <button class="chip-btn" onclick="executeInShell('contact')">contact</button>
+          <button class="chip-btn" onclick="clearShell()">clear</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── 4. TECHNICAL SKILLS MATRIX ────────────────────────────── -->
+    <section class="section-wrap" id="skills">
+      <div class="section-head">
+        <span class="section-tag">03 // Technical Toolkit</span>
+        <h2 class="section-title">Skills &amp; <em>Competencies</em></h2>
+        <p class="section-desc">
+          Tools used across my projects and coursework.
+        </p>
+      </div>
+
+      <div class="skills-grid">
+        <!-- Card 1: Programming & Machine Learning -->
+        <div class="skill-card">
+          <div class="skill-header">
+            <div class="skill-icon-box">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                <path d="M2 12h20" />
+              </svg>
+            </div>
+            <span>Programming &amp; ML</span>
+          </div>
+          <div class="skill-pill-list">
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">SQL</span>
+            <span class="skill-pill">JavaScript</span>
+            <span class="skill-pill">Scikit-learn</span>
+            <span class="skill-pill">PyTorch</span>
+            <span class="skill-pill">TensorFlow</span>
+            <span class="skill-pill">Keras</span>
+            <span class="skill-pill">Model Evaluation</span>
+            <span class="skill-pill">Feature Engineering</span>
+          </div>
+          <div class="skill-note">
+            Classification, NLP, and predictive modeling.
+          </div>
+        </div>
+
+        <!-- Card 2: Generative AI & RAG -->
+        <div class="skill-card">
+          <div class="skill-header">
+            <div class="skill-icon-box">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+              </svg>
+            </div>
+            <span>Generative AI &amp; RAG</span>
+          </div>
+          <div class="skill-pill-list">
+            <span class="skill-pill">LLMs</span>
+            <span class="skill-pill">Transformers</span>
+            <span class="skill-pill">RAG</span>
+            <span class="skill-pill">Embeddings</span>
+            <span class="skill-pill">Vector Databases</span>
+            <span class="skill-pill">Hugging Face</span>
+            <span class="skill-pill">LangChain</span>
+            <span class="skill-pill">AI Agents</span>
+            <span class="skill-pill">Gemini API</span>
+            <span class="skill-pill">Mistral AI</span>
+            <span class="skill-pill">Tavily</span>
+          </div>
+          <div class="skill-note">
+            Retrieval, agents, and LLM applications.
+          </div>
+        </div>
+
+        <!-- Card 3: Backend & Web Development -->
+        <div class="skill-card">
+          <div class="skill-header">
+            <div class="skill-icon-box">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
+              </svg>
+            </div>
+            <span>Backend &amp; Tooling</span>
+          </div>
+          <div class="skill-pill-list">
+            <span class="skill-pill">FastAPI</span>
+            <span class="skill-pill">REST APIs</span>
+            <span class="skill-pill">Pydantic</span>
+            <span class="skill-pill">Model Serving</span>
+            <span class="skill-pill">API Integration</span>
+            <span class="skill-pill">Postman</span>
+          </div>
+          <div class="skill-note">
+            Python services, validation, and deployment.
+          </div>
+        </div>
+
+        <!-- Card 4: Data, Database & Tooling -->
+        <div class="skill-card">
+          <div class="skill-header">
+            <div class="skill-icon-box">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z" />
+              </svg>
+            </div>
+            <span>Data &amp; Tooling</span>
+          </div>
+          <div class="skill-pill-list">
+            <span class="skill-pill">NumPy</span>
+            <span class="skill-pill">Pandas</span>
+            <span class="skill-pill">PostgreSQL</span>
+            <span class="skill-pill">Git</span>
+            <span class="skill-pill">GitHub</span>
+            <span class="skill-pill">Docker</span>
+            <span class="skill-pill">Linux</span>
+            <span class="skill-pill">AWS</span>
+            <span class="skill-pill">Postman</span>
+          </div>
+          <div class="skill-note">
+            Data tools, databases, and deployment workflow.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── 5. EDUCATION & LEADERSHIP ─────────────────────────────── -->
+    <section class="section-wrap" id="education">
+      <div class="section-head">
+        <span class="section-tag">04 // Education</span>
+        <h2 class="section-title">Education</h2>
+        <p class="section-desc">
+          SAL / GTU · Ahmedabad.
+        </p>
+      </div>
+
+      <div class="timeline">
+        <!-- University Degree: SAL Engineering & Technical Institute (GTU) -->
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="timeline-period">2023 — 2027 &middot; FINAL YEAR</div>
+          <h3 class="timeline-role">Bachelor of Engineering in Information Technology (B.E. IT)</h3>
+          <div class="timeline-place">SAL Engineering &amp; Technical Institute · GTU · Ahmedabad · CGPA: 7.7 / 10
+            (through semester 6)</div>
+          <p class="timeline-body">
+            Coursework: AI/ML, Data Science, DBMS, OOP, Computer Networks.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── 6. LEADERSHIP ─────────────────────────────────────────── -->
+    <section class="section-wrap" id="leadership">
+      <div class="section-head">
+        <span class="section-tag">05 // Leadership</span>
+        <h2 class="section-title">Campus <em>Leadership</em></h2>
+        <p class="section-desc">ISTE Student Chapter · SAL</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="timeline-period">SEPT 2024 — PRESENT</div>
+          <h3 class="timeline-role">Technical Head</h3>
+          <div class="timeline-place">ISTE Student Chapter, SAL Engineering &amp; Technical Institute</div>
+          <p class="timeline-body">Led technical and media teams; coordinated 50+ events for 800+ participants.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── 7. STUDENT FAQ ────────────────────────────────────────── -->
+    <section class="section-wrap" id="faq">
+      <div class="section-head">
+        <span class="section-tag">06 // FAQ</span>
+        <h2 class="section-title">Common <em>Questions</em></h2>
+        <p class="section-desc">
+          Degree, availability, and contact details.
+        </p>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What are your education and college details?</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </div>
+          <div class="faq-answer">
+            Final-year B.E. IT at SAL / GTU, Ahmedabad. CGPA: 7.7 through semester 6.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Are you open to internships or junior developer roles?</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </div>
+          <div class="faq-answer">
+            Yes. I’m open to software, machine learning, and AI internship roles.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Where can I find and test your code?</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </div>
+          <div class="faq-answer">
+            Browse my code on <a href="https://github.com/vivekkumars21" target="_blank" rel="noreferrer"
+              style="text-decoration:underline; color:#fff;">GitHub</a>.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── 8. CONTACT CARD ───────────────────────────────────────── -->
+    <section class="section-wrap" id="contact">
+      <div class="contact-card">
+        <h2 class="contact-title">Let's get in <em>touch</em>.</h2>
+        <p class="contact-desc">
+          Open to internships and collaborations. Reach me by email or LinkedIn.
+        </p>
+
+        <div class="contact-actions">
+          <a class="btn-liquid btn-solid" href="mailto:vivekvishwakarma21@outlook.com">
+            <span>Email Me</span>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+
+          <button class="copy-chip-btn" onclick="copyEmail()">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+            </svg>
+            <span>Copy: vivekvishwakarma21@outlook.com</span>
+          </button>
+
+          <a class="btn-liquid btn-ghost" href="tel:+919328797168">
+            <span>+91 93287 97168</span>
+          </a>
+
+          <a class="btn-liquid btn-ghost" href="https://www.linkedin.com/in/viveks21/" target="_blank" rel="noreferrer">
+            <span>LinkedIn</span>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+
+          <a class="btn-liquid btn-ghost" href="https://github.com/vivekkumars21" target="_blank" rel="noreferrer">
+            <span>GitHub</span>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+        </div>
+
+        <p style="font-size:11.5px; color:var(--text-dim); font-family:var(--font-mono);">
+          Ahmedabad, Gujarat, India &bull; Open to remote and on-site internships
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div>&copy; 2026 Vivekkumar Vishwakarma &bull; B.E. IT · GTU</div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">Email copied to clipboard.</div>
+
+  <!-- ─── INTERACTION SCRIPT ────────────────────────────────────── -->
+  <script>
+    (function () {
+      // 1. Cursor Ambient Glow
+      const glow = document.getElementById('cursor-glow');
+      if (glow && window.matchMedia('(pointer: fine)').matches) {
+        window.addEventListener('pointermove', (e) => {
+          glow.style.left = e.clientX + 'px';
+          glow.style.top = e.clientY + 'px';
+        }, { passive: true });
+      }
+
+      // 2. Mobile Menu Toggle
+      const burger = document.getElementById('burger-btn');
+      const backdrop = document.getElementById('menu-backdrop');
+      const nav = document.getElementById('site-nav');
+
+      function setMenu(open) {
+        document.body.classList.toggle('menu-open', open);
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+
+      if (burger) {
+        burger.addEventListener('click', () => {
+          const isOpen = document.body.classList.contains('menu-open');
+          setMenu(!isOpen);
+        });
+      }
+
+      if (backdrop) {
+        backdrop.addEventListener('click', () => setMenu(false));
+      }
+
+      if (nav) {
+        nav.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => setMenu(false));
+        });
+      }
+
+      // 3. Scroll Spy Navigation
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-pill');
+
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 110;
+          if (window.scrollY >= sectionTop) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
+      }, { passive: true });
+
+      // 4. Gentle reveal as content enters view
+      const revealTargets = document.querySelectorAll('.section-head, .glass-card, .terminal-container, .skill-card, .timeline-item, .faq-item, .contact-card, .repo-more');
+      if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -36px 0px' });
+        revealTargets.forEach((element, index) => {
+          element.classList.add('reveal');
+          if (index % 4) element.classList.add(`reveal-delay-${index % 4}`);
+          revealObserver.observe(element);
+        });
+      }
+
+      // 5. Subtle pointer-following card highlight without 3D tilt
+      const cards = document.querySelectorAll('.glass-card');
+      cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--card-mx', `${x}px`);
+          card.style.setProperty('--card-my', `${y}px`);
+        });
+      });
+
+      // 5. Project Filters
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const projectCards = document.querySelectorAll('.glass-card');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const filter = btn.dataset.filter;
+
+          projectCards.forEach(card => {
+            if (filter === 'all' || card.dataset.category === filter) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // 6. Interactive Shell REPL
+      const SHELL_COMMANDS = {
+        help: `AVAILABLE COMMANDS:
+  • whoami     : Summary and contact details
+  • education  : B.E. Information Technology
+  • leadership : ISTE chapter experience
+  • projects   : Featured projects and GitHub work
+  • researchlab: Multi-agent research system
+  • rag        : RAG document Q&A system
+  • lstm       : LSTM quote generation system
+  • loan       : Loan approval classifier
+  • medipredict: Healthcare prediction app
+  • vision     : CNN image classification
+  • skills     : AI/ML and engineering toolkit
+  • coursework : Relevant B.E. IT coursework
+  • contact    : Email, LinkedIn, and GitHub links
+  • clear      : Reset terminal history`,
+        whoami: `NAME: Vivekkumar Vishwakarma
+STATUS: Final-year B.E. Information Technology student
+FOCUS: Generative AI, NLP, RAG, and multi-agent systems
+COLLEGE: SAL Engineering and Technical Institute
+UNIVERSITY: Gujarat Technological University (GTU) | CGPA: 7.7 / 10 (through semester 6)
+YEARS: 2023 — 2027
+LOCATION: Ahmedabad, Gujarat, India
+EMAIL: vivekvishwakarma21@outlook.com`,
+        education: `ACADEMIC QUALIFICATIONS:
+• B.E. Information Technology | 2023 — 2027
+• SAL Engineering & Technical Institute · GTU · Ahmedabad
+• CGPA: 7.7 / 10 through semester 6`,
+        projects: `FEATURED REPOSITORIES:
+1. ResearchLab · Multi-agent AI research and report generation
+2. RAG Document Q&A · Mistral AI, MMR retrieval, ChromaDB
+3. LSTM Quote Generation · 74% next-word accuracy
+4. Loan Approval Classifier
+5. MediPredict AI
+6. CNN Image Classifier
+7. Farms-Fresh · TypeScript
+8. FFRAM · Jupyter Notebook
+9. INterm · Jupyter Notebook
+
+GitHub Profile: https://github.com/vivekkumars21`,
+        leadership: `LEADERSHIP EXPERIENCE:
+• Technical Head, ISTE Student Chapter SAL
+• Sept 2024 — Present
+• Led technical and media teams
+• Coordinated 50+ events for 800+ participants`,
+        researchlab: `[PROJECT: ResearchLab]
+• Four-agent workflow: Search, Reader, Writer, Critic
+• Tavily search, BeautifulSoup, Gemini API, LangChain
+• FastAPI endpoints with Pydantic validation
+• Research time reduced from ~15 minutes to ~3 minutes`,
+        rag: `[PROJECT: RAG Document Q&A]
+• PDF question answering with LangChain and Mistral AI
+• Hugging Face embeddings, MMR retrieval, ChromaDB
+• Tested on 10 documents: 83% answer accuracy
+• Average response time: ~4 seconds per query
+GitHub: https://github.com/vivekkumars21/RAG`,
+        lstm: `[PROJECT: LSTM Quote Generation]
+• Trained on an 8,979-word dataset
+• 74% next-word accuracy
+• Deployed with an interactive Streamlit app
+GitHub: https://github.com/vivekkumars21/nextWordPrediction`,
+        loan: `[PROJECT: Loan Approval Classifier]
+• Credit scoring model with a validated FastAPI endpoint
+• Scikit-learn, Pandas, Docker
+GitHub: https://github.com/vivekkumars21/loanPrediction_fullstack`,
+        medipredict: `[PROJECT: MediPredict AI]
+• Symptom-based disease prediction with Flask
+• Includes a specialist directory
+• Python, Scikit-learn, NumPy
+GitHub: https://github.com/vivekkumars21/healthcareAI`,
+        vision: `[PROJECT: CNN Image Classifier]
+• Image classification using convolutional neural networks
+• PyTorch, Torchvision, OpenCV
+GitHub: https://github.com/vivekkumars21`,
+        skills: `TECH TOOLKIT:
+• Languages    : Python, SQL, JavaScript
+• ML & DL      : Scikit-learn, PyTorch, TensorFlow, Keras
+• GenAI & NLP  : LLMs, Transformers, RAG, LangChain, AI Agents
+• Backend      : FastAPI, REST APIs, Pydantic, Model Serving
+• Tools        : PostgreSQL, Docker, Linux, AWS, Postman`,
+        coursework: `CORE UNIVERSITY COURSEWORK (GTU B.E. IT):
+• Artificial Intelligence & Machine Learning
+• Data Science
+• Database Management Systems
+• Object-Oriented Programming
+• Computer Networks`,
+        contact: `CONTACT DETAILS:
+• Email    : vivekvishwakarma21@outlook.com
+• Phone    : +91 93287 97168
+• GitHub   : https://github.com/vivekkumars21
+• LinkedIn : https://www.linkedin.com/in/viveks21/
+• Location : Ahmedabad, Gujarat, India`
+      };
+
+      const termInput = document.getElementById('term-input');
+      const termHistory = document.getElementById('term-history');
+      const termBody = document.getElementById('term-body');
+
+      window.executeInShell = function (cmd) {
+        const command = cmd.trim().toLowerCase();
+        if (!command) return;
+
+        const cmdEl = document.createElement('div');
+        cmdEl.innerHTML = `<span style="color:#ffffff;">visitor@workstation:~$</span> <span style="color:#d1d1db;">${cmd}</span>`;
+        termHistory.appendChild(cmdEl);
+
+        const outEl = document.createElement('div');
+        outEl.style.whiteSpace = 'pre-wrap';
+        outEl.style.margin = '4px 0 12px 10px';
+        outEl.style.paddingLeft = '8px';
+        outEl.style.borderLeft = '2px solid rgba(255, 255, 255, 0.25)';
+        outEl.style.color = '#e2e2ea';
+
+        if (command === 'clear') {
+          termHistory.innerHTML = '';
+          return;
+        }
+
+        if (SHELL_COMMANDS[command]) {
+          outEl.textContent = SHELL_COMMANDS[command];
+        } else {
+          outEl.textContent = `bash: command not found: '${cmd}'. Type 'help' for command list.`;
+          outEl.style.color = '#e07d72';
+          outEl.style.borderLeftColor = '#e07d72';
+        }
+
+        termHistory.appendChild(outEl);
+        termBody.scrollTop = termBody.scrollHeight;
+      };
+
+      window.clearShell = function () {
+        termHistory.innerHTML = '';
+      };
+
+      if (termInput) {
+        termInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            const val = termInput.value;
+            termInput.value = '';
+            executeInShell(val);
+          }
+        });
+      }
+
+      // 7. FAQ Accordion
+      document.querySelectorAll('.faq-question').forEach(q => {
+        q.addEventListener('click', () => {
+          const item = q.parentElement;
+          item.classList.toggle('open');
+        });
+      });
+
+      // 8. Copy Email Toast
+      window.copyEmail = function () {
+        navigator.clipboard.writeText('vivekvishwakarma21@outlook.com').then(() => {
+          const toast = document.getElementById('toast');
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2200);
+        }).catch(() => {
+          window.location.href = 'mailto:vivekvishwakarma21@outlook.com';
+        });
+      };
+    })();
+  </script>
 </body>
 
 </html>
